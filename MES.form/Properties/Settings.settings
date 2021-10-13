@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MES.form.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MES_WebSaveScheme_PService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://172.16.1.37/WebSer/PService.asmx</Value>
+    </Setting>
+    <Setting Name="MES_stoney_WebService1" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://xx-mes.highrock.com.cn/stoney/WebService1.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

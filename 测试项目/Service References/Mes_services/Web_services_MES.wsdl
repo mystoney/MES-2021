@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InsertZAFPO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZAFPO_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZAFPOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertZAFPOResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZBTDATA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZBTDATA_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZBTDATAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertZBTDATAResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZCADMA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZCADMA_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZCADMAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertZCADMAResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZCLSX">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZCLSX_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZCLSXResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertZCLSXResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZMTMAUF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZMTMAUF_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZMTMAUFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertZMTMAUFResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZMTMFILL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZMTMFILL_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertZMTMFILLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertZMTMFILLResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Tmp_ZTMTM_COMCTRL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tmp_ZTMTM_COMCTRL_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Tmp_ZTMTM_COMCTRLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_Tmp_ZTMTM_COMCTRLResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Tmp_ZTMTM_COMOPT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tmp_ZTMTM_COMOPT_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Tmp_ZTMTM_COMOPTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_Tmp_ZTMTM_COMOPTResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Tmp_ZTMTM_COMRELT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tmp_ZTMTM_COMREL_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_Tmp_ZTMTM_COMRELTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_Tmp_ZTMTM_COMRELTResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_PLMTOMES">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tmp_PLMTOMES_XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_PLMTOMESResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insert_PLMTOMESResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HELLOWORLD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="s" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HELLOWORLDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HELLOWORLDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertZAFPOSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertZAFPO" />
+  </wsdl:message>
+  <wsdl:message name="InsertZAFPOSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertZAFPOResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertZBTDATASoapIn">
+    <wsdl:part name="parameters" element="tns:InsertZBTDATA" />
+  </wsdl:message>
+  <wsdl:message name="InsertZBTDATASoapOut">
+    <wsdl:part name="parameters" element="tns:InsertZBTDATAResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertZCADMASoapIn">
+    <wsdl:part name="parameters" element="tns:InsertZCADMA" />
+  </wsdl:message>
+  <wsdl:message name="InsertZCADMASoapOut">
+    <wsdl:part name="parameters" element="tns:InsertZCADMAResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertZCLSXSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertZCLSX" />
+  </wsdl:message>
+  <wsdl:message name="InsertZCLSXSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertZCLSXResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertZMTMAUFSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertZMTMAUF" />
+  </wsdl:message>
+  <wsdl:message name="InsertZMTMAUFSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertZMTMAUFResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertZMTMFILLSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertZMTMFILL" />
+  </wsdl:message>
+  <wsdl:message name="InsertZMTMFILLSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertZMTMFILLResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Tmp_ZTMTM_COMCTRLSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Tmp_ZTMTM_COMCTRL" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Tmp_ZTMTM_COMCTRLSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_Tmp_ZTMTM_COMCTRLResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Tmp_ZTMTM_COMOPTSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Tmp_ZTMTM_COMOPT" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Tmp_ZTMTM_COMOPTSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_Tmp_ZTMTM_COMOPTResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Tmp_ZTMTM_COMRELTSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_Tmp_ZTMTM_COMRELT" />
+  </wsdl:message>
+  <wsdl:message name="Insert_Tmp_ZTMTM_COMRELTSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_Tmp_ZTMTM_COMRELTResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_PLMTOMESSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_PLMTOMES" />
+  </wsdl:message>
+  <wsdl:message name="Insert_PLMTOMESSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_PLMTOMESResponse" />
+  </wsdl:message>
+  <wsdl:message name="HELLOWORLDSoapIn">
+    <wsdl:part name="parameters" element="tns:HELLOWORLD" />
+  </wsdl:message>
+  <wsdl:message name="HELLOWORLDSoapOut">
+    <wsdl:part name="parameters" element="tns:HELLOWORLDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Web_services_MESSoap">
+    <wsdl:operation name="InsertZAFPO">
+      <wsdl:input message="tns:InsertZAFPOSoapIn" />
+      <wsdl:output message="tns:InsertZAFPOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertZBTDATA">
+      <wsdl:input message="tns:InsertZBTDATASoapIn" />
+      <wsdl:output message="tns:InsertZBTDATASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertZCADMA">
+      <wsdl:input message="tns:InsertZCADMASoapIn" />
+      <wsdl:output message="tns:InsertZCADMASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertZCLSX">
+      <wsdl:input message="tns:InsertZCLSXSoapIn" />
+      <wsdl:output message="tns:InsertZCLSXSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertZMTMAUF">
+      <wsdl:input message="tns:InsertZMTMAUFSoapIn" />
+      <wsdl:output message="tns:InsertZMTMAUFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertZMTMFILL">
+      <wsdl:input message="tns:InsertZMTMFILLSoapIn" />
+      <wsdl:output message="tns:InsertZMTMFILLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMCTRL">
+      <wsdl:input message="tns:Insert_Tmp_ZTMTM_COMCTRLSoapIn" />
+      <wsdl:output message="tns:Insert_Tmp_ZTMTM_COMCTRLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMOPT">
+      <wsdl:input message="tns:Insert_Tmp_ZTMTM_COMOPTSoapIn" />
+      <wsdl:output message="tns:Insert_Tmp_ZTMTM_COMOPTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMRELT">
+      <wsdl:input message="tns:Insert_Tmp_ZTMTM_COMRELTSoapIn" />
+      <wsdl:output message="tns:Insert_Tmp_ZTMTM_COMRELTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_PLMTOMES">
+      <wsdl:input message="tns:Insert_PLMTOMESSoapIn" />
+      <wsdl:output message="tns:Insert_PLMTOMESSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HELLOWORLD">
+      <wsdl:input message="tns:HELLOWORLDSoapIn" />
+      <wsdl:output message="tns:HELLOWORLDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Web_services_MESSoap" type="tns:Web_services_MESSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertZAFPO">
+      <soap:operation soapAction="http://tempuri.org/InsertZAFPO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZBTDATA">
+      <soap:operation soapAction="http://tempuri.org/InsertZBTDATA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZCADMA">
+      <soap:operation soapAction="http://tempuri.org/InsertZCADMA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZCLSX">
+      <soap:operation soapAction="http://tempuri.org/InsertZCLSX" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZMTMAUF">
+      <soap:operation soapAction="http://tempuri.org/InsertZMTMAUF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZMTMFILL">
+      <soap:operation soapAction="http://tempuri.org/InsertZMTMFILL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMCTRL">
+      <soap:operation soapAction="http://tempuri.org/Insert_Tmp_ZTMTM_COMCTRL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMOPT">
+      <soap:operation soapAction="http://tempuri.org/Insert_Tmp_ZTMTM_COMOPT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMRELT">
+      <soap:operation soapAction="http://tempuri.org/Insert_Tmp_ZTMTM_COMRELT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_PLMTOMES">
+      <soap:operation soapAction="http://tempuri.org/Insert_PLMTOMES" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HELLOWORLD">
+      <soap:operation soapAction="http://tempuri.org/HELLOWORLD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Web_services_MESSoap12" type="tns:Web_services_MESSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertZAFPO">
+      <soap12:operation soapAction="http://tempuri.org/InsertZAFPO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZBTDATA">
+      <soap12:operation soapAction="http://tempuri.org/InsertZBTDATA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZCADMA">
+      <soap12:operation soapAction="http://tempuri.org/InsertZCADMA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZCLSX">
+      <soap12:operation soapAction="http://tempuri.org/InsertZCLSX" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZMTMAUF">
+      <soap12:operation soapAction="http://tempuri.org/InsertZMTMAUF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertZMTMFILL">
+      <soap12:operation soapAction="http://tempuri.org/InsertZMTMFILL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMCTRL">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Tmp_ZTMTM_COMCTRL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMOPT">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Tmp_ZTMTM_COMOPT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_Tmp_ZTMTM_COMRELT">
+      <soap12:operation soapAction="http://tempuri.org/Insert_Tmp_ZTMTM_COMRELT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_PLMTOMES">
+      <soap12:operation soapAction="http://tempuri.org/Insert_PLMTOMES" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HELLOWORLD">
+      <soap12:operation soapAction="http://tempuri.org/HELLOWORLD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Web_services_MES">
+    <wsdl:port name="Web_services_MESSoap" binding="tns:Web_services_MESSoap">
+      <soap:address location="http://localhost:21349/Web_services_MES.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Web_services_MESSoap12" binding="tns:Web_services_MESSoap12">
+      <soap12:address location="http://localhost:21349/Web_services_MES.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

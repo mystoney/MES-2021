@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="32 balloonica_072" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_072.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="No" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\No.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_071" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_071.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_046" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_046.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_045" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_045.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_061" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_061.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_051" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_051.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_022" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_022.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_034" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_034.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wangyuanjing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wangyuanjing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_039" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_039.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_007" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_007.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_069" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_069.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_064" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_064.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_056" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_056.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_016" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_016.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_004" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_004.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_075" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_075.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_018" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_018.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_066" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_066.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_065" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_065.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_031" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_031.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_050" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_050.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_032" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_032.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_040" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_040.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_024" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_063" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_063.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_013" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_013.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_074" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_074.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_067" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_067.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_042" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_042.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_030" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_030.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_041" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_041.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_068" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_068.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_057" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_057.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_017" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_017.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_026" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_026.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_054" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_054.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_014" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_014.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_029" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_029.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_010" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_010.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_020" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_020.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_049" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_049.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_044" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_044.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_052" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_052.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_033" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_033.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_060" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_060.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_019" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_019.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_021" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_021.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_047" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_047.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_011" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_011.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_035" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_035.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_076" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_076.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_036" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_036.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_073" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_073.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_008" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_008.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fangdajing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fangdajing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_005" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_005.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_070" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_070.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_025" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_025.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_015" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_015.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_028" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_028.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Yes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_048" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_048.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_053" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_053.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_062" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_062.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_001.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_079" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_079.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_012" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_012.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_077" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_077.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_037" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_037.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_043" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_043.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_038" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_038.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_003" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_003.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_058" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_058.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_009" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_009.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_080" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_080.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_055" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_055.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="32 balloonica_006" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\32 balloonica_006.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_20161219042915694_easyicon_net_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\20161219042915694_easyicon_net_32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_20161219043016221_easyicon_net_128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\20161219043016221_easyicon_net_128.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

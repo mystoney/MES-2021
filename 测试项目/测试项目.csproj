@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{318D430B-58E1-4402-B931-9D413226529A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>测试项目</RootNamespace>
+    <AssemblyName>测试项目</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>测试项目.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllInOneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllInOneForm.Designer.cs">
+      <DependentUpon>AllInOneForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginFrom.Designer.cs">
+      <DependentUpon>LoginFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MDI_Class.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Mes_services\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="WaitingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitingForm.Designer.cs">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="人事\人员资料维护\employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="人事\人员资料维护\employee.Designer.cs">
+      <DependentUpon>employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="人事\人员资料维护\employee_cha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="人事\人员资料维护\employee_cha.Designer.cs">
+      <DependentUpon>employee_cha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="人事\部门资料维护\department.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="人事\部门资料维护\department.Designer.cs">
+      <DependentUpon>department.cs</DependentUpon>
+    </Compile>
+    <Compile Include="系统\系统用户权限\add_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="系统\系统用户权限\add_user.Designer.cs">
+      <DependentUpon>add_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="系统\系统用户权限\copy_user_right.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="系统\系统用户权限\copy_user_right.Designer.cs">
+      <DependentUpon>copy_user_right.cs</DependentUpon>
+    </Compile>
+    <Compile Include="系统\系统用户权限\rs_list.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="系统\系统用户权限\rs_list.Designer.cs">
+      <DependentUpon>rs_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="系统\系统用户权限\sys_user_right.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="系统\系统用户权限\sys_user_right.Designer.cs">
+      <DependentUpon>sys_user_right.cs</DependentUpon>
+    </Compile>
+    <Compile Include="系统\系统角色权限\role_add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="系统\系统角色权限\role_add.Designer.cs">
+      <DependentUpon>role_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="系统\系统角色权限\sys_role_right.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="系统\系统角色权限\sys_role_right.Designer.cs">
+      <DependentUpon>sys_role_right.cs</DependentUpon>
+    </Compile>
+    <Compile Include="视图\newpassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="视图\newpassword.Designer.cs">
+      <DependentUpon>newpassword.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AllInOneForm.resx">
+      <DependentUpon>AllInOneForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginFrom.resx">
+      <DependentUpon>LoginFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="WaitingForm.resx">
+      <DependentUpon>WaitingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="人事\人员资料维护\employee.resx">
+      <DependentUpon>employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="人事\人员资料维护\employee_cha.resx">
+      <DependentUpon>employee_cha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="人事\部门资料维护\department.resx">
+      <DependentUpon>department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="系统\系统用户权限\add_user.resx">
+      <DependentUpon>add_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="系统\系统用户权限\copy_user_right.resx">
+      <DependentUpon>copy_user_right.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="系统\系统用户权限\rs_list.resx">
+      <DependentUpon>rs_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="系统\系统用户权限\sys_user_right.resx">
+      <DependentUpon>sys_user_right.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="系统\系统角色权限\role_add.resx">
+      <DependentUpon>role_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="系统\系统角色权限\sys_role_right.resx">
+      <DependentUpon>sys_role_right.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="视图\newpassword.resx">
+      <DependentUpon>newpassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\Mes_services\Web_services_MES.wsdl" />
+    <None Include="Service References\Mes_services\测试项目.Mes_services.HELLOWORLDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.InsertZAFPOResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.InsertZBTDATAResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.InsertZCADMAResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.InsertZCLSXResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.InsertZMTMAUFResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.InsertZMTMFILLResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.Insert_PLMTOMESResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.Insert_Tmp_ZTMTM_COMCTRLResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.Insert_Tmp_ZTMTM_COMOPTResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Mes_services\测试项目.Mes_services.Insert_Tmp_ZTMTM_COMRELTResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBConn\DBConn.csproj">
+      <Project>{37e11581-7a5d-4db2-ad68-7915f2b598cd}</Project>
+      <Name>DBConn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MES.module.Base\MES.module.Base.csproj">
+      <Project>{f8462227-0c8d-4da4-8800-cecf3da9ab99}</Project>
+      <Name>MES.module.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MES.module.BLL\MES.module.BLL.csproj">
+      <Project>{1c2b57c3-3e5e-42cb-8f1e-7dd1ac5a5925}</Project>
+      <Name>MES.module.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MES.module.model\MES.module.model.csproj">
+      <Project>{475f6b17-e77e-4e4d-a915-8f257c0969d8}</Project>
+      <Name>MES.module.model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyContrals\MyContrals.csproj">
+      <Project>{16C8FC7B-5824-42C0-88EA-DC6F10A09DD4}</Project>
+      <Name>MyContrals</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="系统\公司基本信息\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Mes_services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Mes_services\Web_services_MES.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Mes_services\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Mes_services\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Mes_services\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
