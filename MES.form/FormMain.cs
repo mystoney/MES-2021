@@ -878,7 +878,7 @@ namespace MES.form
 
         private void 工单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Order.OrderMain sns = new Order.OrderMain();
+            Order.OrderListMain sns = new Order.OrderListMain();
             ShowForm(sns);
         }
 

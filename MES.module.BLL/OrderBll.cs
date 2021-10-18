@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MES.module.DAL.OrderDal;
+using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
@@ -204,52 +205,89 @@ namespace MES.module.BLL
         }
         #endregion
 
-        #region 新版-保存工单-主表-款号数量等
-        /// <summary>
-        /// 新版-保存订单信息-主表
-        /// </summary>
-        /// <param name="OrderMasterList">订单信息</param>
-        /// <returns>0不成功 1成功</returns>
-        public int SaveOrderMaster(OrderBll.SelectOrderInfo OrderInfo)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("job_num");
-            dt.Columns.Add("suffix");
-            dt.Columns.Add("style_no");
-            dt.Columns.Add("style_des");
-            dt.Columns.Add("Combination_no");
-            dt.Columns.Add("job_qty");
-            dt.Columns.Add("manhour");
-            dt.Columns.Add("memo_no");
-            dt.Columns.Add("memo_name");
-            dt.Columns.Add("customer_state");
-            dt.Columns.Add("customer_state_des");
-            DataRow dr = dt.NewRow();
-            dr["job_num"] = OrderInfo.job_num;
-            dr["suffix"] = OrderInfo.suffix;
-            dr["Style_no"] = OrderInfo.Style_no;
-            dr["style_des"] = OrderInfo.style_des;
-            dr["Combination_no"] = OrderInfo.Combination_no;
-            dr["job_qty"] = OrderInfo.job_qty;
-            dr["manhour"] = OrderInfo.manhour;
-            dr["memo_no"] = OrderInfo.memo_no;
-            dr["memo_name"] = OrderInfo.memo_name;
-            dr["customer_state"] = OrderInfo.customer_state;
-            dr["customer_state_des"] = OrderInfo.customer_state_des;
-            dt.Rows.Add(dr);
 
-            int i = 0;
-            DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();            
-            try
+        #region 新版-保存工单-主表-款号数量等
+        public void SaveOrderMaster()
+        {
+            OrderDal od = new OrderDal();
+            DataTable dt_OrderMaster = od.GetZYQOrderInfo();//ZYQmaster中包含，但是MESmaster中没有的工单
+            //获取到Order_Master表结构
+            DataTable dt_InsertToMesOrderMaster = od.GetMESOrderInfo();//主表结构
+            DataTable dt_Insert_Order_detail_OptionList = od.GetMESOrderOptionListInfo();//OptionList结构
+            if (dt_OrderMaster.Rows.Count > 0)
             {
-                return i = od.SaveOrderMaster(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                //如果有需要保存的工单：
+                for (int j = 0; j < dt_OrderMaster.Rows.Count; j++)
+                {
+                    //判断款号是否已经维护 如果没有，跳过此行
+                    StyleBll sb = new StyleBll();
+                    string style_no = dt_OrderMaster.Rows[j]["Style_num"].ToString().Trim();
+                    DataTable dt = sb.GetStyleItemList(style_no);//获取到此款号必须的选项
+                    if (dt.Rows.Count != 0)
+                    {
+                        string order_no= dt_OrderMaster.Rows[j]["job_num"].ToString().Trim() +"-"+ dt_OrderMaster.Rows[j]["suffix"].ToString().Trim().PadLeft(3, '0');
+                        Return_Message rm = new Return_Message();
+                        string getordermodel = $@"http://172.16.1.83:8024/api/CpOrderSubDetailByJobNum/" + order_no;
+                        rm = Helper.Json.JsonHelper.DeserializeJsonToObject<Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
+                        if (rm.State == Return_Message.Return_State.Error)
+                        {
+                            throw new Exception(rm.Message);
+                        }
+                        //DataTable dt = Helper.Json.JsonHelper.DeserializeJsonToObject<DataTable>(rm.Return_Value);
+                        OrderItemOptionZYQ o = new OrderItemOptionZYQ();
+                        List<OrderItemOptionZYQ> ol = new List<OrderItemOptionZYQ>();
+                        ol = Helper.Json.JsonHelper.DeserializeJsonToObject<List<OrderItemOptionZYQ>>(rm.Return_Value);
+                        string memo_no = "";
+                        string memo_name = "";
+                        List<string> lst = new List<string>();
+                        for (int k = 0; k < dt.Rows.Count; k++)
+                        {
+                            string item_no = dt.Rows[k][0].ToString();
+                            string option_no = ol.Find(x => x.Item_No == item_no).Option_No;
+                            memo_no = memo_no + item_no + "=" + option_no + " ";
+                            string item_name = ol.Find(x => x.Item_No == item_no).Item_Name;
+                            string option_name = ol.Find(x => x.Item_No == item_no).Option_Name;
+                            memo_name = memo_name + item_name + "=" + option_name + " ";
+                            //选项值组合    
+                            lst.Add(item_no + "=" + option_no);
+                        }
+                        //获取到选项符合的组合号
+                        int Combination_no = sb.GetOrderCombination(style_no, memo_no);
+                        DataRow dr = dt_InsertToMesOrderMaster.NewRow();
+                        dr["job_num"] = dt_OrderMaster.Rows[j]["job_num"].ToString().Trim();
+                        dr["suffix"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["suffix"].ToString().Trim());
+                        //dr["order_date"] = "20" + dt_OrderMaster.Rows[j]["job_num"].ToString().Trim().Substring(1, 2) + "-" + dt_OrderMaster.Rows[j]["job_num"].ToString().Trim().Substring(3, 2) + "-" + dt_OrderMaster.Rows[j]["job_num"].ToString().Trim().Substring(5, 2);
+                        dr["input_date"] = DateTime.Today;
+                        dr["style_no"] = dt_OrderMaster.Rows[j]["style_num"].ToString().Trim();
+                        dr["style_des"] = dt_OrderMaster.Rows[j]["style_des"].ToString().Trim();
+                        dr["Combination_no"] = Combination_no;
+                        dr["job_qty"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["job_qty"].ToString().Trim());
+                        dr["manhour"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["manhour"].ToString().Trim());
+                        dr["memo_no"] = memo_no;
+                        dr["memo_name"] = memo_name;
+                        dr["customer_state"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["customer_state"].ToString().Trim());
+                        dr["customer_state_des"] = dt_OrderMaster.Rows[j]["customer_state_des"].ToString().Trim();
+                        dt_InsertToMesOrderMaster.Rows.Add(dr);
+
+                        for (int z = 0; z < lst.Count; z++)
+                        {
+                            DataRow dr_OptionList = dt_Insert_Order_detail_OptionList.NewRow();
+                            dr_OptionList["job_num"] = dt_OrderMaster.Rows[j]["job_num"].ToString().Trim();
+                            dr_OptionList["suffix"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["suffix"].ToString().Trim());
+                            dr_OptionList["Item_No"] = lst[z].Split("=".ToCharArray())[0];
+                            dr_OptionList["Option_No"] = lst[z].Split("=".ToCharArray())[1];
+                            dt_Insert_Order_detail_OptionList.Rows.Add(dr_OptionList);
+                        }
+
+                    }
+                }
+                od.SaveOrderMaster(dt_InsertToMesOrderMaster);
+                od.SaveOrderOptionList(dt_Insert_Order_detail_OptionList);
             }
         }
         #endregion
+
+
 
         #region 新版-保存工单-主表-款号选项
         /// <summary>
@@ -259,13 +297,13 @@ namespace MES.module.BLL
         /// <param name="suffix">工单行号</param>
         /// <param name="OpListNo">工序清单号</param>
         /// <returns>0不成功 1成功 2已存在</returns>
-        public int SaveOrderOptionList(string job_num, int suffix, List<string> lst)
+        public void SaveOrderOptionList(DataTable dt_OrderOptionList)
         {
             int i = 0;
             DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
             try
             {
-                return i = od.SaveOrderOptionList(job_num, suffix, lst);
+                od.SaveOrderOptionList(dt_OrderOptionList);
             }
             catch (Exception ex)
             {

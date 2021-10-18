@@ -193,14 +193,6 @@ namespace MES.module.DAL.OrderDal
                     sqlstr_saveorder.AppendLine("            ," + dt.Rows[i]["manhour"] + ")");
 
                     SQLList.Add(sqlstr_saveorder.ToString());
-
-
-
-
-
-
-
-
                 }
             }
             try
@@ -216,7 +208,59 @@ namespace MES.module.DAL.OrderDal
         }
         #endregion
 
+        #region 新版-从ZYQ处获取清单后保存到nMES_Order_zyq_master和nMES_Order_master表
+        public int SaveOrderZYQtoMES(DataTable dt)
+        {
 
+            ArrayList SQLList = new ArrayList();
+            for (int i = dt.Rows.Count - 1; i >= 0; i--)
+            {
+
+                StringBuilder sqlstr = new StringBuilder();
+                sqlstr.Clear();
+                sqlstr.AppendLine(" SELECT job_num,suffix FROM nMES_Order_zyq_master where job_num='" + dt.Rows[i]["job_num"].ToString().Trim() + "' and suffix=" + dt.Rows[i]["suffix"] + "");
+
+                DataTable dt_order = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
+                if (dt_order.Rows.Count == 0)
+                {
+                    StringBuilder sqlstr_saveorder = new StringBuilder();
+                    sqlstr_saveorder.Clear();
+                    sqlstr_saveorder.AppendLine(" INSERT INTO nMES_Order_zyq_master ");
+                    sqlstr_saveorder.AppendLine("            ( ");
+                    sqlstr_saveorder.AppendLine("            job_num ");
+                    sqlstr_saveorder.AppendLine("            ,suffix ");
+                    sqlstr_saveorder.AppendLine("            ,style_num ");
+                    sqlstr_saveorder.AppendLine("            ,style_des ");
+                    sqlstr_saveorder.AppendLine("            ,job_qty ");
+                    sqlstr_saveorder.AppendLine("            ,customer_state ");
+                    sqlstr_saveorder.AppendLine("            ,customer_state_des ");
+                    sqlstr_saveorder.AppendLine("            ,manhour) ");
+                    sqlstr_saveorder.AppendLine("      VALUES ");
+                    sqlstr_saveorder.AppendLine("            (");
+                    sqlstr_saveorder.AppendLine("            '" + dt.Rows[i]["job_num"].ToString().Trim() + "' ");
+                    sqlstr_saveorder.AppendLine("            ," + dt.Rows[i]["suffix"] + " ");
+                    sqlstr_saveorder.AppendLine("            ,'" + dt.Rows[i]["style_num"].ToString().Trim() + "' ");
+                    sqlstr_saveorder.AppendLine("            ,'" + dt.Rows[i]["style_des"].ToString().Trim() + "' ");
+                    sqlstr_saveorder.AppendLine("            ," + dt.Rows[i]["job_qty"] + "");
+                    sqlstr_saveorder.AppendLine("            ," + dt.Rows[i]["customer_state"] + "");
+                    sqlstr_saveorder.AppendLine("            ,'" + dt.Rows[i]["customer_state_des"].ToString().Trim() + "' ");
+                    sqlstr_saveorder.AppendLine("            ," + dt.Rows[i]["manhour"] + ")");
+
+                    SQLList.Add(sqlstr_saveorder.ToString());
+                }
+            }
+            try
+            {
+                DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+                throw ex;
+            }
+        }
+        #endregion
 
 
 
@@ -333,89 +377,119 @@ namespace MES.module.DAL.OrderDal
         #endregion
 
         #region 新版-保存工单-主表-款号数量等
-        public int SaveOrderMaster(DataTable dt_OrderMaster)
+        public void SaveOrderMaster(DataTable dt_OrderMaster)
         {
             int i = 0;
+
+
             if (dt_OrderMaster.Rows.Count > 0)
             {
-                string job_num = dt_OrderMaster.Rows[0]["job_num"].ToString().Trim();
-                StringBuilder sqlstr = new StringBuilder();
-                sqlstr.Clear();
-                sqlstr.AppendLine(" declare @job_num nvarchar(50) ");
-                sqlstr.AppendLine(" declare @suffix int ");
-                sqlstr.AppendLine(" declare @order_date datetime ");
-                sqlstr.AppendLine(" declare @input_date datetime ");
-                sqlstr.AppendLine(" declare @style_no nvarchar(50) ");
-                sqlstr.AppendLine(" declare @style_des nvarchar(50) ");
-                sqlstr.AppendLine(" declare @Combination_no int ");
-                sqlstr.AppendLine(" declare @job_qty int ");
-                sqlstr.AppendLine(" declare @manhour int ");
-                sqlstr.AppendLine(" declare @memo_no nvarchar(50) ");
-                sqlstr.AppendLine(" declare @memo_name nvarchar(50) ");
-                sqlstr.AppendLine(" declare @customer_state int ");
-                sqlstr.AppendLine(" declare @customer_state_des nvarchar(50) ");
-                sqlstr.AppendLine(" set @job_num='" + job_num.Trim() + "' ");
-                sqlstr.AppendLine(" set @suffix=" + dt_OrderMaster.Rows[0]["suffix"].ToString().Trim() + " ");
-                sqlstr.AppendLine(" set @order_date= '20' + substring(@job_num, 2, 2) + '-' + substring(@job_num, 4, 2) + '-' + substring(@job_num, 6, 2)");
-                sqlstr.AppendLine(" set @input_date=getdate() ");
-                sqlstr.AppendLine(" set @style_no='"+ dt_OrderMaster.Rows[0]["Style_no"].ToString().Trim() + "'");
-                sqlstr.AppendLine(" set @style_des='" + dt_OrderMaster.Rows[0]["style_des"].ToString().Trim() + "'");
-                sqlstr.AppendLine(" set @Combination_no=" + dt_OrderMaster.Rows[0]["Combination_no"].ToString().Trim() + "");
-                sqlstr.AppendLine(" set @job_qty=" + dt_OrderMaster.Rows[0]["job_qty"].ToString().Trim() + "");
-                sqlstr.AppendLine(" set @manhour=" + dt_OrderMaster.Rows[0]["manhour"].ToString().Trim() + "");
-                sqlstr.AppendLine(" set @memo_no='" + dt_OrderMaster.Rows[0]["memo_no"].ToString().Trim() + "'");
-                sqlstr.AppendLine(" set @memo_name='" + dt_OrderMaster.Rows[0]["memo_name"].ToString().Trim() + "'");
-                sqlstr.AppendLine(" set @customer_state='" + dt_OrderMaster.Rows[0]["customer_state"].ToString().Trim() + "'");
-                sqlstr.AppendLine(" set @customer_state_des='" + dt_OrderMaster.Rows[0]["customer_state_des"].ToString().Trim() + "'");
-                sqlstr.AppendLine(" INSERT INTO nMES_order_master ");
-                sqlstr.AppendLine("            (job_num ");
-                sqlstr.AppendLine("            ,suffix ");
-                sqlstr.AppendLine("            ,order_date ");
-                sqlstr.AppendLine("            ,input_date ");
-                sqlstr.AppendLine("            ,style_no ");
-                sqlstr.AppendLine("            ,style_des ");
-                sqlstr.AppendLine("            ,Combination_no ");
-                sqlstr.AppendLine("            ,job_qty ");
-                sqlstr.AppendLine("            ,memo_no ");
-                sqlstr.AppendLine("            ,memo_name ");
-                sqlstr.AppendLine("            ,customer_state ");
-                sqlstr.AppendLine("            ,customer_state_des ");
-                sqlstr.AppendLine("            ,manhour) ");
-                sqlstr.AppendLine("      VALUES ");
-                sqlstr.AppendLine("            (@job_num ");
-                sqlstr.AppendLine("            ,@suffix ");
-                sqlstr.AppendLine("            ,@order_date ");
-                sqlstr.AppendLine("            ,@input_date ");
-                sqlstr.AppendLine("            ,@style_no ");
-                sqlstr.AppendLine("            ,@style_des ");
-                sqlstr.AppendLine("            ,@Combination_no ");
-                sqlstr.AppendLine("            ,@job_qty ");
-                sqlstr.AppendLine("            ,@memo_no ");
-                sqlstr.AppendLine("            ,@memo_name ");
-                sqlstr.AppendLine("            ,@customer_state ");
-                sqlstr.AppendLine("            ,@customer_state_des ");
-                sqlstr.AppendLine("            ,@manhour) ");
-
-                ArrayList SQLList = new ArrayList();
-                SQLList.Add(sqlstr.ToString());
-
-                StringBuilder sqlstr_zyq_master = new StringBuilder();
-                sqlstr_zyq_master.Clear();
-                sqlstr_zyq_master.AppendLine(" UPDATE nMES_Order_zyq_master SET SaveToMes=1 WHERE job_num='"+ job_num + "' and suffix=" + dt_OrderMaster.Rows[0]["suffix"].ToString().Trim() + " ");
-                SQLList.Add(sqlstr_zyq_master.ToString());
-                try
+                for (int k = 0; k < dt_OrderMaster.Rows.Count; k++)
                 {
-                    DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
-                    return 1;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            return i;        
+                    ArrayList SQLList = new ArrayList();
+                    StringBuilder sqlstr = new StringBuilder();
+                    sqlstr.Clear();
+                    string job_num = dt_OrderMaster.Rows[k]["job_num"].ToString().Trim();
+                    sqlstr.AppendLine(" declare @job_num nvarchar(50) ");
+                    sqlstr.AppendLine(" declare @suffix int ");
+                    sqlstr.AppendLine(" declare @order_date datetime ");
+                    sqlstr.AppendLine(" declare @input_date datetime ");
+                    sqlstr.AppendLine(" declare @style_no nvarchar(50) ");
+                    sqlstr.AppendLine(" declare @style_des nvarchar(50) ");
+                    sqlstr.AppendLine(" declare @Combination_no int ");
+                    sqlstr.AppendLine(" declare @job_qty int ");
+                    sqlstr.AppendLine(" declare @manhour int ");
+                    sqlstr.AppendLine(" declare @memo_no nvarchar(50) ");
+                    sqlstr.AppendLine(" declare @memo_name nvarchar(50) ");
+                    sqlstr.AppendLine(" declare @customer_state int ");
+                    sqlstr.AppendLine(" declare @customer_state_des nvarchar(50) ");
+                    sqlstr.AppendLine(" set @job_num='" + job_num.Trim() + "' ");
+                    sqlstr.AppendLine(" set @suffix=" + dt_OrderMaster.Rows[k]["suffix"].ToString().Trim() + " ");
+                    sqlstr.AppendLine(" set @order_date= '20' + substring(@job_num, 2, 2) + '-' + substring(@job_num, 4, 2) + '-' + substring(@job_num, 6, 2)");
+                    sqlstr.AppendLine(" set @input_date=getdate() ");
+                    sqlstr.AppendLine(" set @style_no='" + dt_OrderMaster.Rows[k]["Style_no"].ToString().Trim() + "'");
+                    sqlstr.AppendLine(" set @style_des='" + dt_OrderMaster.Rows[k]["style_des"].ToString().Trim() + "'");
+                    sqlstr.AppendLine(" set @Combination_no=" + dt_OrderMaster.Rows[k]["Combination_no"].ToString().Trim() + "");
+                    sqlstr.AppendLine(" set @job_qty=" + dt_OrderMaster.Rows[k]["job_qty"].ToString().Trim() + "");
+                    sqlstr.AppendLine(" set @manhour=" + dt_OrderMaster.Rows[k]["manhour"].ToString().Trim() + "");
+                    sqlstr.AppendLine(" set @memo_no='" + dt_OrderMaster.Rows[k]["memo_no"].ToString().Trim() + "'");
+                    sqlstr.AppendLine(" set @memo_name='" + dt_OrderMaster.Rows[k]["memo_name"].ToString().Trim() + "'");
+                    sqlstr.AppendLine(" set @customer_state='" + dt_OrderMaster.Rows[k]["customer_state"].ToString().Trim() + "'");
+                    sqlstr.AppendLine(" set @customer_state_des='" + dt_OrderMaster.Rows[k]["customer_state_des"].ToString().Trim() + "'");
+                    sqlstr.AppendLine(" INSERT INTO nMES_order_master ");
+                    sqlstr.AppendLine("            (job_num ");
+                    sqlstr.AppendLine("            ,suffix ");
+                    sqlstr.AppendLine("            ,order_date ");
+                    sqlstr.AppendLine("            ,input_date ");
+                    sqlstr.AppendLine("            ,style_no ");
+                    sqlstr.AppendLine("            ,style_des ");
+                    sqlstr.AppendLine("            ,Combination_no ");
+                    sqlstr.AppendLine("            ,job_qty ");
+                    sqlstr.AppendLine("            ,memo_no ");
+                    sqlstr.AppendLine("            ,memo_name ");
+                    sqlstr.AppendLine("            ,customer_state ");
+                    sqlstr.AppendLine("            ,customer_state_des ");
+                    sqlstr.AppendLine("            ,manhour) ");
+                    sqlstr.AppendLine("      VALUES ");
+                    sqlstr.AppendLine("            (@job_num ");
+                    sqlstr.AppendLine("            ,@suffix ");
+                    sqlstr.AppendLine("            ,@order_date ");
+                    sqlstr.AppendLine("            ,@input_date ");
+                    sqlstr.AppendLine("            ,@style_no ");
+                    sqlstr.AppendLine("            ,@style_des ");
+                    sqlstr.AppendLine("            ,@Combination_no ");
+                    sqlstr.AppendLine("            ,@job_qty ");
+                    sqlstr.AppendLine("            ,@memo_no ");
+                    sqlstr.AppendLine("            ,@memo_name ");
+                    sqlstr.AppendLine("            ,@customer_state ");
+                    sqlstr.AppendLine("            ,@customer_state_des ");
+                    sqlstr.AppendLine("            ,@manhour) ");
+
+
+                    SQLList.Add(sqlstr.ToString());
+
+                    StringBuilder sqlstr_zyq_master = new StringBuilder();
+                    sqlstr_zyq_master.Clear();
+                    sqlstr_zyq_master.AppendLine(" UPDATE nMES_Order_zyq_master SET SaveToMes=1 WHERE job_num='" + job_num + "' and suffix=" + dt_OrderMaster.Rows[k]["suffix"].ToString().Trim() + " ");
+                    SQLList.Add(sqlstr_zyq_master.ToString());
+                    try
+                    {
+                        DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }              
+
+            }        
         }
         #endregion
+        #region 获取需要更新到订单主表的数据
+        public DataTable GetZYQOrderInfo()
+        {
+            string sqlstring = "select * from nMES_Order_zyq_master where not exists (select 'a' from nMES_Order_master where nMES_Order_zyq_master.job_num=nMES_Order_master.job_num and nMES_Order_zyq_master.suffix=nMES_Order_master.suffix)";
+            DataTable dt_OrderMaster = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
+            return dt_OrderMaster;
+        }
+        #endregion
+        #region 获取订单主表的结构-返回一个空表格
+        public DataTable GetMESOrderInfo()
+        {
+            string sqlstring = "select * from nMES_Order_master where job_num=''";
+            DataTable dt_OrderMaster = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
+            return dt_OrderMaster;
+        }
+        #endregion
+        #region 获取订单OptionList的结构-返回一个空表格
+        public DataTable GetMESOrderOptionListInfo()
+        {
+            string sqlstring = "select job_num,suffix,Item_No,Option_No from nMES_Order_detail_OptionList where job_num=''";
+            DataTable dt_OrderOptionList = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
+            return dt_OrderOptionList;
+        }
+        #endregion
+
 
         #region 新版-保存工单-主表-款号选项
         /// <summary>
@@ -423,21 +497,19 @@ namespace MES.module.DAL.OrderDal
         /// </summary>
         /// <param name="OrderOptionList">订单选项</param>
         /// <returns>0不成功 1成功 2已存在</returns>
-        public int SaveOrderOptionList(string job_num, int suffix, List<string> lst)
+        public void SaveOrderOptionList(DataTable dt_OrderOptionList)
         {
-            //string stringsql = "  select count(id) from nMES_order_master where job_num='" + job_num + "' and suffix=" + suffix + "";
-            //int c = Convert.ToInt16(DBConn.DataAcess.SqlConn.GetSingle(stringsql));
-            //if (c > 0) { return 2; }
             int i = 0;
-            if (lst.Count > 0)
+            if (dt_OrderOptionList.Rows.Count > 0)
             {
 
                 ArrayList SQLList = new ArrayList();
-                for (int j=0; j < lst.Count; j++)
+                for (int j=0; j < dt_OrderOptionList.Rows.Count; j++)
                 {
-                    string Item_No = lst[j].Split("=".ToCharArray())[0];
-                    string Opton_No = lst[j].Split("=".ToCharArray())[1];
-
+                    string Item_No = dt_OrderOptionList.Rows[j]["Item_No"].ToString().Trim();
+                    int Opton_No = Convert.ToInt16(dt_OrderOptionList.Rows[j]["Option_No"].ToString().Trim());
+                    string job_num= dt_OrderOptionList.Rows[j]["job_num"].ToString().Trim();
+                    int suffix =Convert.ToInt16(dt_OrderOptionList.Rows[j]["suffix"].ToString().Trim());
                     StringBuilder sqlstr = new StringBuilder();
                     sqlstr.Clear();
                     sqlstr.AppendLine(" INSERT INTO nMES_Order_detail_OptionList ");
@@ -450,21 +522,17 @@ namespace MES.module.DAL.OrderDal
                     sqlstr.AppendLine("            ,'" + suffix + "' ");
                     sqlstr.AppendLine("            ,'"+ Item_No + "' ");
                     sqlstr.AppendLine("            ,'" + Opton_No + "') ");
-
-
                     SQLList.Add(sqlstr.ToString());
                 }    
                 try
                 {
                     DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
-                    return 1;
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
             }
-            return i;
         }
         #endregion
 

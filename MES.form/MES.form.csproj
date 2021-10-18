@@ -252,6 +252,12 @@
     <Compile Include="Order\OrderAdd.Designer.cs">
       <DependentUpon>OrderAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order\OrderListMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\OrderListMain.Designer.cs">
+      <DependentUpon>OrderListMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Order\OrderToUPS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -483,6 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Order\OrderAdd.resx">
       <DependentUpon>OrderAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\OrderListMain.resx">
+      <DependentUpon>OrderListMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Order\OrderToUPS.resx">
       <DependentUpon>OrderToUPS.cs</DependentUpon>

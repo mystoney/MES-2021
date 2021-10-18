@@ -93,6 +93,7 @@ namespace MES.form.Order
             this.Controls.Add(this.dtp_beginDate);
             this.Controls.Add(this.button4);
             this.Name = "OrderAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "OrderAdd";
             this.Load += new System.EventHandler(this.OrderAdd_Load);
             this.ResumeLayout(false);

@@ -45,8 +45,13 @@ namespace MES.WindowsService_MES
             try
 
             {
+                DateTime beginDate= DateTime.Now.AddDays(-7);
+                DateTime endDate = DateTime.Now;
+                nMES_GetOrderInfo(beginDate, endDate);
 
-               
+
+
+
             }
 
             catch

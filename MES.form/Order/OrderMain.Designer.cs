@@ -128,6 +128,7 @@ namespace MES.form.Order
             this.toolStrip2.Size = new System.Drawing.Size(1218, 39);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
+            this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
             // 
             // toolStripButton1
             // 
