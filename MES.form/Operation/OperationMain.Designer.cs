@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OperationMain));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
@@ -156,7 +157,7 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.GridStation);
             this.splitContainer5.Size = new System.Drawing.Size(1218, 223);
-            this.splitContainer5.SplitterDistance = 915;
+            this.splitContainer5.SplitterDistance = 914;
             this.splitContainer5.SplitterWidth = 5;
             this.splitContainer5.TabIndex = 1;
             // 
@@ -173,12 +174,20 @@
             this.GridGST.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.GridGST.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridGST.MergeColumnNames")));
             this.GridGST.Name = "GridGST";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridGST.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridGST.RowHeadersVisible = false;
             this.GridGST.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
             this.GridGST.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             this.GridGST.RowTemplate.Height = 23;
             this.GridGST.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridGST.Size = new System.Drawing.Size(915, 223);
+            this.GridGST.Size = new System.Drawing.Size(914, 223);
             this.GridGST.TabIndex = 2;
             this.GridGST.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridGST_CellMouseDoubleClick);
             this.GridGST.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridGST_CellMouseDown);
@@ -202,7 +211,7 @@
             this.GridStation.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.GridStation.RowTemplate.Height = 23;
             this.GridStation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridStation.Size = new System.Drawing.Size(298, 223);
+            this.GridStation.Size = new System.Drawing.Size(299, 223);
             this.GridStation.TabIndex = 3;
             this.GridStation.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridStation_CellMouseDoubleClick);
             this.GridStation.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridStation_CellMouseDown);

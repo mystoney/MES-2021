@@ -65,7 +65,7 @@ namespace MES.module.BLL
 
 
 
-        #region 保存ZYQ提供的工单信息
+        #region 新版-保存ZYQ提供的工单信息
         public int SaveOrderZYQ(DataTable dt)
         {
             DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
@@ -160,7 +160,7 @@ namespace MES.module.BLL
         }
         #endregion
 
-        #region 更新OpListNo，UPS_prun，SchemeNo，Combination_no,GetProductList
+        #region 新版-更新OpListNo，UPS_prun，SchemeNo，Combination_no,GetProductList,OrderLock
         /// <summary>
         /// 更新OpListNo，UPS_prun，SchemeNo，Combination_no
         /// </summary>
@@ -184,7 +184,7 @@ namespace MES.module.BLL
         }
         #endregion
 
-        #region 更新nMES_Order_detail_ProductList，PushState_CAOBO，PushState_JINGYUAN
+        #region 新版-更新nMES_Order_detail_ProductList，PushState_CAOBO，PushState_JINGYUAN
         /// <summary>
         /// 更新nMES_Order_detail_ProductList，PushState_CAOBO，PushState_JINGYUAN
         /// </summary>
@@ -205,17 +205,22 @@ namespace MES.module.BLL
         }
         #endregion
 
-
-        #region 新版-保存工单-主表-款号数量等
-        public void SaveOrderMaster()
+        #region 新版-获取并保存工单-主表-ALL
+        /// <summary>
+        /// 获取到ZYQmaster中包含，但是MESmaster中没有的工单 
+        /// 款号已维护的同时保存选项 没维护款号的只保存工单其他信息
+        /// </summary>
+        public void InsertOrderMaster()
         {
             OrderDal od = new OrderDal();
             DataTable dt_OrderMaster = od.GetZYQOrderInfo();//ZYQmaster中包含，但是MESmaster中没有的工单
-            //获取到Order_Master表结构
-            DataTable dt_InsertToMesOrderMaster = od.GetMESOrderInfo();//主表结构
-            DataTable dt_Insert_Order_detail_OptionList = od.GetMESOrderOptionListInfo();//OptionList结构
+
+
             if (dt_OrderMaster.Rows.Count > 0)
-            {
+            {    
+                //获取到Order_Master表结构
+                DataTable dt_InsertToMesOrderMaster = od.GetMESOrderInfo();//主表结构
+                DataTable dt_Insert_Order_detail_OptionList = od.GetMESOrderOptionListInfo();//OptionList结构
                 //如果有需要保存的工单：
                 for (int j = 0; j < dt_OrderMaster.Rows.Count; j++)
                 {
@@ -223,9 +228,9 @@ namespace MES.module.BLL
                     StyleBll sb = new StyleBll();
                     string style_no = dt_OrderMaster.Rows[j]["Style_num"].ToString().Trim();
                     DataTable dt = sb.GetStyleItemList(style_no);//获取到此款号必须的选项
-                    if (dt.Rows.Count != 0)
+                    if (dt.Rows.Count != 0)//如果款号已维护
                     {
-                        string order_no= dt_OrderMaster.Rows[j]["job_num"].ToString().Trim() +"-"+ dt_OrderMaster.Rows[j]["suffix"].ToString().Trim().PadLeft(3, '0');
+                        string order_no = dt_OrderMaster.Rows[j]["job_num"].ToString().Trim() + "-" + dt_OrderMaster.Rows[j]["suffix"].ToString().Trim().PadLeft(3, '0');
                         Return_Message rm = new Return_Message();
                         string getordermodel = $@"http://172.16.1.83:8024/api/CpOrderSubDetailByJobNum/" + order_no;
                         rm = Helper.Json.JsonHelper.DeserializeJsonToObject<Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
@@ -278,36 +283,187 @@ namespace MES.module.BLL
                             dr_OptionList["Option_No"] = lst[z].Split("=".ToCharArray())[1];
                             dt_Insert_Order_detail_OptionList.Rows.Add(dr_OptionList);
                         }
-
+                    }
+                    else//款号没有维护
+                    {
+                        DataRow dr = dt_InsertToMesOrderMaster.NewRow();
+                        dr["job_num"] = dt_OrderMaster.Rows[j]["job_num"].ToString().Trim();
+                        dr["suffix"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["suffix"].ToString().Trim());
+                        dr["input_date"] = DateTime.Today;
+                        dr["style_no"] = dt_OrderMaster.Rows[j]["style_num"].ToString().Trim();
+                        dr["style_des"] = dt_OrderMaster.Rows[j]["style_des"].ToString().Trim();
+                        dr["job_qty"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["job_qty"].ToString().Trim());
+                        dr["manhour"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["manhour"].ToString().Trim());
+                        dr["customer_state"] = Convert.ToInt16(dt_OrderMaster.Rows[j]["customer_state"].ToString().Trim());
+                        dr["customer_state_des"] = dt_OrderMaster.Rows[j]["customer_state_des"].ToString().Trim();
+                        dr["Combination_no"] = 0;
+                        dr["memo_no"] = "";
+                        dr["memo_name"] = "";
+                        dt_InsertToMesOrderMaster.Rows.Add(dr);
                     }
                 }
-                od.SaveOrderMaster(dt_InsertToMesOrderMaster);
-                od.SaveOrderOptionList(dt_Insert_Order_detail_OptionList);
+                if (dt_InsertToMesOrderMaster.Rows.Count > 0)
+                {                
+                    //1-保存nMES_order_master
+                    od.SaveOrderMaster(dt_InsertToMesOrderMaster);
+                    //2-保存产品清单
+                    for (int k = 0; k < dt_InsertToMesOrderMaster.Rows.Count; k++)
+                    {
+                        SaveOrderProductList(dt_InsertToMesOrderMaster.Rows[k]["job_num"].ToString().Trim(), Convert.ToInt16(dt_InsertToMesOrderMaster.Rows[k]["suffix"].ToString().Trim()), Convert.ToInt16(dt_InsertToMesOrderMaster.Rows[k]["job_qty"].ToString().Trim()));
+                    }
+                    //3-保存nMES_Order_detail_OptionList
+                    if (dt_Insert_Order_detail_OptionList.Rows.Count > 0) { od.SaveOrderOptionList(dt_Insert_Order_detail_OptionList); }
+                }
+            }
+        }
+        #endregion
+
+        #region 新版-Update订单选项-全部
+        /// <summary>
+        /// Update订单的选项-全部
+        /// </summary>
+        public void UpdateOrderOption()
+        {
+            OrderDal od = new OrderDal();
+            DataTable dt_NoOption = od.GetOrder_NoOption_All();
+            UpdateOrderOption(dt_NoOption);
+        }
+        #endregion
+
+        #region 新版-Update订单选项-单个工单
+        /// <summary>
+        /// Update订单的选项-单个工单
+        /// </summary>
+        /// <param name="job_num"></param>
+        /// <param name="suffix"></param>
+        public void UpdateOrderOption(string job_num, int suffix)
+        {
+            OrderDal od = new OrderDal();
+            DataTable dt_NoOption = od.GetOrder_NoOption_Single(job_num, suffix);
+            UpdateOrderOption(dt_NoOption);
+        }
+        #endregion
+
+        #region 新版-保存工单-UpdateMaster选项及选项表
+        /// <summary>
+        /// 取master表中没有填入选项的行 判断款号是否维护，已维护的取订单选项并保存 没有的跳过
+        /// </summary>
+        public void UpdateOrderOption(DataTable dt_NoOption)
+        {
+            OrderDal od = new OrderDal();
+            if (dt_NoOption.Rows.Count > 0)
+            {
+                DataTable dt_UpdateOption = dt_NoOption.Clone();
+                DataTable dt_Insert_Order_detail_OptionList = od.GetMESOrderOptionListInfo();//OptionList结构
+                //如果有需要保存的工单：
+                for (int j = 0; j < dt_NoOption.Rows.Count; j++)
+                {
+                    //判断款号是否已经维护 如果没有，跳过此行
+                    StyleBll sb = new StyleBll();
+                    string style_no = dt_NoOption.Rows[j]["Style_no"].ToString().Trim();
+                    DataTable dt = sb.GetStyleItemList(style_no);//获取到此款号必须的选项
+                    if (dt.Rows.Count != 0)//如果款号已维护
+                    {
+                        string order_no = dt_NoOption.Rows[j]["job_num"].ToString().Trim() + "-" + dt_NoOption.Rows[j]["suffix"].ToString().Trim().PadLeft(3, '0');
+                        Return_Message rm = new Return_Message();
+                        string getordermodel = $@"http://172.16.1.83:8024/api/CpOrderSubDetailByJobNum/" + order_no;
+                        rm = Helper.Json.JsonHelper.DeserializeJsonToObject<Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
+                        if (rm.State == Return_Message.Return_State.Error)
+                        {
+                            throw new Exception(rm.Message);
+                        }
+                        //DataTable dt = Helper.Json.JsonHelper.DeserializeJsonToObject<DataTable>(rm.Return_Value);
+                        OrderItemOptionZYQ o = new OrderItemOptionZYQ();
+                        List<OrderItemOptionZYQ> ol = new List<OrderItemOptionZYQ>();
+                        ol = Helper.Json.JsonHelper.DeserializeJsonToObject<List<OrderItemOptionZYQ>>(rm.Return_Value);
+                        string memo_no = "";
+                        string memo_name = "";
+                        List<string> lst = new List<string>();
+                        for (int k = 0; k < dt.Rows.Count; k++)
+                        {
+                            string item_no = dt.Rows[k][0].ToString();
+                            string option_no = ol.Find(x => x.Item_No == item_no).Option_No;
+                            memo_no = memo_no + item_no + "=" + option_no + " ";
+                            string item_name = ol.Find(x => x.Item_No == item_no).Item_Name;
+                            string option_name = ol.Find(x => x.Item_No == item_no).Option_Name;
+                            memo_name = memo_name + item_name + "=" + option_name + " ";
+                            //选项值组合    
+                            lst.Add(item_no + "=" + option_no);
+                        }
+                        //获取到选项符合的组合号
+                        int Combination_no = sb.GetOrderCombination(style_no, memo_no);
+                        DataRow dr = dt_UpdateOption.NewRow();
+                        dr["job_num"] = dt_NoOption.Rows[j]["job_num"].ToString().Trim();
+                        dr["suffix"] = Convert.ToInt16(dt_NoOption.Rows[j]["suffix"].ToString().Trim());
+                        //dr["order_date"] = "20" + dt_OrderMaster.Rows[j]["job_num"].ToString().Trim().Substring(1, 2) + "-" + dt_OrderMaster.Rows[j]["job_num"].ToString().Trim().Substring(3, 2) + "-" + dt_OrderMaster.Rows[j]["job_num"].ToString().Trim().Substring(5, 2);
+                        dr["style_no"] = dt_NoOption.Rows[j]["style_no"].ToString().Trim();
+                        dr["style_des"] = dt_NoOption.Rows[j]["style_des"].ToString().Trim();
+                        dr["Combination_no"] = Combination_no;
+                        dr["memo_no"] = memo_no;
+                        dr["memo_name"] = memo_name;
+                        dt_UpdateOption.Rows.Add(dr);
+
+                        for (int z = 0; z < lst.Count; z++)
+                        {
+                            DataRow dr_OptionList = dt_Insert_Order_detail_OptionList.NewRow();
+                            dr_OptionList["job_num"] = dt_NoOption.Rows[j]["job_num"].ToString().Trim();
+                            dr_OptionList["suffix"] = Convert.ToInt16(dt_NoOption.Rows[j]["suffix"].ToString().Trim());
+                            dr_OptionList["Item_No"] = lst[z].Split("=".ToCharArray())[0];
+                            dr_OptionList["Option_No"] = lst[z].Split("=".ToCharArray())[1];
+                            dt_Insert_Order_detail_OptionList.Rows.Add(dr_OptionList);
+                        }
+                    }
+
+                }
+                if (dt_UpdateOption.Rows.Count > 0) { od.UpdateOrderOptionList(dt_UpdateOption); }
+                if (dt_Insert_Order_detail_OptionList.Rows.Count > 0) { od.SaveOrderOptionList(dt_Insert_Order_detail_OptionList); }
             }
         }
         #endregion
 
 
 
-        #region 新版-保存工单-主表-款号选项
-        /// <summary>
-        /// 新版-保存订单信息-选项
-        /// </summary>
-        /// <param name="job_num">工单号</param>
-        /// <param name="suffix">工单行号</param>
-        /// <param name="OpListNo">工序清单号</param>
-        /// <returns>0不成功 1成功 2已存在</returns>
-        public void SaveOrderOptionList(DataTable dt_OrderOptionList)
+        //#region 新版-保存工单-主表-款号选项
+        //    /// <summary>
+        //    /// 新版-保存订单信息-选项
+        //    /// </summary>
+        //    /// <param name="job_num">工单号</param>
+        //    /// <param name="suffix">工单行号</param>
+        //    /// <param name="OpListNo">工序清单号</param>
+        //    /// <returns>0不成功 1成功 2已存在</returns>
+        //public void SaveOrderOptionList(DataTable dt_OrderOptionList)
+        //{
+        //    int i = 0;
+        //    DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
+        //    try
+        //    {
+        //        od.SaveOrderOptionList(dt_OrderOptionList);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+        //#endregion
+
+
+
+        #region 新版-通过调用接口获取产品清单并保存nMES_Order_detail_ProductList-Single
+        public void SaveOrderProductList(string job_num, int suffix,int job_qty)
         {
-            int i = 0;
-            DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
-            try
+            string order_no = job_num + "-" + suffix.ToString().Trim().PadLeft(3, '0');
+            Return_Message rm = new OrderBll.Return_Message();
+            string getordermodel = $@"http://172.16.1.83:7041/ProductionOrderProductListGet?JobNo=" + order_no;
+            rm = Helper.Json.JsonHelper.DeserializeJsonToObject<OrderBll.Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
+            if (rm.State == OrderBll.Return_Message.Return_State.Error)
             {
-                od.SaveOrderOptionList(dt_OrderOptionList);
+                //throw new Exception(rm.Message);
+                return;
             }
-            catch (Exception ex)
+            DataTable dt = Helper.Json.JsonHelper.DeserializeJsonToObject<DataTable>(rm.Return_Value);
+            if (dt.Rows.Count > 0)
             {
-                throw ex;
+                SaveProductList(job_num, suffix, job_qty, dt);
             }
         }
         #endregion
@@ -320,14 +476,14 @@ namespace MES.module.BLL
         /// <param name="suffix">工单行号</param>
         /// <param name="dt">产品编码明细</param>
         /// <returns></returns>
-        public int SaveProductList(string job_num, int suffix, DataTable dt)
+        public int SaveProductList(string job_num, int suffix,int job_qty, DataTable dt)
         {
             int i = 0;
             DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
             try
             {
-                return i = od.SaveProductList(job_num, suffix, dt);            
-             }
+                return i = od.SaveProductList(job_num, suffix, job_qty,dt);            
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -335,14 +491,41 @@ namespace MES.module.BLL
         }
         #endregion
 
-        #region 新版-保存工单-工序清单
-            /// <summary>
-            /// 新版-保存订单信息-工序清单
-            /// </summary>
-            /// <param name="job_num">工单号</param>
-            /// <param name="suffix">工单行号</param>
-            /// <param name="SchemeNo">工序清单号</param>
-            /// <returns>0不成功 1成功 2已存在</returns>
+        #region 新版-保存工单-子表-产品编码明细（保存所有订单的为保存的产品清单）
+        /// <summary>
+        /// 保存工单-子表-产品编码明细（按单件推送）
+        /// </summary>
+        public void SaveProductListAll()
+        {
+
+            DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
+            DataTable dt_ProductCode = od.GetOrderNoProductList();
+            if (dt_ProductCode.Rows.Count == 0) { return; }
+            //try
+            //{
+                for (int k = 0; k < dt_ProductCode.Rows.Count; k++)
+                {
+                    string job_num = dt_ProductCode.Rows[k]["job_num"].ToString().Trim();
+                    int suffix = Convert.ToInt16(dt_ProductCode.Rows[k]["suffix"].ToString().Trim());
+                    int job_qty= Convert.ToInt16(dt_ProductCode.Rows[k]["job_qty"].ToString().Trim());
+                    SaveOrderProductList(job_num, suffix, job_qty);
+                }                    
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+        }
+        #endregion
+
+        #region 新版-保存工单-方案
+        /// <summary>
+        /// 新版-保存订单信息-方案
+        /// </summary>
+        /// <param name="job_num">工单号</param>
+        /// <param name="suffix">工单行号</param>
+        /// <param name="SchemeNo">方案号</param>
+        /// <returns>0不成功 1成功 2已存在</returns>
         public int SaveOrderSchemeList(string job_num, int suffix, int SchemeNo)
         {
             int i = 0;
@@ -359,9 +542,9 @@ namespace MES.module.BLL
         }
         #endregion
 
-        #region 新版-保存工单-方案
+        #region 新版-保存工单-工序清单
         /// <summary>
-        ///  新版-保存工单-方案
+        ///  新版-保存工单-工序清单
         /// </summary>
         /// <param name="job_num">工单号</param>
         /// <param name="suffix">工单行号</param>
@@ -374,7 +557,7 @@ namespace MES.module.BLL
             try
             {               
                 i = od.SaveOrderOperationList(job_num, suffix, OpListNo);
-                if (i == 1) { return i= UpdateOrderInfo("OpListNo", OpListNo,job_num,suffix); }
+
                 return i;
             }
             catch (Exception ex)
@@ -383,6 +566,55 @@ namespace MES.module.BLL
             }
         }
         #endregion
+
+        #region 新版-保存工单-工序清单-所有
+        /// <summary>
+        ///  新版-保存工单-工序清单-查找所有有工单选项但没绑定工序清单的行
+        /// </summary>
+        /// <param name="job_num">工单号</param>
+        /// <param name="suffix">工单行号</param>
+        /// <param name="OpListNo">工序清单号</param>
+        /// <returns>0不成功 1成功 2已存在</returns>
+        public void SaveOrderOpListNo()
+        {
+            int i = 0;
+            DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
+            try
+            {
+                od.SaveOrderOpListNo();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region 新版-保存工单-工序清单-指定工单
+        /// <summary>
+        ///  新版-保存工单-工序清单-查找指定工单有选项但没绑定工序清单的行
+        /// </summary>
+        /// <param name="job_num">工单号</param>
+        /// <param name="suffix">工单行号</param>
+        /// <param name="OpListNo">工序清单号</param>
+        /// <returns>0不成功 1成功 2已存在</returns>
+        public int SaveOrderOpListNo_Single(string job_num, int suffix)
+        {
+            DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
+            try
+            {
+                return od.SaveOrderOpListNo_Single(job_num, suffix);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+
+
+
 
         #region 工具-DataTable转实体类集合
         /// <summary>
@@ -577,6 +809,7 @@ namespace MES.module.BLL
             /// 产品清单
             /// </summary>
             public int GetProductList { get; set; }
+            public int OrderLock { get; set; }
         }
         #endregion
 
@@ -770,7 +1003,7 @@ namespace MES.module.BLL
         }
         #endregion
 
-        #region 新版-将Product DataTable转为类
+        #region 新版-将Product类 转为DataTable
         /// <summary>
         /// 将Product DataTable转为类
         /// </summary>

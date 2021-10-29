@@ -11,23 +11,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace MES.WindowsService_MES
+namespace MES_WindowsService_Order
 {
-    public partial class MES_GetOrder_Service : ServiceBase
+    public partial class MESService : ServiceBase
     {
-        public MES_GetOrder_Service()
+        public MESService()
         {
             InitializeComponent();
         }
-
+        string filePath = @"D:\MyServiceLog.txt";
         protected override void OnStart(string[] args)
-        {            
+        {
             //服务开启执行代码
             StartDoSomething();
         }
         private void StartDoSomething()
         {
-            System.Timers.Timer timer = new System.Timers.Timer(300000); //间隔5分钟
+            System.Timers.Timer timer = new System.Timers.Timer(30000); //间隔5分钟
 
             timer.AutoReset = true;
 
@@ -40,17 +40,9 @@ namespace MES.WindowsService_MES
         }
         private void GetOrderInfo(object source, System.Timers.ElapsedEventArgs e)
         {
-                DateTime beginDate= DateTime.Now.AddDays(-7);
-                DateTime endDate = DateTime.Now;
-                nMES_GetOrderInfo(beginDate, endDate);
-        }
-
-    
-
-
-
-        protected override void OnStop()
-        {
+            DateTime beginDate = DateTime.Now.AddDays(-7);
+            DateTime endDate = DateTime.Now;
+            nMES_GetOrderInfo(beginDate, endDate);
         }
         protected override void OnPause()
 
@@ -114,7 +106,11 @@ namespace MES.WindowsService_MES
             public DateTime beginDate { get; set; }
             public DateTime endDate { get; set; }
         }
-        #endregion     
-       
+        #endregion
+        protected override void OnStop()
+        {
+
+        }   
+
     }
 }

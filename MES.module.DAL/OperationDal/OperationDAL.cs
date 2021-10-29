@@ -103,7 +103,7 @@ namespace MES.module.DAL.OperationDal
 
             StringBuilder sqlstr_detail = new StringBuilder();
             sqlstr_detail.Clear();
-            sqlstr_detail.AppendLine(" SELECT OpListNo,OperationNo,OperationDes,standard_time,GST_xh  FROM nMES_OperationList_detail where OpListNo='' ");
+            sqlstr_detail.AppendLine(" SELECT OpListNo,OperationNo,OperationDes,manhour,GST_xh  FROM nMES_OperationList_detail where OpListNo="+ OpListNo + " order by GST_xh");
 
             DataTable dt_OpListNo = DBConn.DataAcess.SqlConn.Query(sqlstr_detail.ToString()).Tables[0];
             return dt_OpListNo;
@@ -129,6 +129,84 @@ namespace MES.module.DAL.OperationDal
             DataTable dt= DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
             return dt;
         }
+        public DataTable GetOperationListSingle(int Combination_no)
+        {
+            StringBuilder cmd = new StringBuilder();
+            cmd.Clear();
+            cmd.AppendLine("    select job_num,suffix,a.style_no,a.Combination_no,b.* ,c.memo_name  ");
+            cmd.AppendLine("    from nMES_order_master a  ");
+            cmd.AppendLine("    left join nMES_OperationList_master b  ");
+            cmd.AppendLine("    on a.Combination_no=b.Combination_no and a.memo_no=b.memo ");
+            cmd.AppendLine("    left join nMES_Style_Combination_master c  ");
+            cmd.AppendLine("    on b.Combination_no=c.Combination_no  ");
+            cmd.AppendLine("    where a.Combination_no=15 ");
+
+            DataTable dt = DBConn.DataAcess.SqlConn.Query(cmd.ToString()).Tables[0];
+            return dt;
+        }
+
+        public void SaveOrderOpListNo()
+        {
+            ArrayList SQLList = new ArrayList();
+            StringBuilder cmd = new StringBuilder();
+            cmd.Clear();
+            cmd.AppendLine(" UPDATE nMES_order_master ");
+            cmd.AppendLine(" 	SET nMES_order_master.OpListNo =OrderTable.OpListNo ");
+            cmd.AppendLine(" from nMES_order_master as aaaa ");
+            cmd.AppendLine(" inner join ");
+            cmd.AppendLine(" (	select a.id,a.job_num,a.suffix,b.Style_no,b.memo_no,b.memo_name,b.Combination_no,max(c.OpListNo) as OpListNo  from nMES_order_master a  ");
+            cmd.AppendLine(" 	left join nMES_Style_Combination_master  b ");
+            cmd.AppendLine(" 		on a.style_no=b.Style_no and a.memo_no=b.memo_no ");
+            cmd.AppendLine(" 	left join nMES_OperationList_master c ");
+            cmd.AppendLine(" 		on b.Combination_no=c.Combination_no ");
+            cmd.AppendLine(" 	where a.OrderLock=0 and a.memo_no<>'' and c.OpListNo is not null  ");
+            cmd.AppendLine(" 	group by a.id,a.job_num,a.suffix,b.Style_no,b.memo_no,b.memo_name,b.Combination_no) OrderTable ");
+            cmd.AppendLine(" on aaaa.job_num=OrderTable.job_num and aaaa.suffix=OrderTable.suffix ");
+            cmd.AppendLine(" where OrderTable.OpListNo is not null ");
+            SQLList.Add(cmd);
+            try
+            {
+                DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int SaveOrderOpListNo_Single(string job_num , int suffix)
+        {
+            StringBuilder cmd = new StringBuilder();
+            cmd.Clear();
+            cmd.AppendLine(" UPDATE nMES_order_master ");
+            cmd.AppendLine(" 	SET nMES_order_master.OpListNo =OrderTable.OpListNo ");
+            cmd.AppendLine(" from nMES_order_master as aaaa ");
+            cmd.AppendLine(" inner join ");
+            cmd.AppendLine(" (	select a.id,a.job_num,a.suffix,b.Style_no,b.memo_no,b.memo_name,b.Combination_no,max(c.OpListNo) as OpListNo  from nMES_order_master a  ");
+            cmd.AppendLine(" 	left join nMES_Style_Combination_master  b ");
+            cmd.AppendLine(" 		on a.style_no=b.Style_no and a.memo_no=b.memo_no ");
+            cmd.AppendLine(" 	left join nMES_OperationList_master c ");
+            cmd.AppendLine(" 		on b.Combination_no=c.Combination_no ");
+            cmd.AppendLine(" 	where a.OrderLock=0 and a.job_num='"+ job_num + "' and a.suffix="+ suffix + " ");
+            cmd.AppendLine(" 	group by a.id,a.job_num,a.suffix,b.Style_no,b.memo_no,b.memo_name,b.Combination_no) OrderTable ");
+            cmd.AppendLine(" on aaaa.job_num=OrderTable.job_num and aaaa.suffix=OrderTable.suffix ");
+            cmd.AppendLine(" where OrderTable.OpListNo is not null ");
+
+            try
+            {
+                int i = DBConn.DataAcess.SqlConn.ExecuteSql(cmd.ToString());              
+                return i;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
 
         #region JSON新版-给曹博推送工单对应的工序清单
         /// <summary>

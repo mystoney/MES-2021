@@ -178,7 +178,7 @@ namespace MES.form.Order
             // button_toMES
             // 
             this.button_toMES.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.button_toMES.Location = new System.Drawing.Point(233, 8);
+            this.button_toMES.Location = new System.Drawing.Point(282, 8);
             this.button_toMES.Name = "button_toMES";
             this.button_toMES.Size = new System.Drawing.Size(39, 22);
             this.button_toMES.TabIndex = 64;
@@ -189,7 +189,7 @@ namespace MES.form.Order
             // button_toJINGYUAN
             // 
             this.button_toJINGYUAN.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.button_toJINGYUAN.Location = new System.Drawing.Point(233, 35);
+            this.button_toJINGYUAN.Location = new System.Drawing.Point(282, 35);
             this.button_toJINGYUAN.Name = "button_toJINGYUAN";
             this.button_toJINGYUAN.Size = new System.Drawing.Size(39, 22);
             this.button_toJINGYUAN.TabIndex = 65;
@@ -200,7 +200,7 @@ namespace MES.form.Order
             // button_toCAOBO
             // 
             this.button_toCAOBO.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.button_toCAOBO.Location = new System.Drawing.Point(233, 60);
+            this.button_toCAOBO.Location = new System.Drawing.Point(282, 60);
             this.button_toCAOBO.Name = "button_toCAOBO";
             this.button_toCAOBO.Size = new System.Drawing.Size(39, 24);
             this.button_toCAOBO.TabIndex = 66;

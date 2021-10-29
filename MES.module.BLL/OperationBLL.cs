@@ -53,6 +53,13 @@ namespace MES.module.BLL
             DataTable dt = od.GetAllOperationList();
             return dt;
         }
+        public DataTable GetOperationListSingle(int Combination_no)
+        {
+            DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
+            DataTable dt = od.GetOperationListSingle(Combination_no);
+            return dt;
+        }
+
 
         #region 曹博接口
 

@@ -32,8 +32,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MES.Web_services_MES", "Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{953E9438-9604-4CFC-B97E-907A710DB1FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MES.WindowsService_MES", "MES.WindowsService_MES\MES.WindowsService_MES.csproj", "{9A9EF642-50E4-4FBE-A387-E969EED52474}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -146,14 +144,6 @@ Global
 		{953E9438-9604-4CFC-B97E-907A710DB1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{953E9438-9604-4CFC-B97E-907A710DB1FE}.Release|x86.ActiveCfg = Release|Any CPU
 		{953E9438-9604-4CFC-B97E-907A710DB1FE}.Release|x86.Build.0 = Release|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Debug|x86.Build.0 = Debug|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Release|x86.ActiveCfg = Release|Any CPU
-		{9A9EF642-50E4-4FBE-A387-E969EED52474}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

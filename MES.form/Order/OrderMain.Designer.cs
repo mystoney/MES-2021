@@ -148,6 +148,7 @@ namespace MES.form.Order
             this.ButtonNewOrder.Size = new System.Drawing.Size(116, 36);
             this.ButtonNewOrder.Text = "修改生产路线";
             this.ButtonNewOrder.ToolTipText = "按订单查询";
+            this.ButtonNewOrder.Click += new System.EventHandler(this.ButtonNewOrder_Click);
             // 
             // ButtonSelectOrder
             // 

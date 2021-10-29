@@ -44,42 +44,42 @@ namespace MES.form.Order
             L_ProductCode_ETON = ob.GetProductListNOTEton(soi.job_num, soi.suffix);
             if (L_ProductCode_ETON.Count == 0)
             {
-                lable_TOMES.Text = "OK";
-                lable_TOMES.ForeColor = Color.Green;
+                lable_TOMES.Text = "准备数据或完成";
+                lable_TOMES.ForeColor = Color.Red;
                 button_toMES.Enabled = false;
             }
             else
             {
-                lable_TOMES.Text = "准备";
-                lable_TOMES.ForeColor = Color.Red;
+                lable_TOMES.Text = "可推送";
+                lable_TOMES.ForeColor = Color.Green;
                 button_toMES.Enabled = true;
             }
             List<OrderBll.ProductUPS> L_ProductUPS_NOTJINGYUAN = new List<OrderBll.ProductUPS>();
             L_ProductUPS_NOTJINGYUAN = ob.GetProductList_NOTJINGYUAN(soi.job_num, soi.suffix);
             if (L_ProductUPS_NOTJINGYUAN.Count == 0)
             {
-                label_toJINGYUAN.Text = "OK";
-                label_toJINGYUAN.ForeColor = Color.Green;
+                label_toJINGYUAN.Text = "准备数据或完成";
+                label_toJINGYUAN.ForeColor = Color.Red;
                 button_toJINGYUAN.Enabled = false;
             }
             else
             {
-                label_toJINGYUAN.Text = "准备";
-                label_toJINGYUAN.ForeColor = Color.Red;
+                label_toJINGYUAN.Text = "可推送";
+                label_toJINGYUAN.ForeColor = Color.Green;
                 button_toJINGYUAN.Enabled = true;
             }
             List<OrderBll.ProductUPS> L_ProductUPS_NoCAOBO = new List<OrderBll.ProductUPS>();
             L_ProductUPS_NoCAOBO = ob.GetProductList_NOTCAOBO(soi.job_num, soi.suffix);
             if (L_ProductUPS_NoCAOBO.Count == 0)
             {
-                lable_toCAOBO.Text = "OK";
-                lable_toCAOBO.ForeColor = Color.Green;
+                lable_toCAOBO.Text = "准备数据或完成";
+                lable_toCAOBO.ForeColor = Color.Red;
                 button_toCAOBO.Enabled = false;
             }
             else
             {
-                lable_toCAOBO.Text = "准备";
-                lable_toCAOBO.ForeColor = Color.Red;
+                lable_toCAOBO.Text = "可推送";
+                lable_toCAOBO.ForeColor = Color.Green;
                 button_toCAOBO.Enabled = true;
             }
         }
@@ -126,21 +126,25 @@ namespace MES.form.Order
 
                 try
                 {
-                    ////这里开始写循环L_ProductCode，调用吊挂接口
-
-                    WebSaveScheme.PService ss = new WebSaveScheme.PService();
+                    ////这里开始写循环L_ProductCode，调用吊挂接口                    
 
                     for (int k = 0; k < L_ProductCode_ETON.Count; k++)
                     {
                         OrderBll.ProductUPS ProductUPS1 = new OrderBll.ProductUPS();
                         ProductUPS1.id = L_ProductCode_ETON[k];
-                        bool stoGX = ss.ToGX(ProductUPS1.id.ToString().Trim());
-
+                        
                         string f = ProductUPS1.id.ToString().Trim();
-                        string PostUPS = $@"http://172.16.1.37/WebApi/api/ToMes";
-                        string stoMES = Helper.Http.Http.HttpPost(PostUPS, f, "POST", ""); ;
-                        if (stoGX == false || stoMES == "false")
+                        string PostUPS_ToGX = $@"http://172.16.1.37/WebApi/api/ToGX";
+                        string stoGX = Helper.Http.Http.HttpPost(PostUPS_ToGX, f, "POST", ""); ;
+
+
+
+                        string PostUPS_ToMES = $@"http://172.16.1.37/WebApi/api/ToMes";
+                        string stoMES = Helper.Http.Http.HttpPost(PostUPS_ToMES, f, "POST", ""); ;
+                         
+                        if (stoGX == "false" || stoMES == "false")
                         {
+
                             this.Enabled = true;
                             MyContrals.WaitFormService.Close();
                             //MessageBox.Show(L_ProductCode_ETON[k] + "推送到吊挂系统失败，请重新选择订单并提交", "提示");
@@ -160,6 +164,7 @@ namespace MES.form.Order
                                 MyContrals.WaitFormService.Close();
                                 return;
                             }
+                            ob.UpdateOrderInfo("OrderLock", 1, soi.job_num, soi.suffix);
                         }
                         MyContrals.WaitFormService.ProgressBarGrow();
                         GetGridProductList();
@@ -172,20 +177,18 @@ namespace MES.form.Order
                     MyContrals.WaitFormService.ProgressBarGrow();
                     if (L_ProductCode_final.Count == 0)
                     {
-                        MessageBox.Show("导入吊挂成功，请继续等待", "提示");
-                        lable_TOMES.Text = "OK";
-                        lable_TOMES.ForeColor = Color.Green;
-                        button_toMES.Enabled = false;
                         MyContrals.WaitFormService.Close();
+                        MessageBox.Show("导入吊挂成功，请继续等待", "提示");
+
+                        button_toMES.Enabled = false;
+
                     }
                     else
                     {
-                        MessageBox.Show("有订单未成功提交，请重试", "提示");
-                        lable_TOMES.Text = "请重新推送";
-                        lable_TOMES.ForeColor = Color.Red;
-                        button_toMES.Text = "重试";
-                        button_toMES.Enabled = true;
                         MyContrals.WaitFormService.Close();
+                        MessageBox.Show("有订单未成功提交，请重试", "提示");
+                        button_toMES.Enabled = true;
+
                     }
 
                 }
@@ -260,6 +263,11 @@ namespace MES.form.Order
         {
             this.Enabled = false;
             OrderBll ob = new OrderBll();
+
+
+
+
+
             //第三步 推送给曹博
             List<OrderBll.ProductUPS> L_ProductUPS_NoCAOBO = new List<OrderBll.ProductUPS>();
             L_ProductUPS_NoCAOBO = ob.GetProductList_NOTCAOBO(soi.job_num, soi.suffix);
@@ -276,6 +284,9 @@ namespace MES.form.Order
                 {
                     for (int k = 0; k < L_ProductUPS_NoCAOBO.Count; k++)
                     {
+
+
+
                         string url = "http://172.16.1.39:8005/api/TongBuGongDanGongXu";
                         string content = "[{ProductCode:\"" + L_ProductUPS_NoCAOBO[k].ProductCode + "\",OpListNo:" + soi.OpListNo + "}]";
 
@@ -376,8 +387,9 @@ namespace MES.form.Order
 
         private void button_toCAOBO_Click(object sender, EventArgs e)
         {
-            PushToCAOBO();
 
+
+            PushToCAOBO();
 
         }
     }

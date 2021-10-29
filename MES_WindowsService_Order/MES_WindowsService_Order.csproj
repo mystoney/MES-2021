@@ -4,17 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9A9EF642-50E4-4FBE-A387-E969EED52474}</ProjectGuid>
+    <ProjectGuid>{977266CF-A7D3-488C-9E41-91CD3A7332D8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MES.WindowsService_MES</RootNamespace>
-    <AssemblyName>MES.WindowsService_MES</AssemblyName>
+    <RootNamespace>MES_WindowsService_Order</RootNamespace>
+    <AssemblyName>MES_WindowsService_Order</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>false</Install>
+    <PublishUrl>c:\publish\</PublishUrl>
+    <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -26,7 +26,7 @@
     <InstallUrl>http://localhost:8080/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -52,10 +52,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>05DAD54A22D39DF32F19FFEAA6117230DE82BB05</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>446A287002F1F39A60300F352A09BF49C15BF879</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MES.WindowsService_MES_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>MES_WindowsService_Order_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -77,11 +77,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MES_GetOrder_Service.cs">
+    <Compile Include="MESService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MES_GetOrder_Service.Designer.cs">
-      <DependentUpon>MES_GetOrder_Service.cs</DependentUpon>
+    <Compile Include="MESService.Designer.cs">
+      <DependentUpon>MESService.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="MES.WindowsService_MES_TemporaryKey.pfx" />
+    <None Include="MES_WindowsService_Order_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

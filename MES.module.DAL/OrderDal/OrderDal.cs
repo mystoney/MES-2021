@@ -308,8 +308,8 @@ namespace MES.module.DAL.OrderDal
             DataTable dt = new DataTable();
             StringBuilder sqlstr = new StringBuilder();
             sqlstr.Clear();
-            sqlstr.AppendLine(" SELECT id ");
-            sqlstr.AppendLine(" 	  ,job_num+'-'+right('000' + cast(suffix as varchar),3) as order_no ");
+            sqlstr.AppendLine(" SELECT id ,job_num, suffix");
+            sqlstr.AppendLine(" 	  ,job_num+'-'+right('000' + cast(suffix as varchar),3) as order_no ,order_date ");
             sqlstr.AppendLine("       ,style_no ");
             sqlstr.AppendLine("       ,style_des ");
             sqlstr.AppendLine(" 	  ,job_qty ");
@@ -320,10 +320,9 @@ namespace MES.module.DAL.OrderDal
             sqlstr.AppendLine(" 	  ,manhour ");
             sqlstr.AppendLine(" 	  ,SchemeNo ");
             sqlstr.AppendLine("       ,OpListNo ");
-
-            sqlstr.AppendLine("       ,Combination_no,GetProductList ");
+            sqlstr.AppendLine("       ,Combination_no,GetProductList,OrderLock ");
             sqlstr.AppendLine("   FROM nMES_order_master ");
-            sqlstr.AppendLine("    where customer_state=" + customer_state + " ");
+            sqlstr.AppendLine("    where customer_state=" + customer_state + " order by order_date desc ,id");
             dt = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
             return dt;
         }
@@ -379,11 +378,10 @@ namespace MES.module.DAL.OrderDal
         #region 新版-保存工单-主表-款号数量等
         public void SaveOrderMaster(DataTable dt_OrderMaster)
         {
-            int i = 0;
-
-
+ 
             if (dt_OrderMaster.Rows.Count > 0)
             {
+
                 for (int k = 0; k < dt_OrderMaster.Rows.Count; k++)
                 {
                     ArrayList SQLList = new ArrayList();
@@ -465,14 +463,35 @@ namespace MES.module.DAL.OrderDal
             }        
         }
         #endregion
+
         #region 获取需要更新到订单主表的数据
         public DataTable GetZYQOrderInfo()
         {
-            string sqlstring = "select * from nMES_Order_zyq_master where not exists (select 'a' from nMES_Order_master where nMES_Order_zyq_master.job_num=nMES_Order_master.job_num and nMES_Order_zyq_master.suffix=nMES_Order_master.suffix)";
+            string sqlstring = "select * from nMES_Order_zyq_master where not exists (select 'a' from nMES_Order_master where nMES_Order_zyq_master.job_num=nMES_Order_master.job_num and nMES_Order_zyq_master.suffix=nMES_Order_master.suffix) ";
             DataTable dt_OrderMaster = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
             return dt_OrderMaster;
         }
         #endregion
+        #region 获取订单主表中需要更新选项的数据
+        public DataTable GetOrder_NoOption_All()
+        {
+            string sqlstring = "SELECT job_num,suffix,style_no,style_des,Combination_no,memo_no,memo_name  FROM nMES_order_master  where Combination_no=0  and OrderLock=0";
+            DataTable dt_NoOption = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
+            return dt_NoOption;
+        }
+        #endregion
+
+        #region 获取订单主表中需要更新选项的数据
+        public DataTable GetOrder_NoOption_Single(string job_num,int suffix)
+        {
+            string sqlstring = "SELECT job_num,suffix,style_no,style_des,Combination_no,memo_no,memo_name  FROM nMES_order_master  where Combination_no=0 and job_num='"+ job_num + "' and suffix="+ suffix + " and OrderLock=0";
+            DataTable dt_NoOption = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
+            return dt_NoOption;
+        }
+        #endregion
+
+
+
         #region 获取订单主表的结构-返回一个空表格
         public DataTable GetMESOrderInfo()
         {
@@ -481,6 +500,7 @@ namespace MES.module.DAL.OrderDal
             return dt_OrderMaster;
         }
         #endregion
+
         #region 获取订单OptionList的结构-返回一个空表格
         public DataTable GetMESOrderOptionListInfo()
         {
@@ -491,7 +511,7 @@ namespace MES.module.DAL.OrderDal
         #endregion
 
 
-        #region 新版-保存工单-主表-款号选项
+        #region 新版-保存工单-主表-款号选项Insert
         /// <summary>
         /// 新版-保存订单选项
         /// </summary>
@@ -536,6 +556,59 @@ namespace MES.module.DAL.OrderDal
         }
         #endregion
 
+        #region 新版-保存工单-主表-款号选项Update
+        /// <summary>
+        /// 新版-保存订单选项
+        /// </summary>
+        /// <param name="OrderOptionList">订单选项</param>
+        /// <returns>0不成功 1成功 2已存在</returns>
+        public void UpdateOrderOptionList(DataTable dt_UpdateOption)
+        {
+            if (dt_UpdateOption.Rows.Count > 0)
+            {
+
+                ArrayList SQLList = new ArrayList();
+                for (int j = 0; j < dt_UpdateOption.Rows.Count; j++)
+                {                    
+                    int Combination_no = Convert.ToInt16(dt_UpdateOption.Rows[j]["Combination_no"].ToString().Trim());
+                    string job_num = dt_UpdateOption.Rows[j]["job_num"].ToString().Trim();
+                    int suffix = Convert.ToInt16(dt_UpdateOption.Rows[j]["suffix"].ToString().Trim());
+                    string memo_no = dt_UpdateOption.Rows[j]["memo_no"].ToString().Trim();
+                    string memo_name = dt_UpdateOption.Rows[j]["memo_name"].ToString().Trim();
+                    StringBuilder cmd = new StringBuilder();
+                    cmd.Clear();
+                    cmd.AppendLine(" UPDATE nMES_order_master ");
+                    cmd.AppendLine("    SET Combination_no = '"+ Combination_no + "' ");
+                    cmd.AppendLine("       ,memo_no =  '" + memo_no + "'  ");
+                    cmd.AppendLine("       ,memo_name ='" + memo_name + "'  ");
+                    cmd.AppendLine("  WHERE job_num= '" + job_num + "' and suffix="+ suffix + "");
+                    SQLList.Add(cmd.ToString());
+                }
+                try
+                {
+                    DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        #endregion
+
+        #region 新版-获取到没有保存产品编码明细的工单
+        /// <summary>
+        /// 新版-获取到没有保存产品编码明细的工单
+        /// </summary>
+        /// <returns>job_num ,suffix,job_qty,GetProductList</returns>
+        public DataTable GetOrderNoProductList()
+        {
+            string strsqa = "SELECT job_num ,suffix,job_qty,GetProductList  FROM nMES_order_master where GetProductList=0";
+            DataTable dt_ProductCode = DBConn.DataAcess.SqlConn.Query(strsqa).Tables[0];
+            return dt_ProductCode;
+        }
+        #endregion
+
         #region 新版-保存工单-子表-产品编码明细（按单件推送）
         /// <summary>
         /// 保存工单-子表-产品编码明细（按单件推送）
@@ -544,70 +617,63 @@ namespace MES.module.DAL.OrderDal
         /// <param name="suffix">工单行号</param>
         /// <param name="dt">产品编码明细</param>
         /// <returns></returns>
-        public int SaveProductList(string job_num, int suffix, DataTable dt)
+        public int SaveProductList(string job_num, int suffix, int job_qty,DataTable dt)
         {
             string strsqa = "SELECT ProductCode  FROM nMES_Order_detail_ProductList WHERE job_num='" + job_num + "' and suffix=" + suffix + "";
             DataTable dt_ProductCode = DBConn.DataAcess.SqlConn.Query(strsqa).Tables[0];
-
-
-            ArrayList SQLList = new ArrayList();
-            if (dt_ProductCode.Rows.Count == 0)
-            {
-                for (int k = 0; k < dt.Rows.Count; k++)
-                {
-                    StringBuilder strsql = new StringBuilder();
-                    strsql.Clear();
-                    strsql.AppendLine(" INSERT INTO [dbo].[nMES_Order_detail_ProductList] ");
-                    strsql.AppendLine("            ([job_num] ");
-                    strsql.AppendLine("            ,[suffix] ");
-                    strsql.AppendLine("            ,[ProductCode]) ");
-                    strsql.AppendLine("      VALUES ");
-                    strsql.AppendLine("            ('" + job_num + "' ");
-                    strsql.AppendLine("            ," + suffix + " ");
-                    strsql.AppendLine("            ,'" + dt.Rows[k]["ProductCode"].ToString().Trim() + "') ");
-                    SQLList.Add(strsql.ToString());
-                }
-            }
-            else
-            {
-                List<string> lst_ProductCode = new List<string>();
-
-                for (int k = 0; k < dt_ProductCode.Rows.Count; k++)
-                {
-                    lst_ProductCode.Add(dt_ProductCode.Rows[k]["ProductCode"].ToString().Trim());
-                }
+            int ProductCodeCount = dt_ProductCode.Rows.Count;
+            if (ProductCodeCount < job_qty)
+            { //如果系统中清单数量小于工单数量，将没保存过的产品重新录入
+                ArrayList SQLList = new ArrayList();
                 for (int k = 0; k < dt.Rows.Count; k++)
                 {
                     string ProductCode = dt.Rows[k]["ProductCode"].ToString().Trim();
-                    if (lst_ProductCode.Contains(ProductCode)==false)
+                    if (dt != null)
                     {
-                        StringBuilder strsql = new StringBuilder();
-                        strsql.Clear();
-                        strsql.AppendLine(" INSERT INTO [dbo].[nMES_Order_detail_ProductList] ");
-                        strsql.AppendLine("            ([job_num] ");
-                        strsql.AppendLine("            ,[suffix] ");
-                        strsql.AppendLine("            ,[ProductCode]) ");
-                        strsql.AppendLine("      VALUES ");
-                        strsql.AppendLine("            ('" + job_num + "' ");
-                        strsql.AppendLine("            ," + suffix + " ");
-                        strsql.AppendLine("            ,'" + ProductCode + "') ");
-                        SQLList.Add(strsql.ToString());
+                        //type列名，app是某个值  查询某个列所有的值
+                        DataRow[] dr = dt_ProductCode.Select("ProductCode" + "='"+ ProductCode + "'");
+                        if (dr.Length > 0)
+                        {
+                            //return true;
+                        }
+                        else
+                        {
+                            StringBuilder strsql = new StringBuilder();
+                            strsql.Clear();
+                            strsql.AppendLine(" INSERT INTO [dbo].[nMES_Order_detail_ProductList] ");
+                            strsql.AppendLine("            ([job_num] ");
+                            strsql.AppendLine("            ,[suffix] ");
+                            strsql.AppendLine("            ,[ProductCode]) ");
+                            strsql.AppendLine("      VALUES ");
+                            strsql.AppendLine("            ('" + job_num + "' ");
+                            strsql.AppendLine("            ," + suffix + " ");
+                            strsql.AppendLine("            ,'" + ProductCode + "') ");
+                            SQLList.Add(strsql.ToString());
+                        }
                     }
                 }
-              }
-
-            try
-            {
-                DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
-                UpdateOrderInfo("GetProductList", 1, job_num, suffix);
-                return 1;
+                try
+                {
+                    DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
+                    DataTable dt_ProductCode_final = DBConn.DataAcess.SqlConn.Query(strsqa).Tables[0];
+                    if (dt_ProductCode_final.Rows.Count == job_qty) 
+                    { 
+                        UpdateOrderInfo("GetProductList", 1, job_num, suffix); 
+                    }
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            else
+            { return 1; }
+     
         }
         #endregion
+
+
 
         #region 新版-保存工单-工序清单
         /// <summary>
@@ -619,11 +685,15 @@ namespace MES.module.DAL.OrderDal
         /// <returns>0不成功 1成功 2已存在</returns>
         public int SaveOrderOperationList(string job_num, int suffix, int OpListNo)
         {            
-            string stringsql = "  select count(id) from nMES_order_master where job_num='" + job_num + "' and suffix=" + suffix + "";
-
+            //string stringsql = "  select count(id) from nMES_order_master where job_num='" + job_num + "' and suffix=" + suffix + "";
 
             ArrayList SQLList = new ArrayList();
+            string sqldelete = "delete from nMES_Order_detail_OperationList where job_num='"+ job_num + "' and suffix="+ suffix + " ";
+            SQLList.Add(sqldelete);
             StringBuilder sqlstr = new StringBuilder();
+
+
+
             sqlstr.Clear();
             sqlstr.AppendLine(" insert into nMES_Order_detail_OperationList ");
             sqlstr.AppendLine(" select     '" + job_num + "' as job_num ");
@@ -643,7 +713,6 @@ namespace MES.module.DAL.OrderDal
             try
             {
                 DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
-                UpdateOrderInfo("OpListNo", OpListNo, job_num, suffix);
                 return 1;
             }
             catch (Exception ex)
@@ -669,7 +738,8 @@ namespace MES.module.DAL.OrderDal
             //int c = Convert.ToInt16( DBConn.DataAcess.SqlConn.GetSingle(stringsql));
             //if (c > 0) { return 2; }
             ArrayList SQLList = new ArrayList();
-
+            string cmd = "delete  FROM nMES_Order_detail_SchemeList  where job_num='" + job_num + "' and suffix=" + suffix + "";
+            SQLList.Add(cmd);
             StringBuilder sqlstr = new StringBuilder();
             sqlstr.Clear();
             sqlstr.AppendLine(" INSERT INTO nMES_Order_detail_SchemeList ");
@@ -882,7 +952,7 @@ namespace MES.module.DAL.OrderDal
         /// <returns></returns>
         public DataTable GetProductList_NoJINGYUAN(string job_num, int suffix)
         {
-            String sqlstr = "select id,ProductCode,case when UPS_prun is null then 0 else UPS_prun end UPS_prun from nMES_Order_detail_ProductList where job_num='" + job_num + "' and suffix=" + suffix + " and UPS_prun is not null and PushState_JINGYUAN=0";
+            String sqlstr = "select id,ProductCode,case when UPS_prun is null then 0 else UPS_prun end UPS_prun from nMES_Order_detail_ProductList where job_num='" + job_num + "' and suffix=" + suffix + " and UPS_prun<>0 and PushState_JINGYUAN=0";
             DataTable dt = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
             return dt;
         }
@@ -919,6 +989,7 @@ namespace MES.module.DAL.OrderDal
                 productUPSsql.AppendLine(" 	Set UPS_prun=" + UPS_prun + " ");
                 productUPSsql.AppendLine(" 	WHERE id="+ id + "  ");
                 SQLList.Add(productUPSsql);
+
             try
             {
                 DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);

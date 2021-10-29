@@ -398,5 +398,10 @@ namespace MES.form.Order
         {
 
         }
+
+        private void ButtonNewOrder_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

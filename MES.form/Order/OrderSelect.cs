@@ -244,9 +244,10 @@ namespace MES.form.Order
             {
                 string job_num = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Substring(0, 7);
                 int suffix = Convert.ToInt32(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Substring(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Length - 3));
+                int job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString());
 
                 OrderBll ob = new OrderBll();
-                int SaveResult = ob.SaveProductList(job_num,suffix,dt);
+                int SaveResult = ob.SaveProductList(job_num,suffix, job_qty,dt);
 
 
                 if (SaveResult == 1)
