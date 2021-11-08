@@ -519,7 +519,6 @@ namespace MES.module.DAL.OrderDal
         /// <returns>0不成功 1成功 2已存在</returns>
         public void SaveOrderOptionList(DataTable dt_OrderOptionList)
         {
-            int i = 0;
             if (dt_OrderOptionList.Rows.Count > 0)
             {
 

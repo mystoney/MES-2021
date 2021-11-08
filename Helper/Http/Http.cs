@@ -62,10 +62,7 @@ namespace Helper.Http
             }
         }
 
-        public static string HttpPost(string getordermodel)
-        {
-            throw new NotImplementedException();
-        }
+
 
 
         /// <summary>

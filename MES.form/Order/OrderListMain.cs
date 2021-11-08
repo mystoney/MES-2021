@@ -213,12 +213,6 @@ namespace MES.form.Order
             }
             ob.SaveOrderOpListNo();//将所有未锁定的订单中，有工单选项，没有工序清单的自动绑定工序清单
             ob.SaveProductListAll();
-
-
-            
-            
-
-
         }
 
 
