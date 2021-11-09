@@ -35,15 +35,15 @@ namespace WorkerService1
 
         private void GetOrder()
         {
-           
+
             OrderBll.Return_Message rm_Order = new OrderBll.Return_Message();
             DateString ds = new DateString();
             ds.beginDate = DateTime.Parse(DateTime.Now.AddDays(-30).ToShortDateString());
             ds.endDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            //string getordermodel = $@"http://172.16.1.16:9999/api/GetJobNumFromDate?DS={Helper.Json.JsonHelper.SerializeObject(ds)}";
-            string getordermodel = $@"http://172.16.1.16:9999/api/GetJobNumFromDate?DS={ds.ConvertToJson()}";
-
-
+            //string getordermodel = $@" http://172.16.1.16:9999/api/GetJobNumFromDate?DS={ Helper.Json.JsonHelper.SerializeObject( ds )}";
+            string getordermodel = $@" http://172.16.1.16:9999/api/GetJobNumFromDate?DS={ ds.ConvertToJson() }";          
+            
+            
             //rm_Order = Helper.Json.JsonHelper.DeserializeJsonToObject<OrderBll.Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
             rm_Order = Helper_Core.Http.Http.HttpGet(getordermodel).ConvertToObject<OrderBll.Return_Message>();
 
@@ -67,6 +67,7 @@ namespace WorkerService1
             ob.SaveProductListAll();
 
         }
+
         private class DateString
         {
             public DateTime beginDate { get; set; }
@@ -76,3 +77,4 @@ namespace WorkerService1
 
     }
 }
+
