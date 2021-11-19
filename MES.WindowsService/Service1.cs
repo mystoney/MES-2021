@@ -107,12 +107,12 @@ namespace MES.WindowsService
             {
                 eventLog1.WriteEntry("In GetOrder-保存工单.");
                 log("In GetOrder-保存工单.");
-                ob.InsertOrderMaster();//将获取到的工单信息保存到MES_ORDER_MASTER,如果款号已维护，同时保存选项
+                //ob.InsertOrderMaster();//将获取到的工单信息保存到MES_ORDER_MASTER,如果款号已维护，同时保存选项
             }
-            ob.SaveOrderOpListNo();//将所有未锁定的订单中，有工单选项，没有工序清单的自动绑定工序清单
+            //ob.SaveOrderOpListNo();//将所有未锁定的订单中，有工单选项，没有工序清单的自动绑定工序清单
             eventLog1.WriteEntry("In GetOrder-保存工单OpListNo.");
             log("In GetOrder-保存工单OpListNo.");
-            ob.SaveProductListAll();
+            //ob.SaveProductListAll();
             eventLog1.WriteEntry("In GetOrder-保存工单ProductList.");
             log("In GetOrder-保存工单ProductList.");
             eventLog1.WriteEntry("In GetOrder-成功");

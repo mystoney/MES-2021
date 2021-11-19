@@ -301,7 +301,7 @@ namespace MES.module.DAL.OrderDal
         /// <summary>
         /// 加载订单 MES
         /// </summary>
-        /// <param name="StageProduct">1测试订单 =0正式订单</param>
+        /// <param name="StageProduct">1测试订单 =2正式订单</param>
         /// <returns></returns>
         public DataTable nMES_GetOrderList_MES(int customer_state)
         {
@@ -481,12 +481,55 @@ namespace MES.module.DAL.OrderDal
         }
         #endregion
 
-        #region 获取订单主表中需要更新选项的数据
+
+
+        #region 新版-获取订单主表中需要更新选项的数据
         public DataTable GetOrder_NoOption_Single(string job_num,int suffix)
         {
             string sqlstring = "SELECT job_num,suffix,style_no,style_des,Combination_no,memo_no,memo_name  FROM nMES_order_master  where Combination_no=0 and job_num='"+ job_num + "' and suffix="+ suffix + " and OrderLock=0";
             DataTable dt_NoOption = DBConn.DataAcess.SqlConn.Query(sqlstring).Tables[0];
             return dt_NoOption;
+        }
+        #endregion
+
+        #region 新版-获取工序清单中的平缝工时 - 2021.11.18
+        /// <summary>
+        /// 0没有获取到工序清单 1合格(小于工单工时) 2不合格(大于工单工时)
+        /// </summary>
+        /// <param name="job_num">工单号</param>
+        /// <param name="suffix">工单行</param>
+        /// <returns></returns>
+        public int CheckOpListManhour(string job_num, int suffix, int Combination_no)
+        {
+            StringBuilder StringOpListManhour = new StringBuilder();
+            StringOpListManhour.Clear();
+            StringOpListManhour.AppendLine(" select sum(a.manhour) as PFmanhour_OpList ");
+            StringOpListManhour.AppendLine(" from nMES_OperationList_detail a ");
+            StringOpListManhour.AppendLine(" left join nMES_OperationList_master b ");
+            StringOpListManhour.AppendLine(" 	on a.OpListNo=b.OpListNo ");
+            StringOpListManhour.AppendLine(" where a.OperationType='PF' and b.Combination_no=" + Combination_no);
+
+            int OpListManhour = Convert.ToInt32(DBConn.DataAcess.SqlConn.GetSingle(StringOpListManhour.ToString()));
+
+            StringBuilder StringOrderManhour = new StringBuilder();
+            StringOrderManhour.Clear();
+            StringOrderManhour.AppendLine("  select manhour from nMES_order_master   ");
+            StringOrderManhour.AppendLine("  where job_num='" + job_num + "' and suffix=" + suffix);
+
+            int OrderManhour = Convert.ToInt32(DBConn.DataAcess.SqlConn.GetSingle(StringOpListManhour.ToString()));
+
+            if (OpListManhour == 0)
+            {
+                return 0;
+            }
+            else if (OrderManhour <= OpListManhour)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
         }
         #endregion
 
@@ -516,12 +559,9 @@ namespace MES.module.DAL.OrderDal
         /// 新版-保存订单选项
         /// </summary>
         /// <param name="OrderOptionList">订单选项</param>
-        /// <returns>0不成功 1成功 2已存在</returns>
-        public void SaveOrderOptionList(DataTable dt_OrderOptionList)
+        /// <returns>0不成功 1成功</returns>
+        public int SaveOrderOptionList(DataTable dt_OrderOptionList)
         {
-            if (dt_OrderOptionList.Rows.Count > 0)
-            {
-
                 ArrayList SQLList = new ArrayList();
                 for (int j=0; j < dt_OrderOptionList.Rows.Count; j++)
                 {
@@ -546,12 +586,14 @@ namespace MES.module.DAL.OrderDal
                 try
                 {
                     DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
+                    return 1;
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    throw ex;                    
                 }
-            }
+
+            
         }
         #endregion
 
@@ -560,15 +602,12 @@ namespace MES.module.DAL.OrderDal
         /// 新版-保存订单选项
         /// </summary>
         /// <param name="OrderOptionList">订单选项</param>
-        /// <returns>0不成功 1成功 2已存在</returns>
-        public void UpdateOrderOptionList(DataTable dt_UpdateOption)
+        /// <returns>0不成功 1成功</returns>
+        public int UpdateOrderOptionList(DataTable dt_UpdateOption)
         {
-            if (dt_UpdateOption.Rows.Count > 0)
-            {
-
                 ArrayList SQLList = new ArrayList();
                 for (int j = 0; j < dt_UpdateOption.Rows.Count; j++)
-                {                    
+                {
                     int Combination_no = Convert.ToInt16(dt_UpdateOption.Rows[j]["Combination_no"].ToString().Trim());
                     string job_num = dt_UpdateOption.Rows[j]["job_num"].ToString().Trim();
                     int suffix = Convert.ToInt16(dt_UpdateOption.Rows[j]["suffix"].ToString().Trim());
@@ -577,21 +616,22 @@ namespace MES.module.DAL.OrderDal
                     StringBuilder cmd = new StringBuilder();
                     cmd.Clear();
                     cmd.AppendLine(" UPDATE nMES_order_master ");
-                    cmd.AppendLine("    SET Combination_no = '"+ Combination_no + "' ");
+                    cmd.AppendLine("    SET Combination_no = '" + Combination_no + "' ");
                     cmd.AppendLine("       ,memo_no =  '" + memo_no + "'  ");
                     cmd.AppendLine("       ,memo_name ='" + memo_name + "'  ");
-                    cmd.AppendLine("  WHERE job_num= '" + job_num + "' and suffix="+ suffix + "");
+                    cmd.AppendLine("  WHERE job_num= '" + job_num + "' and suffix=" + suffix + "");
                     SQLList.Add(cmd.ToString());
                 }
                 try
                 {
                     DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
+                    return 1;
                 }
                 catch (Exception ex)
                 {
                     throw ex;
-                }
-            }
+                }           
+           
         }
         #endregion
 
@@ -684,7 +724,13 @@ namespace MES.module.DAL.OrderDal
         /// <returns>0不成功 1成功 2已存在</returns>
         public int SaveOrderOperationList(string job_num, int suffix, int OpListNo)
         {            
-            //string stringsql = "  select count(id) from nMES_order_master where job_num='" + job_num + "' and suffix=" + suffix + "";
+            
+
+
+
+
+
+
 
             ArrayList SQLList = new ArrayList();
             string sqldelete = "delete from nMES_Order_detail_OperationList where job_num='"+ job_num + "' and suffix="+ suffix + " ";

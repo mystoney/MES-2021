@@ -880,7 +880,8 @@ namespace MES.form
 
         private void 工单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Order.OrderListMain sns = new Order.OrderListMain();
+            Order.OrderMain sns = new Order.OrderMain();
+            //Order.OrderListMain sns = new Order.OrderListMain();
             ShowForm(sns);
         }
 
@@ -890,57 +891,7 @@ namespace MES.form
             ShowForm(sns);
         }
 
-        private void 重新获取订单选项ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OrderBll ob = new OrderBll();
-            ob.UpdateOrderOption();
-        }
-
-        private void 重新获取订单产品明细ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OrderBll ob = new OrderBll();
-            ob.SaveProductListAll();
-        }
-
-        private void serviceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MyContrals.WaitFormService.Show(this);
-            MyContrals.WaitFormService.SetLeftText("运行中");
-            MyContrals.WaitFormService.SetProgressBarMax(2, "运行中：");
-            //MyContrals.WaitFormService.SetRightText("righttext");
-            MyContrals.WaitFormService.SetTopText("请稍候......");
-            OrderBll.Return_Message rm_Order = new OrderBll.Return_Message();
-            DateString ds = new DateString();
-            ds.beginDate = DateTime.Parse(DateTime.Now.AddDays(-7).ToShortDateString());
-            ds.endDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            string getordermodel = $@"http://172.16.1.16:9999/api/GetJobNumFromDate?DS={Helper.Json.JsonHelper.SerializeObject(ds)}";
-            rm_Order = Helper.Json.JsonHelper.DeserializeJsonToObject<OrderBll.Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
-            if (rm_Order.State == OrderBll.Return_Message.Return_State.Error)
-            {
-                throw new Exception(rm_Order.Message);
-            }
-            DataTable dt = Helper.Json.JsonHelper.DeserializeJsonToObject<DataTable>(rm_Order.Return_Value);
-
-            OrderBll ob = new OrderBll();
-            int a = ob.SaveOrderZYQ(dt);//调用ZYQ接口，获取到所有工单
-            if (a == 1)
-            {
-                ob.InsertOrderMaster();//将获取到的工单信息保存到MES_ORDER_MASTER,如果款号已维护，同时保存选项
-                ob.SaveProductListAll();
-                MyContrals.WaitFormService.Close();
-                MessageBox.Show("成功", "导入工单结果", MessageBoxButtons.OK);
-            }
-            else
-            {
-                MyContrals.WaitFormService.Close();
-                MessageBox.Show("没有成功，请重试", "导入工单结果", MessageBoxButtons.OK);
-            }
-        }
-        private class DateString
-        {
-            public DateTime beginDate { get; set; }
-            public DateTime endDate { get; set; }
-        }
+  
     }
 }
 

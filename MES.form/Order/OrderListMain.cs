@@ -177,7 +177,11 @@ namespace MES.form.Order
             public DateTime endDate { get; set; }
         }
         
-
+        /// <summary>
+        /// 只获取ZYQ接口提供的工单 不保存到MES订单表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonNewOrder_Click(object sender, EventArgs e)
         {
             MyContrals.WaitFormService.Show(this);
@@ -358,7 +362,7 @@ namespace MES.form.Order
             else
             {           
                 //1.1 工序清单：保存到nMES_Order_detail_OperationList
-                int R_SaveOrderOperationList = ob.SaveOrderOperationList(soi.job_num, soi.suffix, soi.OpListNo);
+                int R_SaveOrderOperationList = ob.SaveOrderOperationList(soi.job_num, soi.suffix, soi.OpListNo,soi.Combination_no);
                 if (R_SaveOrderOperationList == 1)
                 {
                     OrderToUPS OA = new OrderToUPS(soi);
@@ -436,6 +440,10 @@ namespace MES.form.Order
 
 
         }
-        
+
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

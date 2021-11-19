@@ -36,8 +36,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.工单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工单管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.重新获取订单产品明细ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.重新获取订单选项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.款式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.款式管理ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.导入ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +86,6 @@
             this.ToolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.Label1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -98,8 +95,8 @@
             this.ID_工作站.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ID_修改工作站});
             this.ID_工作站.Name = "ID_工作站";
-            this.ID_工作站.Size = new System.Drawing.Size(56, 21);
-            this.ID_工作站.Text = "工作站";
+            this.ID_工作站.Size = new System.Drawing.Size(104, 21);
+            this.ID_工作站.Text = "工作站(Station)";
             // 
             // ID_修改工作站
             // 
@@ -121,7 +118,7 @@
             // 
             this.ID_修改排序表.Image = ((System.Drawing.Image)(resources.GetObject("ID_修改排序表.Image")));
             this.ID_修改排序表.Name = "ID_修改排序表";
-            this.ID_修改排序表.Size = new System.Drawing.Size(136, 22);
+            this.ID_修改排序表.Size = new System.Drawing.Size(140, 26);
             this.ID_修改排序表.Text = "修改排序表";
             this.ID_修改排序表.Click += new System.EventHandler(this.变更排序表ToolStripMenuItem_Click);
             // 
@@ -152,10 +149,7 @@
             // 工单ToolStripMenuItem
             // 
             this.工单ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.工单管理ToolStripMenuItem,
-            this.重新获取订单产品明细ToolStripMenuItem,
-            this.重新获取订单选项ToolStripMenuItem,
-            this.serviceToolStripMenuItem});
+            this.工单管理ToolStripMenuItem});
             this.工单ToolStripMenuItem.Name = "工单ToolStripMenuItem";
             this.工单ToolStripMenuItem.Size = new System.Drawing.Size(107, 21);
             this.工单ToolStripMenuItem.Text = "工单(Order_no)";
@@ -164,23 +158,9 @@
             // 工单管理ToolStripMenuItem
             // 
             this.工单管理ToolStripMenuItem.Name = "工单管理ToolStripMenuItem";
-            this.工单管理ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.工单管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.工单管理ToolStripMenuItem.Text = "管理";
             this.工单管理ToolStripMenuItem.Click += new System.EventHandler(this.工单管理ToolStripMenuItem_Click);
-            // 
-            // 重新获取订单产品明细ToolStripMenuItem
-            // 
-            this.重新获取订单产品明细ToolStripMenuItem.Name = "重新获取订单产品明细ToolStripMenuItem";
-            this.重新获取订单产品明细ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.重新获取订单产品明细ToolStripMenuItem.Text = "重新获取订单产品明细";
-            this.重新获取订单产品明细ToolStripMenuItem.Click += new System.EventHandler(this.重新获取订单产品明细ToolStripMenuItem_Click);
-            // 
-            // 重新获取订单选项ToolStripMenuItem
-            // 
-            this.重新获取订单选项ToolStripMenuItem.Name = "重新获取订单选项ToolStripMenuItem";
-            this.重新获取订单选项ToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.重新获取订单选项ToolStripMenuItem.Text = "重新获取订单选项";
-            this.重新获取订单选项ToolStripMenuItem.Click += new System.EventHandler(this.重新获取订单选项ToolStripMenuItem_Click);
             // 
             // 款式ToolStripMenuItem
             // 
@@ -561,13 +541,6 @@
             this.Label1.Name = "Label1";
             this.Label1.Size = new System.Drawing.Size(0, 17);
             // 
-            // serviceToolStripMenuItem
-            // 
-            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
-            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.serviceToolStripMenuItem.Text = "Service";
-            this.serviceToolStripMenuItem.Click += new System.EventHandler(this.serviceToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -656,9 +629,6 @@
         private System.Windows.Forms.ToolStripMenuItem 导入ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 工单ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工单管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 重新获取订单产品明细ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 重新获取订单选项ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serviceToolStripMenuItem;
     }
 }
 

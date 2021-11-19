@@ -145,6 +145,13 @@ namespace MES.module.DAL.OperationDal
             return dt;
         }
 
+        public int GetOpListNo(int Combination_no)
+        {
+            string cmd = "SELECT case when max(OpListNo) is null then 0 else max(OpListNo) end as OpListNo  FROM [mes].[dbo].[nMES_OperationList_master]  where Combination_no=" + Combination_no;
+            int i = Convert.ToInt32( DBConn.DataAcess.SqlConn.GetSingle(cmd));
+            return i;
+        }
+
         public void SaveOrderOpListNo()
         {
             ArrayList SQLList = new ArrayList();

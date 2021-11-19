@@ -63,7 +63,6 @@ namespace MES.form.Order
             if (a == 1)
             {
                 ob.InsertOrderMaster();//将获取到的工单信息保存到MES_ORDER_MASTER,如果款号已维护，同时保存选项
-                ob.SaveProductListAll();
                 MyContrals.WaitFormService.Close();
                 MessageBox.Show("成功", "导入工单结果", MessageBoxButtons.OK);                
             }

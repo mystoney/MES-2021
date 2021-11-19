@@ -101,7 +101,10 @@ namespace MES.form.Order
                 OrderBll ob = new OrderBll();
                 int R_SaveOrderSchemeList = ob.SaveOrderSchemeList(soi.job_num, soi.suffix, SchemeNo);
                 if (R_SaveOrderSchemeList == 1)
-                { this.DialogResult = DialogResult.OK; }
+                {
+                    soi.SchemeNo = SchemeNo;
+                    this.DialogResult = DialogResult.OK;
+                }
                 else
                 {
                     MessageBox.Show("保存失败，请重新操作", "出错了", MessageBoxButtons.OK);

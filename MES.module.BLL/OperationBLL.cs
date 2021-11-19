@@ -60,6 +60,13 @@ namespace MES.module.BLL
             return dt;
         }
 
+        public int GetOpListNo(int Combination_no)
+        {
+            DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
+            int i = od.GetOpListNo(Combination_no);
+            return i;
+        }
+
 
         #region 曹博接口
 

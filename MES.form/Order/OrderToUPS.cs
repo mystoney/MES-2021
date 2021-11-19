@@ -107,6 +107,11 @@ namespace MES.form.Order
         private void PushToEton()
         {
             this.Enabled = false;
+
+
+
+
+
             OrderBll ob = new OrderBll();
             List<int> L_ProductCode_ETON = new List<int>();
             L_ProductCode_ETON = ob.GetProductListNOTEton(soi.job_num, soi.suffix);
