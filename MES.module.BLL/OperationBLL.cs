@@ -39,6 +39,12 @@ namespace MES.module.BLL
             }
         }
 
+        public int GetMaxOperationNo()
+        {
+            DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
+            return od.GetMaxOperationNo();
+        }
+
         public DataTable GetOpList(int OpListNo)
         {
             DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();

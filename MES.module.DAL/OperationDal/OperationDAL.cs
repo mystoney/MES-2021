@@ -11,7 +11,11 @@ namespace MES.module.DAL.OperationDal
 {
     public class OperationDAL
     {
-
+        public int GetMaxOperationNo()
+        {
+            string sqlcmd = "SELECT max(id)+1 as maxid  FROM nMES_OperationList_detail";
+            return Convert.ToInt16(DBConn.DataAcess.SqlConn.GetSingle(sqlcmd));
+        }
 
         /// <summary>
         /// 导入工序清单

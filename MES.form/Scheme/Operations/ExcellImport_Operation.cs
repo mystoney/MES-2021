@@ -96,13 +96,22 @@ namespace MES.form.Scheme
                     OleDbDataAdapter daOrder = new OleDbDataAdapter(CmdOrder);
                     DataTable dt1 = new DataTable();
                     daOrder.Fill(dt1);
+                    DataColumn dc_OperationNo = new DataColumn();
+                    dc_OperationNo.ColumnName = "OperationNo";
+                    dt1.Columns.Add(dc_OperationNo);
                     ds.Tables.Add(dt1);
+                    OperationBLL ob = new OperationBLL();
+                    int MaxOperationNo = ob.GetMaxOperationNo();
                     for (int p = ds.Tables[0].Rows.Count - 1; p >= 0; p--)
                     {
+                        string OperationNo = string.Format("{0:d10}", MaxOperationNo);
+                        ds.Tables[0].Rows[p]["OperationNo"] = "OP" + ds.Tables[0].Rows[p]["OperationType"].ToString().Trim() + OperationNo;
+
                         if (ds.Tables[0].Rows[p][0] is DBNull)
                             ds.Tables[0].Rows[p].Delete();
                         else if (ds.Tables[0].Rows[p][0].ToString().Trim() == "")
                             ds.Tables[0].Rows[p].Delete();
+                        MaxOperationNo = MaxOperationNo + 1;
                     }
                     ds.Tables[0].AcceptChanges();
                     Grid_detail.DataSource = ds.Tables[0];
