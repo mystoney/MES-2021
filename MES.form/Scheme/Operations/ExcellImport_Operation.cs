@@ -72,41 +72,19 @@ namespace MES.form.Scheme
                 {
                     strPath = ofd.FileName;
                     TextBox28.Text= ofd.FileName; ;
-                    string fileType = System.IO.Path.GetExtension(strPath);//获取文件的后缀
-                    string strCon = "";
-                    if (fileType == ".xls")//如果为97-2003格式文件
-                    {
-                        strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + strPath + ";Extended Properties='Excel 8.0;HDR=YES;IMEX=1'";
-                    }
-                    else//如果为2007格式文件
-                    {
-                        strCon = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + strPath + ";Extended Properties='Excel 12.0;HDR=YES;IEMX=1'";
-                    }
-                    OleDbConnection conn = new OleDbConnection(strCon);
-                    Application.DoEvents();
 
-                    //插入主表
-                    string strSql = "select * from [Sheet1$]";
-                    OleDbCommand Cmd = new OleDbCommand(strSql, conn);
-                    OleDbDataAdapter da = new OleDbDataAdapter(Cmd);
-
-                    string strSqlOrder = "select * from [Sheet1$]";
-
-                    OleDbCommand CmdOrder = new OleDbCommand(strSqlOrder, conn);
-                    OleDbDataAdapter daOrder = new OleDbDataAdapter(CmdOrder);
-                    DataTable dt1 = new DataTable();
-                    daOrder.Fill(dt1);
                     DataColumn dc_OperationNo = new DataColumn();
                     dc_OperationNo.ColumnName = "OperationNo";
-                    dt1.Columns.Add(dc_OperationNo);
-                    ds.Tables.Add(dt1);
+
+                    Helper.Excel.ExcelHelper excelHelper = new Helper.Excel.ExcelHelper(ofd.FileName);
+                    ds = excelHelper.exceltoDataSet();
+                    ds.Tables[0].Columns.Add(dc_OperationNo);
                     OperationBLL ob = new OperationBLL();
                     int MaxOperationNo = ob.GetMaxOperationNo();
                     for (int p = ds.Tables[0].Rows.Count - 1; p >= 0; p--)
                     {
                         string OperationNo = string.Format("{0:d10}", MaxOperationNo);
                         ds.Tables[0].Rows[p]["OperationNo"] = "OP" + ds.Tables[0].Rows[p]["OperationType"].ToString().Trim() + OperationNo;
-
                         if (ds.Tables[0].Rows[p][0] is DBNull)
                             ds.Tables[0].Rows[p].Delete();
                         else if (ds.Tables[0].Rows[p][0].ToString().Trim() == "")

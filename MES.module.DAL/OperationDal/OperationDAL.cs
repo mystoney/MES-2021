@@ -107,7 +107,7 @@ namespace MES.module.DAL.OperationDal
 
             StringBuilder sqlstr_detail = new StringBuilder();
             sqlstr_detail.Clear();
-            sqlstr_detail.AppendLine(" SELECT OpListNo,OperationNo,OperationDes,manhour,GST_xh  FROM nMES_OperationList_detail where OpListNo="+ OpListNo + " order by GST_xh");
+            sqlstr_detail.AppendLine(" SELECT OpListNo,OperationNo,OperationDes,manhour,GST_xh,OperationType FROM nMES_OperationList_detail where OpListNo=" + OpListNo + " order by GST_xh");
 
             DataTable dt_OpListNo = DBConn.DataAcess.SqlConn.Query(sqlstr_detail.ToString()).Tables[0];
             return dt_OpListNo;
@@ -128,7 +128,7 @@ namespace MES.module.DAL.OperationDal
             sqlstr.AppendLine("       ,case when a.PushState_CAOBO=0 then '待推送' else '已推送' end PushState ");
             sqlstr.AppendLine("   FROM nMES_OperationList_master a ");
             sqlstr.AppendLine("   left join nMES_Style_Combination_master b ");
-            sqlstr.AppendLine("   on a.Combination_no=b.Combination_no ");
+            sqlstr.AppendLine("   on a.Combination_no=b.Combination_no order by a.apptime desc ");
 
             DataTable dt= DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
             return dt;

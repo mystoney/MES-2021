@@ -149,5 +149,30 @@ namespace MES.form.Scheme
             this.DialogResult = DialogResult.No;
             Close();
         }
+
+        private void bt_EditMemo_Click(object sender, EventArgs e)
+        {
+            if (GridSchemeList.Rows.Count == 0)
+            {
+                return;
+            }
+            else if (GridSchemeList.CurrentRow is null)
+            {
+                return;
+            }
+            else
+            {
+                SchemeNo = Convert.ToInt32(GridSchemeList.CurrentRow.Cells["SchemeNo"].Value.ToString().Trim());
+                //打开新窗体 用于确认是否为最佳方案和填写备注
+                SchemeSave s1 = new SchemeSave(SchemeNo);
+                DialogResult f1 = s1.ShowDialog();
+                //s1.ShowDialog.DialogResult=
+                //返回结果 新方案是否为默认方案 新方案备注
+                if (f1 == DialogResult.OK)
+                {
+                    GetGridSchemeList();
+                }
+            }            
+         }
     }
 }

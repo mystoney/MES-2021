@@ -39,6 +39,7 @@ namespace MES.form.Scheme
             this.GridSchemeList = new MyContrals.ExDataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.bt_EditMemo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -59,7 +60,7 @@ namespace MES.form.Scheme
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Location = new System.Drawing.Point(3, 31);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -72,7 +73,7 @@ namespace MES.form.Scheme
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer8);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 450);
+            this.splitContainer2.Size = new System.Drawing.Size(794, 416);
             this.splitContainer2.SplitterDistance = 40;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -112,10 +113,11 @@ namespace MES.form.Scheme
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.splitContainer8.Panel2.Controls.Add(this.bt_EditMemo);
             this.splitContainer8.Panel2.Controls.Add(this.button1);
             this.splitContainer8.Panel2.Controls.Add(this.button2);
-            this.splitContainer8.Size = new System.Drawing.Size(800, 406);
-            this.splitContainer8.SplitterDistance = 369;
+            this.splitContainer8.Size = new System.Drawing.Size(794, 372);
+            this.splitContainer8.SplitterDistance = 338;
             this.splitContainer8.TabIndex = 0;
             // 
             // splitContainer1
@@ -133,7 +135,7 @@ namespace MES.form.Scheme
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.GridSchemeList);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 369);
+            this.splitContainer1.Size = new System.Drawing.Size(794, 338);
             this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -151,7 +153,7 @@ namespace MES.form.Scheme
             this.GridCombinationList.RowHeadersVisible = false;
             this.GridCombinationList.RowTemplate.Height = 27;
             this.GridCombinationList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridCombinationList.Size = new System.Drawing.Size(800, 200);
+            this.GridCombinationList.Size = new System.Drawing.Size(794, 200);
             this.GridCombinationList.TabIndex = 5;
             this.GridCombinationList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridCombinationList_CellMouseClick);
             // 
@@ -169,7 +171,7 @@ namespace MES.form.Scheme
             this.GridSchemeList.RowHeadersVisible = false;
             this.GridSchemeList.RowTemplate.Height = 27;
             this.GridSchemeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridSchemeList.Size = new System.Drawing.Size(800, 165);
+            this.GridSchemeList.Size = new System.Drawing.Size(794, 134);
             this.GridSchemeList.TabIndex = 5;
             // 
             // button1
@@ -191,6 +193,16 @@ namespace MES.form.Scheme
             this.button2.Text = "确 定";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // bt_EditMemo
+            // 
+            this.bt_EditMemo.Location = new System.Drawing.Point(3, 4);
+            this.bt_EditMemo.Name = "bt_EditMemo";
+            this.bt_EditMemo.Size = new System.Drawing.Size(75, 23);
+            this.bt_EditMemo.TabIndex = 82;
+            this.bt_EditMemo.Text = "编辑备注";
+            this.bt_EditMemo.UseVisualStyleBackColor = true;
+            this.bt_EditMemo.Click += new System.EventHandler(this.bt_EditMemo_Click);
             // 
             // SchemeSelect
             // 
@@ -231,5 +243,6 @@ namespace MES.form.Scheme
         private System.Windows.Forms.SplitContainer splitContainer1;
         private MyContrals.ExDataGridView GridCombinationList;
         private MyContrals.ExDataGridView GridSchemeList;
+        private System.Windows.Forms.Button bt_EditMemo;
     }
 }

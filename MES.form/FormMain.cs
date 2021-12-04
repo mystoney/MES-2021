@@ -851,47 +851,48 @@ namespace MES.form
 
         private void 款式管理ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Style.StyleAdd s1 = new Style.StyleAdd();
+            Style.StyleAdd s1 = new Style.StyleAdd();             
             ShowForm(s1, 0);
+
         }
 
         private void 生产路线管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Scheme.SchemeMain sns = new Scheme.SchemeMain(1);
-            ShowForm(sns);
+            ShowForm(sns, 0);
+            
         }
 
         private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Scheme.ExcellImport_Scheme es = new Scheme.ExcellImport_Scheme();
-            ShowForm(es);
+            ShowForm(es, 0);
+            
         }
 
         private void 导入ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Scheme.ExcellImport_Operation eo = new Scheme.ExcellImport_Operation();
-            ShowForm(eo);
+             ShowForm(eo, 0);
+            
         }
 
-        private void 工单ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void 工单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Order.OrderMain sns = new Order.OrderMain();
-            //Order.OrderListMain sns = new Order.OrderListMain();
-            ShowForm(sns);
+            ShowForm(sns, 0);
+            
         }
 
         private void 工序清单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Scheme.Operations.OperationsMain sns = new Scheme.Operations.OperationsMain();
-            ShowForm(sns);
+            ShowForm(sns, 0);
         }
 
-  
+
     }
 }
 

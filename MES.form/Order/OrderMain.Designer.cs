@@ -30,7 +30,7 @@ namespace MES.form.Order
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.ButtonSelectOrder = new System.Windows.Forms.ToolStripButton();
             this.ButtonGetOpList = new System.Windows.Forms.ToolStripButton();
@@ -222,7 +222,7 @@ namespace MES.form.Order
             this.txGroupBox3.Controls.Add(this.lb_OpListNo);
             this.txGroupBox3.Controls.Add(this.lb_SchemeNo);
             this.txGroupBox3.Controls.Add(this.label6);
-            this.txGroupBox3.Location = new System.Drawing.Point(13, 331);
+            this.txGroupBox3.Location = new System.Drawing.Point(12, 411);
             this.txGroupBox3.Name = "txGroupBox3";
             this.txGroupBox3.Size = new System.Drawing.Size(245, 80);
             this.txGroupBox3.TabIndex = 75;
@@ -290,7 +290,7 @@ namespace MES.form.Order
             this.txGroupBox2.Controls.Add(this.label5);
             this.txGroupBox2.Location = new System.Drawing.Point(13, 171);
             this.txGroupBox2.Name = "txGroupBox2";
-            this.txGroupBox2.Size = new System.Drawing.Size(245, 154);
+            this.txGroupBox2.Size = new System.Drawing.Size(245, 234);
             this.txGroupBox2.TabIndex = 74;
             this.txGroupBox2.TabStop = false;
             this.txGroupBox2.Text = "工单选项信息";
@@ -320,7 +320,7 @@ namespace MES.form.Order
             this.lb_memo_name.Multiline = true;
             this.lb_memo_name.Name = "lb_memo_name";
             this.lb_memo_name.ReadOnly = true;
-            this.lb_memo_name.Size = new System.Drawing.Size(145, 51);
+            this.lb_memo_name.Size = new System.Drawing.Size(145, 131);
             this.lb_memo_name.TabIndex = 72;
             this.lb_memo_name.Text = "lb_memo_name";
             // 
@@ -595,14 +595,14 @@ namespace MES.form.Order
             this.GridProduct.AllowUserToAddRows = false;
             this.GridProduct.AllowUserToDeleteRows = false;
             this.GridProduct.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridProduct.Location = new System.Drawing.Point(0, 0);

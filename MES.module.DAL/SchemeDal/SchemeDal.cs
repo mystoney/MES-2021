@@ -122,7 +122,6 @@ namespace MES.module.DAL.SchemeDal
             }
             catch (Exception ex)
             {
-                return 0;
                 throw ex;
             }
 
@@ -217,7 +216,6 @@ namespace MES.module.DAL.SchemeDal
             }
             catch (Exception ex)
             {
-                return 0;
                 throw ex;
             }
         }
@@ -322,6 +320,20 @@ namespace MES.module.DAL.SchemeDal
             }
 
             return LineNum;
+        }
+
+        public int UpdateSchemeMemo(int SchemeNo, string memo)
+        {
+            string sqlstr = "UPDATE nMES_Scheme_master   SET memo = '"+ memo + "' WHERE SchemeNo="+ SchemeNo;
+            try
+            {
+                DBConn.DataAcess.SqlConn.ExecuteSql(sqlstr);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

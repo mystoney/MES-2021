@@ -112,8 +112,12 @@ namespace MES.module.BLL
             return od.GetSchemeLineNum(SchemeNo);
         }
 
+        public int UpdateSchemeMemo(int SchemeNo, string memo)
+        {
+            DAL.SchemeDal.SchemeDal od = new DAL.SchemeDal.SchemeDal();
+            return od.UpdateSchemeMemo(SchemeNo, memo);
+        }
 
-        
 
 
 

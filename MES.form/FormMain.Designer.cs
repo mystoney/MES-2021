@@ -34,17 +34,17 @@
             this.ID_工序 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_修改排序表 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.工单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.工单管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.款式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.款式管理ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.导入ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.工序清单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.工序清单管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导入ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.生产路线ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.生产路线管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_工单 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_工单管理 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_款式 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_款式管理 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_款式导入 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_工序清单 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_工序清单管理 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_工序清单导入 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_生产路线 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_生产路线管理 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_生产路线导入 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_灯箱 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_开发工具 = new System.Windows.Forms.ToolStripMenuItem();
             this.输入工单获取款号和数量ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,15 +66,15 @@
             this.ID_垂直平铺 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_层叠 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_排列窗口 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_人事 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_部门资料维护 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID_员工资料维护 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_系统 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_公司基本信息 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_月结日期设定 = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.ID_系统角色权限 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_系统用户权限 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ID_人事 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ID_部门资料维护 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ID_员工资料维护 = new System.Windows.Forms.ToolStripMenuItem();
             this.重设系统菜单Menu_indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除订单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保留订单信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,7 +118,7 @@
             // 
             this.ID_修改排序表.Image = ((System.Drawing.Image)(resources.GetObject("ID_修改排序表.Image")));
             this.ID_修改排序表.Name = "ID_修改排序表";
-            this.ID_修改排序表.Size = new System.Drawing.Size(140, 26);
+            this.ID_修改排序表.Size = new System.Drawing.Size(136, 22);
             this.ID_修改排序表.Text = "修改排序表";
             this.ID_修改排序表.Click += new System.EventHandler(this.变更排序表ToolStripMenuItem_Click);
             // 
@@ -128,17 +128,17 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ID_工作站,
-            this.工单ToolStripMenuItem,
-            this.款式ToolStripMenuItem,
-            this.工序清单ToolStripMenuItem,
-            this.生产路线ToolStripMenuItem,
+            this.ID_工单,
+            this.ID_款式,
+            this.ID_工序清单,
+            this.ID_生产路线,
             this.ID_工序,
             this.ID_灯箱,
             this.ID_开发工具,
             this.ID_视图,
             this.ID_窗口,
-            this.ID_系统,
             this.ID_人事,
+            this.ID_系统,
             this.重设系统菜单Menu_indexToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(3, 31);
             this.menuStrip1.Name = "menuStrip1";
@@ -146,89 +146,88 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 工单ToolStripMenuItem
+            // ID_工单
             // 
-            this.工单ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.工单管理ToolStripMenuItem});
-            this.工单ToolStripMenuItem.Name = "工单ToolStripMenuItem";
-            this.工单ToolStripMenuItem.Size = new System.Drawing.Size(107, 21);
-            this.工单ToolStripMenuItem.Text = "工单(Order_no)";
-            this.工单ToolStripMenuItem.Click += new System.EventHandler(this.工单ToolStripMenuItem_Click);
+            this.ID_工单.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ID_工单管理});
+            this.ID_工单.Name = "ID_工单";
+            this.ID_工单.Size = new System.Drawing.Size(107, 21);
+            this.ID_工单.Text = "工单(Order_no)";
             // 
-            // 工单管理ToolStripMenuItem
+            // ID_工单管理
             // 
-            this.工单管理ToolStripMenuItem.Name = "工单管理ToolStripMenuItem";
-            this.工单管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.工单管理ToolStripMenuItem.Text = "管理";
-            this.工单管理ToolStripMenuItem.Click += new System.EventHandler(this.工单管理ToolStripMenuItem_Click);
+            this.ID_工单管理.Name = "ID_工单管理";
+            this.ID_工单管理.Size = new System.Drawing.Size(124, 22);
+            this.ID_工单管理.Text = "工单管理";
+            this.ID_工单管理.Click += new System.EventHandler(this.工单管理ToolStripMenuItem_Click);
             // 
-            // 款式ToolStripMenuItem
+            // ID_款式
             // 
-            this.款式ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.款式管理ToolStripMenuItem1,
-            this.导入ToolStripMenuItem2});
-            this.款式ToolStripMenuItem.Name = "款式ToolStripMenuItem";
-            this.款式ToolStripMenuItem.Size = new System.Drawing.Size(79, 21);
-            this.款式ToolStripMenuItem.Text = "款式(Style)";
+            this.ID_款式.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ID_款式管理,
+            this.ID_款式导入});
+            this.ID_款式.Name = "ID_款式";
+            this.ID_款式.Size = new System.Drawing.Size(79, 21);
+            this.ID_款式.Text = "款式(Style)";
             // 
-            // 款式管理ToolStripMenuItem1
+            // ID_款式管理
             // 
-            this.款式管理ToolStripMenuItem1.Name = "款式管理ToolStripMenuItem1";
-            this.款式管理ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.款式管理ToolStripMenuItem1.Text = "管理";
-            this.款式管理ToolStripMenuItem1.Click += new System.EventHandler(this.款式管理ToolStripMenuItem1_Click);
+            this.ID_款式管理.Name = "ID_款式管理";
+            this.ID_款式管理.Size = new System.Drawing.Size(180, 22);
+            this.ID_款式管理.Text = "款式管理";
+            this.ID_款式管理.Click += new System.EventHandler(this.款式管理ToolStripMenuItem1_Click);
             // 
-            // 导入ToolStripMenuItem2
+            // ID_款式导入
             // 
-            this.导入ToolStripMenuItem2.Name = "导入ToolStripMenuItem2";
-            this.导入ToolStripMenuItem2.Size = new System.Drawing.Size(100, 22);
-            this.导入ToolStripMenuItem2.Text = "导入";
+            this.ID_款式导入.Name = "ID_款式导入";
+            this.ID_款式导入.Size = new System.Drawing.Size(180, 22);
+            this.ID_款式导入.Text = "款式导入";
             // 
-            // 工序清单ToolStripMenuItem
+            // ID_工序清单
             // 
-            this.工序清单ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.工序清单管理ToolStripMenuItem,
-            this.导入ToolStripMenuItem1});
-            this.工序清单ToolStripMenuItem.Name = "工序清单ToolStripMenuItem";
-            this.工序清单ToolStripMenuItem.Size = new System.Drawing.Size(154, 21);
-            this.工序清单ToolStripMenuItem.Text = "工序清单(OperationList)";
+            this.ID_工序清单.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ID_工序清单管理,
+            this.ID_工序清单导入});
+            this.ID_工序清单.Name = "ID_工序清单";
+            this.ID_工序清单.Size = new System.Drawing.Size(154, 21);
+            this.ID_工序清单.Text = "工序清单(OperationList)";
             // 
-            // 工序清单管理ToolStripMenuItem
+            // ID_工序清单管理
             // 
-            this.工序清单管理ToolStripMenuItem.Name = "工序清单管理ToolStripMenuItem";
-            this.工序清单管理ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.工序清单管理ToolStripMenuItem.Text = "管理";
-            this.工序清单管理ToolStripMenuItem.Click += new System.EventHandler(this.工序清单管理ToolStripMenuItem_Click);
+            this.ID_工序清单管理.Name = "ID_工序清单管理";
+            this.ID_工序清单管理.Size = new System.Drawing.Size(148, 22);
+            this.ID_工序清单管理.Text = "工序清单管理";
+            this.ID_工序清单管理.Click += new System.EventHandler(this.工序清单管理ToolStripMenuItem_Click);
             // 
-            // 导入ToolStripMenuItem1
+            // ID_工序清单导入
             // 
-            this.导入ToolStripMenuItem1.Name = "导入ToolStripMenuItem1";
-            this.导入ToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
-            this.导入ToolStripMenuItem1.Text = "导入";
-            this.导入ToolStripMenuItem1.Click += new System.EventHandler(this.导入ToolStripMenuItem1_Click);
+            this.ID_工序清单导入.Name = "ID_工序清单导入";
+            this.ID_工序清单导入.Size = new System.Drawing.Size(148, 22);
+            this.ID_工序清单导入.Text = "工序清单导入";
+            this.ID_工序清单导入.Click += new System.EventHandler(this.导入ToolStripMenuItem1_Click);
             // 
-            // 生产路线ToolStripMenuItem
+            // ID_生产路线
             // 
-            this.生产路线ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.生产路线管理ToolStripMenuItem,
-            this.导入ToolStripMenuItem});
-            this.生产路线ToolStripMenuItem.Name = "生产路线ToolStripMenuItem";
-            this.生产路线ToolStripMenuItem.Size = new System.Drawing.Size(121, 21);
-            this.生产路线ToolStripMenuItem.Text = "生产路线(Scheme)";
+            this.ID_生产路线.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ID_生产路线管理,
+            this.ID_生产路线导入});
+            this.ID_生产路线.Name = "ID_生产路线";
+            this.ID_生产路线.Size = new System.Drawing.Size(121, 21);
+            this.ID_生产路线.Text = "生产路线(Scheme)";
             // 
-            // 生产路线管理ToolStripMenuItem
+            // ID_生产路线管理
             // 
-            this.生产路线管理ToolStripMenuItem.Name = "生产路线管理ToolStripMenuItem";
-            this.生产路线管理ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.生产路线管理ToolStripMenuItem.Text = "管理";
-            this.生产路线管理ToolStripMenuItem.Click += new System.EventHandler(this.生产路线管理ToolStripMenuItem_Click);
+            this.ID_生产路线管理.Name = "ID_生产路线管理";
+            this.ID_生产路线管理.Size = new System.Drawing.Size(148, 22);
+            this.ID_生产路线管理.Text = "生产路线管理";
+            this.ID_生产路线管理.Click += new System.EventHandler(this.生产路线管理ToolStripMenuItem_Click);
             // 
-            // 导入ToolStripMenuItem
+            // ID_生产路线导入
             // 
-            this.导入ToolStripMenuItem.Name = "导入ToolStripMenuItem";
-            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.导入ToolStripMenuItem.Text = "导入";
-            this.导入ToolStripMenuItem.Click += new System.EventHandler(this.导入ToolStripMenuItem_Click);
+            this.ID_生产路线导入.Name = "ID_生产路线导入";
+            this.ID_生产路线导入.Size = new System.Drawing.Size(148, 22);
+            this.ID_生产路线导入.Text = "生产路线导入";
+            this.ID_生产路线导入.Click += new System.EventHandler(this.导入ToolStripMenuItem_Click);
             // 
             // ID_灯箱
             // 
@@ -396,6 +395,30 @@
             this.ID_排列窗口.Text = "排列窗口";
             this.ID_排列窗口.Click += new System.EventHandler(this.ID_排列窗口_Click);
             // 
+            // ID_人事
+            // 
+            this.ID_人事.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ID_部门资料维护,
+            this.ID_员工资料维护});
+            this.ID_人事.ForeColor = System.Drawing.Color.Black;
+            this.ID_人事.Name = "ID_人事";
+            this.ID_人事.Size = new System.Drawing.Size(44, 21);
+            this.ID_人事.Text = "人事";
+            // 
+            // ID_部门资料维护
+            // 
+            this.ID_部门资料维护.Name = "ID_部门资料维护";
+            this.ID_部门资料维护.Size = new System.Drawing.Size(148, 22);
+            this.ID_部门资料维护.Text = "部门资料维护";
+            this.ID_部门资料维护.Click += new System.EventHandler(this.ID_部门资料维护_Click);
+            // 
+            // ID_员工资料维护
+            // 
+            this.ID_员工资料维护.Name = "ID_员工资料维护";
+            this.ID_员工资料维护.Size = new System.Drawing.Size(148, 22);
+            this.ID_员工资料维护.Text = "员工资料维护";
+            this.ID_员工资料维护.Click += new System.EventHandler(this.ID_员工资料维护_Click);
+            // 
             // ID_系统
             // 
             this.ID_系统.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -440,32 +463,9 @@
             this.ID_系统用户权限.Text = "系统用户权限";
             this.ID_系统用户权限.Click += new System.EventHandler(this.ID_系统用户权限_Click);
             // 
-            // ID_人事
-            // 
-            this.ID_人事.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ID_部门资料维护,
-            this.ID_员工资料维护});
-            this.ID_人事.ForeColor = System.Drawing.Color.Black;
-            this.ID_人事.Name = "ID_人事";
-            this.ID_人事.Size = new System.Drawing.Size(44, 21);
-            this.ID_人事.Text = "人事";
-            // 
-            // ID_部门资料维护
-            // 
-            this.ID_部门资料维护.Name = "ID_部门资料维护";
-            this.ID_部门资料维护.Size = new System.Drawing.Size(148, 22);
-            this.ID_部门资料维护.Text = "部门资料维护";
-            this.ID_部门资料维护.Click += new System.EventHandler(this.ID_部门资料维护_Click);
-            // 
-            // ID_员工资料维护
-            // 
-            this.ID_员工资料维护.Name = "ID_员工资料维护";
-            this.ID_员工资料维护.Size = new System.Drawing.Size(148, 22);
-            this.ID_员工资料维护.Text = "员工资料维护";
-            this.ID_员工资料维护.Click += new System.EventHandler(this.ID_员工资料维护_Click);
-            // 
             // 重设系统菜单Menu_indexToolStripMenuItem
             // 
+            this.重设系统菜单Menu_indexToolStripMenuItem.Enabled = false;
             this.重设系统菜单Menu_indexToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.重设系统菜单Menu_indexToolStripMenuItem.Name = "重设系统菜单Menu_indexToolStripMenuItem";
             this.重设系统菜单Menu_indexToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
@@ -618,17 +618,17 @@
         private System.Windows.Forms.ToolStripMenuItem 保留订单删除方案信息ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 导入方案ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ID_灯箱;
-        private System.Windows.Forms.ToolStripMenuItem 生产路线ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 款式ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 生产路线管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 导入ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 工序清单ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 款式管理ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 导入ToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem 工序清单管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 导入ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 工单ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 工单管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ID_生产路线;
+        private System.Windows.Forms.ToolStripMenuItem ID_款式;
+        private System.Windows.Forms.ToolStripMenuItem ID_生产路线管理;
+        private System.Windows.Forms.ToolStripMenuItem ID_生产路线导入;
+        private System.Windows.Forms.ToolStripMenuItem ID_工序清单;
+        private System.Windows.Forms.ToolStripMenuItem ID_款式管理;
+        private System.Windows.Forms.ToolStripMenuItem ID_款式导入;
+        private System.Windows.Forms.ToolStripMenuItem ID_工序清单管理;
+        private System.Windows.Forms.ToolStripMenuItem ID_工序清单导入;
+        private System.Windows.Forms.ToolStripMenuItem ID_工单;
+        private System.Windows.Forms.ToolStripMenuItem ID_工单管理;
     }
 }
 
