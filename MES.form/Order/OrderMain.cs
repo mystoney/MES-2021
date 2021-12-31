@@ -77,10 +77,9 @@ namespace MES.form.Order
                 MessageBox.Show("必须为工单选择生产路线和工序清单", "提示", MessageBoxButtons.OK);
                 return;
             }
-
-
-
             OrderBll ob = new OrderBll();
+
+
             //这里要先保存nMES_order_master表的Combination_no,memo_no,memo_name 保存工单子表nMES_Order_detail_OptionList
             int R_SaveOrderOption = ob.SaveOrderOption(soi, lst);
             if (R_SaveOrderOption != 1) { MessageBox.Show("保存工单选项时失败！", "没有成功", MessageBoxButtons.OK); return; }

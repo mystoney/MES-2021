@@ -38,6 +38,7 @@ namespace MES.form.Order
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.CB_ContainUPSDone = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.cb_customer_state = new System.Windows.Forms.CheckBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -156,6 +157,7 @@ namespace MES.form.Order
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.CB_ContainUPSDone);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.cb_customer_state);
             this.splitContainer1.Panel1.Controls.Add(this.button5);
@@ -170,12 +172,23 @@ namespace MES.form.Order
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 4;
             // 
+            // CB_ContainUPSDone
+            // 
+            this.CB_ContainUPSDone.AutoSize = true;
+            this.CB_ContainUPSDone.Location = new System.Drawing.Point(115, 13);
+            this.CB_ContainUPSDone.Name = "CB_ContainUPSDone";
+            this.CB_ContainUPSDone.Size = new System.Drawing.Size(120, 16);
+            this.CB_ContainUPSDone.TabIndex = 26;
+            this.CB_ContainUPSDone.Text = "显示推送过的工单";
+            this.CB_ContainUPSDone.UseVisualStyleBackColor = true;
+            this.CB_ContainUPSDone.CheckedChanged += new System.EventHandler(this.CB_ContainUPSDone_CheckedChanged);
+            // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button6.Image = global::MES.form.Properties.Resources._32_balloonica_054;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(231, 5);
+            this.button6.Location = new System.Drawing.Point(353, 5);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(167, 30);
             this.button6.TabIndex = 24;
@@ -200,7 +213,7 @@ namespace MES.form.Order
             this.button5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button5.Image = global::MES.form.Properties.Resources._32_balloonica_054;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(115, 5);
+            this.button5.Location = new System.Drawing.Point(237, 5);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(110, 30);
             this.button5.TabIndex = 24;
@@ -257,5 +270,6 @@ namespace MES.form.Order
         private MyContrals.ExDataGridView GridOrder;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox CB_ContainUPSDone;
     }
 }

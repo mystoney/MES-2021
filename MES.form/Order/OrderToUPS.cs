@@ -335,38 +335,105 @@ namespace MES.form.Order
 
         #region 曹博
             
-        public static string HttpPost(string url, string content)
+        //public static string HttpPost(string url, string content)
+        //{
+        //    try
+        //    {
+        //        //获取提交的字节
+        //        byte[] bs = Encoding.UTF8.GetBytes(content);
+        //        //设置提交的相关参数
+        //        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
+        //        req.Method = "POST";
+        //        req.ContentType = "application/json";
+        //        req.ContentLength = bs.Length;
+        //        //提交请求数据
+        //        using (Stream reqStream = req.GetRequestStream())
+        //        {
+        //            reqStream.Write(bs, 0, bs.Length);
+        //            reqStream.Close();
+        //        }
+        //        //接收返回的页面，必须的，不能省略
+        //        WebResponse wr = req.GetResponse();
+        //        string responsestr = string.Empty;
+        //        using (System.IO.Stream respStream = wr.GetResponseStream())
+        //        {
+        //            System.IO.StreamReader reader = new System.IO.StreamReader(respStream, System.Text.Encoding.GetEncoding("utf-8"));
+        //            responsestr = reader.ReadToEnd();
+        //            wr.Close();
+        //        }
+        //        return responsestr;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ex.Message + ex.StackTrace;
+        //    }
+        //}
+
+        public string HttpGet(string url)
         {
-            try
-            {
-                //获取提交的字节
-                byte[] bs = Encoding.UTF8.GetBytes(content);
-                //设置提交的相关参数
-                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
-                req.Method = "POST";
-                req.ContentType = "application/json";
-                req.ContentLength = bs.Length;
-                //提交请求数据
-                using (Stream reqStream = req.GetRequestStream())
+            string result = string.Empty;
+
+                //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+                Encoding encoding = Encoding.UTF8;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "GET";
+                request.Accept = "text/html, application/xhtml+xml, */*";
+                request.ContentType = "application/json";
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    reqStream.Write(bs, 0, bs.Length);
-                    reqStream.Close();
+                    using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+                    {
+                        result = reader.ReadToEnd();
+                        reader.Close();
+                    }
+                    response.Close();
                 }
-                //接收返回的页面，必须的，不能省略
-                WebResponse wr = req.GetResponse();
-                string responsestr = string.Empty;
-                using (System.IO.Stream respStream = wr.GetResponseStream())
+            
+            return result;
+        }
+        public string HttpPost(string url, string content)
+        {
+            string result = string.Empty;
+
+                try
                 {
-                    System.IO.StreamReader reader = new System.IO.StreamReader(respStream, System.Text.Encoding.GetEncoding("utf-8"));
-                    responsestr = reader.ReadToEnd();
-                    wr.Close();
+                    //获取提交的字节
+                    byte[] bs = Encoding.UTF8.GetBytes(content);
+                    //设置提交的相关参数
+                    HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(url);
+                    req.Method = "POST";
+                    req.ContentType = "application/json";
+                    req.ContentLength = bs.Length;
+                    //提交请求数据
+                    using (Stream reqStream = req.GetRequestStream())
+                    {
+                        reqStream.Write(bs, 0, bs.Length);
+                        reqStream.Close();
+                    }
+                    //接收返回的页面，必须的，不能省略
+                    using (WebResponse wr = req.GetResponse())
+                    {
+                        string responsestr = string.Empty;
+                        using (System.IO.Stream respStream = wr.GetResponseStream())
+                        {
+                            using (System.IO.StreamReader reader = new System.IO.StreamReader(respStream, System.Text.Encoding.GetEncoding("utf-8")))
+                            {
+                                responsestr = reader.ReadToEnd();
+                                reader.Close();
+                            }
+                            respStream.Close();
+                        }
+                        wr.Close();
+                        result = responsestr;
+                    }
                 }
-                return responsestr;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message + ex.StackTrace;
-            }
+                catch (Exception ex)
+                {
+                    result = ex.Message + ex.StackTrace;
+                }
+            
+            return result;
         }
 
         public class ApiResonse

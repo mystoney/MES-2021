@@ -34,6 +34,7 @@ namespace MES.form.Order
         }
 
         int customer_state = 2;//默认2 = 生产订单 1=测试工单
+        bool ContainUPSDone = false; //默认false = 不包含已推送工单 true=包含已推送工单
         int FromZYQorMES = 0;
         //选中工单的所有信息
         public OrderBll.SelectOrderInfo soi = new OrderBll.SelectOrderInfo();
@@ -75,7 +76,7 @@ namespace MES.form.Order
 
         private void OrderAdd_Load(object sender, EventArgs e)
         {
-            GetGridOrderInfo(customer_state);//customer_state默认2 = 生产订单 1=测试工单
+            GetGridOrderInfo();//customer_state默认2 = 生产订单 1=测试工单
         }    
         private void button4_Click(object sender, EventArgs e)
         {
@@ -100,55 +101,13 @@ namespace MES.form.Order
 
 
 
-        private void GetGridOrderInfo(int customer_state)
+        private void GetGridOrderInfo()
         {
-            //OrderBll ob = new OrderBll();
-            //if (FromZYQorMES == 0)
-            //{
-            //    dt_OrderInfoZYQ = ob.nMES_GetOrderList_ZYQ(customer_state);
-            //    GridOrder.DataSource = dt_OrderInfoZYQ;
-            //}
-            //else
-            //{
-            //    dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state);
-            //    GridOrder.DataSource = dt_OrderInfoMES;
-            //}
-
-            //if (this.GridOrder.Columns.Count == 0)
-            //{
-            //    this.GridOrder.AddColumn("id", "序号", 40, true, null, DataGridViewContentAlignment.MiddleLeft, null, false);
-            //    this.GridOrder.AddColumn("order_no", "工单号", 100, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("Style_no", "款号", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("style_des", "款式", 120, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("job_qty", "数量", 60, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("memo_no", "选项号", 180, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("memo_name", "选项说明", 180, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("customer_state", "工单类型", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, false);
-            //    this.GridOrder.AddColumn("customer_state_des", "工单类型说明", 120, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("manhour", "总工时", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("SchemeNo", "生产路线", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("OpListNo", "工序清单", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("Combination_no", "选项组合号", 100, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("GetProductList", "产品清单", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-            //    this.GridOrder.AddColumn("UPS_prun", "UPS_prun", 80, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
-
-
-            //    // 实现列的锁定功能  
-            //    this.GridOrder.Columns[1].Frozen = true;
-            //}
-
-            //if (GridOrder.Rows.Count != 0)
-            //{
-            //    this.GridOrder.MultiSelect = false;
-            //    GridOrder.CurrentCell = GridOrder.Rows[0].Cells["order_no"];
-            //}
-
-
-            
-            if (cb_customer_state.Checked) { customer_state = 1; }//customer_state默认2 = 生产订单 1=测试工单
+            if (cb_customer_state.Checked) { customer_state = 1; } else { customer_state = 2; }//customer_state默认2 = 生产订单 1=测试工单
+            if (CB_ContainUPSDone.Checked) { ContainUPSDone = true; } else { ContainUPSDone = false; }//ContainUPSDone默认false=不显示已推送工单 true=显示已推送工单
             OrderBll ob = new OrderBll();
             if (dt_OrderInfoMES.Rows.Count > 0) { dt_OrderInfoMES=new DataTable(); }
-            dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state);//customer_state默认2 = 生产订单 1=测试工单
+            dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state, ContainUPSDone);//customer_state默认2 = 生产订单 1=测试工单
             GridOrder.DataSource = dt_OrderInfoMES;
             if (this.GridOrder.Columns.Count == 0)
             {
@@ -188,7 +147,7 @@ namespace MES.form.Order
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GetGridOrderInfo(customer_state);//customer_state默认2 = 生产订单 1=测试工单
+            GetGridOrderInfo() ;//customer_state默认2 = 生产订单 1=测试工单
             ChangeButtonStatus();
         }
 
@@ -200,7 +159,7 @@ namespace MES.form.Order
                 customer_state = 1;//测试订单
             }
             else { customer_state = 2; }
-            GetGridOrderInfo(customer_state);
+            GetGridOrderInfo();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -355,6 +314,19 @@ namespace MES.form.Order
             {
                 nMES_GetProductList(order_no);
             }
+        }
+
+        private void CB_ContainUPSDone_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_ContainUPSDone.Checked)
+            {
+                ContainUPSDone = true;
+            }
+            else
+            {
+                ContainUPSDone = false;
+            }
+            GetGridOrderInfo();
         }
     }
 }

@@ -303,27 +303,33 @@ namespace MES.module.DAL.OrderDal
         /// </summary>
         /// <param name="StageProduct">1测试订单 =2正式订单</param>
         /// <returns></returns>
-        public DataTable nMES_GetOrderList_MES(int customer_state)
+        public DataTable nMES_GetOrderList_MES(int customer_state,bool ContainUPSDone)
         {
-            DataTable dt = new DataTable();
+
             StringBuilder sqlstr = new StringBuilder();
             sqlstr.Clear();
-            sqlstr.AppendLine(" SELECT id ,job_num, suffix");
-            sqlstr.AppendLine(" 	  ,job_num+'-'+right('000' + cast(suffix as varchar),3) as order_no ,order_date ");
-            sqlstr.AppendLine("       ,style_no ");
-            sqlstr.AppendLine("       ,style_des ");
-            sqlstr.AppendLine(" 	  ,job_qty ");
-            sqlstr.AppendLine("       ,memo_no ");
-            sqlstr.AppendLine("       ,memo_name ");
-            sqlstr.AppendLine("       ,customer_state ");
-            sqlstr.AppendLine("       ,customer_state_des ");
-            sqlstr.AppendLine(" 	  ,manhour ");
-            sqlstr.AppendLine(" 	  ,SchemeNo ");
-            sqlstr.AppendLine("       ,OpListNo ");
-            sqlstr.AppendLine("       ,Combination_no,GetProductList,OrderLock ");
-            sqlstr.AppendLine("   FROM nMES_order_master ");
-            sqlstr.AppendLine("    where customer_state=" + customer_state + " order by order_date desc ,id");
-            dt = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
+            sqlstr.AppendLine("   SELECT   nMES_order_master.id, nMES_order_master.job_num + '-' + RIGHT('000' + CAST(nMES_order_master.suffix AS varchar), 3) AS order_no, order_date, style_no,    ");
+            sqlstr.AppendLine("                   style_des, job_qty, memo_no, memo_name, customer_state, customer_state_des, manhour, SchemeNo, OpListNo,    ");
+            sqlstr.AppendLine("                   Combination_no, GetProductList, OrderLock,PushState_CAOBOqty,nMES_order_master.job_num,nMES_order_master.suffix   ");
+            sqlstr.AppendLine("   FROM      nMES_order_master   ");
+            sqlstr.AppendLine("   left join   ");
+            sqlstr.AppendLine("   (select job_num,suffix, count(nMES_Order_detail_ProductList.PushState_CAOBO) as PushState_CAOBOqty from  nMES_Order_detail_ProductList WHERE PushState_CAOBO<>0 group by job_num,suffix) as aaa   ");
+            sqlstr.AppendLine("   	on nMES_order_master.job_num=aaa.job_num and nMES_order_master.suffix=aaa.suffix  ");
+            StringBuilder sqlstr_where = new StringBuilder();
+            sqlstr_where.Clear();
+            if (ContainUPSDone == true) //成功推送到吊挂/敬元/曹博的
+            {
+                sqlstr_where.AppendLine(" WHERE   (customer_state = "+ customer_state + " and PushState_CAOBOqty>=1)");
+                sqlstr_where.AppendLine(" ORDER BY order_date DESC, id ");
+            }
+            else//推送过的不显示
+            {
+                sqlstr_where.AppendLine(" WHERE   (customer_state =  " + customer_state + ") and (PushState_CAOBOqty<1 or PushState_CAOBOqty is null) ");
+                sqlstr_where.AppendLine(" ORDER BY order_date DESC, id ");
+            }
+            DataTable dt = new DataTable();           
+
+            dt = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()+ sqlstr_where.ToString()).Tables[0];
             return dt;
         }
         #endregion

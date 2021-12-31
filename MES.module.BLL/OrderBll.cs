@@ -93,10 +93,10 @@ namespace MES.module.BLL
         /// </summary>
         /// <param name="StageProduct">1测试订单 =2正式订单</param>
         /// <returns></returns>
-        public DataTable nMES_GetOrderList_MES(int customer_state)
+        public DataTable nMES_GetOrderList_MES(int customer_state, bool ContainUPSDone)
         {
             DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
-            DataTable dt = od.nMES_GetOrderList_MES(customer_state);
+            DataTable dt = od.nMES_GetOrderList_MES(customer_state, ContainUPSDone);
             return dt;
         }
         #endregion
