@@ -69,6 +69,9 @@ namespace MES.form.Order
             soi.Combination_no = Convert.ToInt32(GridOrder.CurrentRow.Cells["Combination_no"].Value.ToString().Trim());
             soi.GetProductList = Convert.ToInt32(GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim());
             soi.OrderLock= Convert.ToInt32(GridOrder.CurrentRow.Cells["OrderLock"].Value.ToString().Trim());
+
+            GetOrderOplist(soi);
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -294,6 +297,8 @@ namespace MES.form.Order
 
         private void GridOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            soi = new OrderBll.SelectOrderInfo();
+            lst.Clear();
             string order_no = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim();
             string Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
             if (GridOrder.Rows.Count == 0|| GridOrder.CurrentRow is null) { return; }
@@ -313,6 +318,22 @@ namespace MES.form.Order
             if (GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim() == "0")
             {
                 nMES_GetProductList(order_no);
+            }
+        }
+
+        private void GetOrderOplist(OrderBll.SelectOrderInfo soi)
+        {
+            OrderBll ob = new OrderBll();
+            DataTable dt = ob.GetMESOrderOptionListInfo(soi.job_num,soi.suffix);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string item_no = dt.Rows[i]["item_no"].ToString();
+                string option_no = dt.Rows[i]["option_no"].ToString();
+                string item_name = dt.Rows[i]["item_name"].ToString();
+                string option_name = dt.Rows[i]["option_name"].ToString();
+                //选项值组合    
+                lst.Add(item_no + "=" + option_no);
             }
         }
 

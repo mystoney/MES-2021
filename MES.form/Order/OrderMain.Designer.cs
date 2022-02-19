@@ -104,8 +104,8 @@ namespace MES.form.Order
             this.ButtonGetOpList,
             this.ButtonChangeScheme,
             this.toolStripSeparator1,
-            this.ButtonSave,
             this.ButtonToMES,
+            this.ButtonSave,
             this.toolStripButton14});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
@@ -608,7 +608,7 @@ namespace MES.form.Order
             // 
             this.splitContainer4.Panel2.Controls.Add(this.GridProduct);
             this.splitContainer4.Size = new System.Drawing.Size(604, 837);
-            this.splitContainer4.SplitterDistance = 602;
+            this.splitContainer4.SplitterDistance = 601;
             this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -629,7 +629,7 @@ namespace MES.form.Order
             this.GridUPS.RowHeadersWidth = 51;
             this.GridUPS.RowTemplate.Height = 27;
             this.GridUPS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridUPS.Size = new System.Drawing.Size(604, 602);
+            this.GridUPS.Size = new System.Drawing.Size(604, 601);
             this.GridUPS.TabIndex = 6;
             // 
             // GridProduct
@@ -657,7 +657,7 @@ namespace MES.form.Order
             this.GridProduct.RowHeadersWidth = 51;
             this.GridProduct.RowTemplate.Height = 27;
             this.GridProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridProduct.Size = new System.Drawing.Size(604, 230);
+            this.GridProduct.Size = new System.Drawing.Size(604, 231);
             this.GridProduct.TabIndex = 9;
             // 
             // GridOperation

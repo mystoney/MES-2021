@@ -423,6 +423,16 @@ namespace MES.module.BLL
         }
         #endregion
 
+        #region 获取订单OptionList的结构-返回一个空表格
+        public DataTable GetMESOrderOptionListInfo(string job_num, int suffix)
+        {
+            DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
+            DataTable dt_OrderOptionList = od.GetMESOrderOptionListInfo(job_num, suffix);
+            return dt_OrderOptionList;
+        }
+        #endregion
+
+
 
 
         #region 新版-保存工单-主表-款号选项

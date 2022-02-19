@@ -47,12 +47,14 @@ namespace MES.form.Order
                 lable_TOMES.Text = "准备数据或完成";
                 lable_TOMES.ForeColor = Color.Red;
                 button_toMES.Enabled = false;
+
             }
             else
             {
                 lable_TOMES.Text = "可推送";
                 lable_TOMES.ForeColor = Color.Green;
                 button_toMES.Enabled = true;
+
             }
             List<OrderBll.ProductUPS> L_ProductUPS_NOTJINGYUAN = new List<OrderBll.ProductUPS>();
             L_ProductUPS_NOTJINGYUAN = ob.GetProductList_NOTJINGYUAN(soi.job_num, soi.suffix);
@@ -75,12 +77,22 @@ namespace MES.form.Order
                 lable_toCAOBO.Text = "准备数据或完成";
                 lable_toCAOBO.ForeColor = Color.Red;
                 button_toCAOBO.Enabled = false;
+
             }
             else
             {
                 lable_toCAOBO.Text = "可推送";
                 lable_toCAOBO.ForeColor = Color.Green;
-                button_toCAOBO.Enabled = true;
+                button_toCAOBO.Enabled = true; button2.Enabled = true;
+
+            }
+            if (lable_TOMES.Text == "可推送" || label_toJINGYUAN.Text == "可推送" || lable_toCAOBO.Text == "可推送")
+            {
+                button2.Enabled = true;
+            }
+            else
+            {
+                button2.Enabled = false;
             }
         }
 
@@ -92,7 +104,7 @@ namespace MES.form.Order
 
             if (this.GridProductList.Columns.Count == 0)
             {
-                this.GridProductList.AddColumn("id", "ID", 20, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
+                this.GridProductList.AddColumn("id", "ID", 40, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
                 this.GridProductList.AddColumn("ProductCode", "产品号", 200, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
                 this.GridProductList.AddColumn("UPS_prun", "吊挂订单", 90, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
                 this.GridProductList.AddColumn("PushState_JINGYUAN", "推送UPS", 90, true, null, DataGridViewContentAlignment.MiddleLeft, null, true);
@@ -104,13 +116,10 @@ namespace MES.form.Order
             }
         }
 
+
         private void PushToEton()
         {
-            this.Enabled = false;
-
-
-
-
+            this.Enabled = false;            
 
             OrderBll ob = new OrderBll();
             List<int> L_ProductCode_ETON = new List<int>();
@@ -183,8 +192,7 @@ namespace MES.form.Order
                     if (L_ProductCode_final.Count == 0)
                     {
                         MyContrals.WaitFormService.Close();
-                        MessageBox.Show("导入吊挂成功，请继续等待", "提示");
-
+                            MessageBox.Show("导入吊挂成功，请继续等待", "提示");
                         button_toMES.Enabled = false;
 
                     }
@@ -207,6 +215,10 @@ namespace MES.form.Order
             }
             GetGridProductList();
         }
+
+  
+
+
 
         private void PushToJINGYUAN()
         {
@@ -468,6 +480,14 @@ namespace MES.form.Order
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PushToEton();
+            
+            PushToJINGYUAN();
+            PushToCAOBO();
         }
     }
 }

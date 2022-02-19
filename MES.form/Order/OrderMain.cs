@@ -100,68 +100,6 @@ namespace MES.form.Order
             ChangeButton();
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            //OrderSelect OA = new OrderSelect(0);
-            //DialogResult f1 = OA.ShowDialog();
-            //if (f1 == DialogResult.OK)
-            //{
-            //    soi = OA.soi;
-            //    lb_order_no.Text = soi.job_num + "-" + soi.suffix.ToString().PadLeft(3, '0');
-            //    lb_job_qty.Text  = soi.job_qty.ToString().Trim();
-            //    lb_style_num.Text = soi.Style_no;
-            //    lb_style_des.Text = soi.style_des;
-            //    lb_memo_no.Text = soi.memo_no;
-            //    lb_memo_name.Text = soi.memo_name;
-            //    lb_customer_state.Text = soi.customer_state.ToString() ;
-            //    lb_customer_state_des.Text = soi.customer_state_des;
-            //    lb_manhour.Text = soi.manhour.ToString() ;
-            //    lb_Combination_no.Text = soi.Combination_no.ToString();
-            //    lb_OpListNo.Text = soi.OpListNo.ToString();
-            //    lb_SchemeNo.Text = soi.SchemeNo.ToString();
-            //    lst = OA.lst;
-            //    GetGridUPSList();
-            //    GetGridOperationList();
-            //    OA.Close();
-            //}
-            //else
-            //{
-                
-            //    lb_order_no.Text = "";
-            //    lb_job_qty.Text = "";
-            //    lb_style_num.Text = "";
-            //    lb_style_num.Text = "";
-            //    lb_memo_no.Text = "";
-            //    lb_memo_name.Text = "";
-            //    lb_customer_state.Text = "";
-            //    lb_customer_state_des.Text = "";
-            //    lb_manhour.Text = "";
-            //    lb_Combination_no.Text = "";
-            //    lb_OpListNo.Text = "";
-            //    lb_SchemeNo.Text = "";
-            //    lb_style_des.Text = "";
-            //    lst = new List<string>();
-            //    while (this.GridUPSList.Rows.Count != 0)
-            //    {
-            //        this.GridUPSList.Rows.RemoveAt(0);
-            //    }
-            //    while (this.GridUPS.Rows.Count != 0)
-            //    {
-            //        this.GridUPS.Rows.RemoveAt(0);
-            //    }
-            //    while (this.GridOperationList.Rows.Count != 0)
-            //    {
-            //        this.GridOperationList.Rows.RemoveAt(0);
-            //    }
-            //    while (this.GridOperation.Rows.Count != 0)
-            //    {
-            //        this.GridOperation.Rows.RemoveAt(0);
-            //    }
-            //    OA.Close();
-
-            //}
-        }
-
         #region 加载GridUPS
         /// <summary>
         /// 加载GridUPS

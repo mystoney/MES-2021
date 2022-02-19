@@ -559,6 +559,28 @@ namespace MES.module.DAL.OrderDal
         }
         #endregion
 
+        #region 获取订单OptionList的结构-返回一个空表格
+        public DataTable GetMESOrderOptionListInfo(string job_num,int suffix)
+        {
+            StringBuilder sqlstr = new StringBuilder();
+            sqlstr.Clear();
+            sqlstr.AppendLine(" SELECT a.id ");
+            sqlstr.AppendLine("       ,a.job_num ");
+            sqlstr.AppendLine("       ,a.suffix ");
+            sqlstr.AppendLine(" 	  ,b.style_no ");
+            sqlstr.AppendLine("       ,a.Item_No ");
+            sqlstr.AppendLine(" 	  ,c.Item_Name ");
+            sqlstr.AppendLine("       ,a.Option_No ");
+            sqlstr.AppendLine(" 	  ,c.Option_Name ");
+            sqlstr.AppendLine("   FROM [mes].[dbo].[nMES_Order_detail_OptionList] a  ");
+            sqlstr.AppendLine("   left join nMES_order_master b on a.job_num=b.job_num and a.suffix=b.suffix ");
+            sqlstr.AppendLine("   left join nMES_Style_OptionList c on b.style_no=c.style_no and a.Item_No =c.Item_No and a.Option_No=c.Option_No ");
+            sqlstr.AppendLine("   where a.job_num='"+ job_num + "' AND a.suffix="+ suffix + " ");
+            DataTable dt_OrderOptionList = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
+            return dt_OrderOptionList;
+        }
+        #endregion
+
 
         #region 新版-保存工单-主表-款号选项Insert
         /// <summary>
@@ -569,7 +591,9 @@ namespace MES.module.DAL.OrderDal
         public int SaveOrderOptionList(DataTable dt_OrderOptionList)
         {
                 ArrayList SQLList = new ArrayList();
-                for (int j=0; j < dt_OrderOptionList.Rows.Count; j++)
+            string sqlstrdel = "delete from nMES_Order_detail_OptionList  where job_num='" + dt_OrderOptionList.Rows[0]["job_num"].ToString().Trim() + "' AND suffix=" + Convert.ToInt16(dt_OrderOptionList.Rows[0]["suffix"].ToString().Trim());
+            SQLList.Add(sqlstrdel);
+            for (int j=0; j < dt_OrderOptionList.Rows.Count; j++)
                 {
                     string Item_No = dt_OrderOptionList.Rows[j]["Item_No"].ToString().Trim();
                     int Opton_No = Convert.ToInt16(dt_OrderOptionList.Rows[j]["Option_No"].ToString().Trim());
