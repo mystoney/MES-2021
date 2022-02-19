@@ -507,7 +507,7 @@ namespace MES.module.DAL.OrderDal
         /// <returns></returns>
         public int CheckOpListManhour(string job_num, int suffix, int Combination_no)
         {
-            StringBuilder StringOpListManhour = new StringBuilder();
+             StringBuilder StringOpListManhour = new StringBuilder();
             StringOpListManhour.Clear();
             StringOpListManhour.AppendLine(" select sum(a.manhour) as PFmanhour_OpList ");
             StringOpListManhour.AppendLine(" from nMES_OperationList_detail a ");
@@ -763,6 +763,7 @@ namespace MES.module.DAL.OrderDal
 
             try
             {
+                UpdateOrderInfo("OpListNo", OpListNo, job_num, suffix);
                 DBConn.DataAcess.SqlConn.ExecuteSqlTran(SQLList);
                 return 1;
             }

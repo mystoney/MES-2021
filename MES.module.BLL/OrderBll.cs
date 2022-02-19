@@ -615,7 +615,7 @@ namespace MES.module.BLL
         /// <returns>0不成功 1成功 2已存在</returns>
         public void SaveOrderOpListNo()
         {
-            int i = 0;
+            
             DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
             try
             {

@@ -106,12 +106,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SocketHelper\SocketHelper.csproj">
-      <Project>{2e9ac112-75cc-4fb6-b058-f9c7424514ef}</Project>
-      <Name>SocketHelper</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -316,6 +316,36 @@ namespace MES.form.Order
 
         private void ButtonToMES_Click(object sender, EventArgs e)
         {
+            if (GridUPS.Rows.Count == 0 || GridOperation.Rows.Count == 0)
+            {
+                MessageBox.Show("必须为工单选择生产路线和工序清单", "提示", MessageBoxButtons.OK);
+                return;
+            }
+            OrderBll ob = new OrderBll();
+
+            if (soi.OrderLock == 0)
+            {
+                //这里要先保存nMES_order_master表的Combination_no,memo_no,memo_name 保存工单子表nMES_Order_detail_OptionList
+                int R_SaveOrderOption = ob.SaveOrderOption(soi, lst);
+                if (R_SaveOrderOption != 1) { MessageBox.Show("保存工单选项时失败！", "没有成功", MessageBoxButtons.OK); return; }
+
+                //1.1 工序清单：保存到nMES_Order_detail_OperationList
+                int R_SaveOrderOperationList = ob.SaveOrderOperationList(soi.job_num, soi.suffix, soi.OpListNo, soi.Combination_no);
+                if (R_SaveOrderOperationList != 1) { MessageBox.Show("保存工序列表失败！", "没有成功", MessageBoxButtons.OK); return; }
+
+                //2.1 保存到nMES_Order_detail_SchemeList
+                int R_SaveOrderSchemeList = ob.SaveOrderSchemeList(soi.job_num, soi.suffix, soi.SchemeNo);
+                if (R_SaveOrderSchemeList != 1) { MessageBox.Show("保存生产路线失败！", "没有成功", MessageBoxButtons.OK); return; }
+
+                //else
+                //{
+                //    MessageBox.Show("保存完成，即将推送到吊挂", "成功", MessageBoxButtons.OK);
+                //}
+                //HaveChanged = 0;
+
+            }
+
+
 
             OrderToUPS OA = new OrderToUPS(soi);
             DialogResult f1 = OA.ShowDialog();
