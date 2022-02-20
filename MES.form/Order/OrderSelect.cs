@@ -53,24 +53,7 @@ namespace MES.form.Order
 
             if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString() == "") { return; }
 
-            
-            soi.job_num = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Substring(0,7);
-            soi.suffix = Convert.ToInt32( GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Substring(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Length - 3));
-            soi.Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
-            soi.style_des = GridOrder.CurrentRow.Cells["style_des"].Value.ToString().Trim();
-            soi.job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString().Trim());
-            soi.memo_no = GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim();
-            soi.memo_name = GridOrder.CurrentRow.Cells["memo_name"].Value.ToString().Trim();
-            soi.customer_state = Convert.ToInt32(GridOrder.CurrentRow.Cells["customer_state"].Value.ToString().Trim());
-            soi.customer_state_des = GridOrder.CurrentRow.Cells["customer_state_des"].Value.ToString().Trim();
-            soi.manhour = Convert.ToInt32(GridOrder.CurrentRow.Cells["manhour"].Value.ToString().Trim());
-            soi.SchemeNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["SchemeNo"].Value.ToString().Trim());
-            soi.OpListNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["OpListNo"].Value.ToString().Trim());
-            soi.Combination_no = Convert.ToInt32(GridOrder.CurrentRow.Cells["Combination_no"].Value.ToString().Trim());
-            soi.GetProductList = Convert.ToInt32(GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim());
-            soi.OrderLock= Convert.ToInt32(GridOrder.CurrentRow.Cells["OrderLock"].Value.ToString().Trim());
-
-            GetOrderOplist(soi);
+            if (soi.job_num == "" || lst.Count == 0) { return; }
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -298,22 +281,36 @@ namespace MES.form.Order
         private void GridOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             soi = new OrderBll.SelectOrderInfo();
-            lst.Clear();
+            
             string order_no = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim();
             string Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
             if (GridOrder.Rows.Count == 0|| GridOrder.CurrentRow is null) { return; }
             if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim() != "" && GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim() != "0")
-            { 
-                return; 
+            {
+                soi.job_num = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Substring(0, 7);
+                soi.suffix = Convert.ToInt32(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Substring(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Length - 3));
+                soi.Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
+                soi.style_des = GridOrder.CurrentRow.Cells["style_des"].Value.ToString().Trim();
+                soi.job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString().Trim());
+                soi.memo_no = GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim();
+                soi.memo_name = GridOrder.CurrentRow.Cells["memo_name"].Value.ToString().Trim();
+                soi.customer_state = Convert.ToInt32(GridOrder.CurrentRow.Cells["customer_state"].Value.ToString().Trim());
+                soi.customer_state_des = GridOrder.CurrentRow.Cells["customer_state_des"].Value.ToString().Trim();
+                soi.manhour = Convert.ToInt32(GridOrder.CurrentRow.Cells["manhour"].Value.ToString().Trim());
+                soi.SchemeNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["SchemeNo"].Value.ToString().Trim());
+                soi.OpListNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["OpListNo"].Value.ToString().Trim());
+                soi.Combination_no = Convert.ToInt32(GridOrder.CurrentRow.Cells["Combination_no"].Value.ToString().Trim());
+                soi.GetProductList = Convert.ToInt32(GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim());
+                soi.OrderLock = Convert.ToInt32(GridOrder.CurrentRow.Cells["OrderLock"].Value.ToString().Trim());
+                GetOrderOplist(soi);
+                //return; 
             }
             else
             {
                 if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim() == "")
                 {
-                    if (nMES_GetOrderInfo(order_no, Style_no) == 0) { return; }
-                    
-                }
-              
+                    if (nMES_GetOrderInfo(order_no, Style_no) == 0) { return; }                    
+                }              
             }
             if (GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim() == "0")
             {
@@ -325,7 +322,7 @@ namespace MES.form.Order
         {
             OrderBll ob = new OrderBll();
             DataTable dt = ob.GetMESOrderOptionListInfo(soi.job_num,soi.suffix);
-
+            if (dt.Rows.Count > 0) { lst.Clear(); }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string item_no = dt.Rows[i]["item_no"].ToString();

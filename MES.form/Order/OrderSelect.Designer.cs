@@ -59,6 +59,7 @@ namespace MES.form.Order
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -71,8 +72,8 @@ namespace MES.form.Order
             this.splitContainer2.Panel2.Controls.Add(this.button1);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2MinSize = 40;
-            this.splitContainer2.Size = new System.Drawing.Size(1178, 665);
-            this.splitContainer2.SplitterDistance = 624;
+            this.splitContainer2.Size = new System.Drawing.Size(1569, 830);
+            this.splitContainer2.SplitterDistance = 789;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -100,6 +101,7 @@ namespace MES.form.Order
             this.GridOrder.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridOrder.Location = new System.Drawing.Point(0, 0);
+            this.GridOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridOrder.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.GridOrder.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridOrder.MergeColumnNames")));
             this.GridOrder.MultiSelect = false;
@@ -113,9 +115,10 @@ namespace MES.form.Order
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.GridOrder.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.GridOrder.RowHeadersVisible = false;
+            this.GridOrder.RowHeadersWidth = 51;
             this.GridOrder.RowTemplate.Height = 23;
             this.GridOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridOrder.Size = new System.Drawing.Size(1178, 624);
+            this.GridOrder.Size = new System.Drawing.Size(1569, 789);
             this.GridOrder.TabIndex = 2;
             this.GridOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridOrder_CellClick);
             // 
@@ -124,9 +127,10 @@ namespace MES.form.Order
             this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.Image = global::MES.form.Properties.Resources._32_balloonica_054;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(314, 5);
+            this.button1.Location = new System.Drawing.Point(419, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 30);
+            this.button1.Size = new System.Drawing.Size(144, 38);
             this.button1.TabIndex = 4;
             this.button1.Text = "提交";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -138,9 +142,10 @@ namespace MES.form.Order
             this.button2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.Image = global::MES.form.Properties.Resources.No;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(428, 5);
+            this.button2.Location = new System.Drawing.Point(571, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 30);
+            this.button2.Size = new System.Drawing.Size(144, 38);
             this.button2.TabIndex = 5;
             this.button2.Text = "取消";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -151,7 +156,8 @@ namespace MES.form.Order
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 31);
+            this.splitContainer1.Location = new System.Drawing.Point(5, 49);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -167,7 +173,7 @@ namespace MES.form.Order
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1178, 706);
+            this.splitContainer1.Size = new System.Drawing.Size(1569, 871);
             this.splitContainer1.SplitterDistance = 40;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 4;
@@ -175,9 +181,10 @@ namespace MES.form.Order
             // CB_ContainUPSDone
             // 
             this.CB_ContainUPSDone.AutoSize = true;
-            this.CB_ContainUPSDone.Location = new System.Drawing.Point(115, 13);
+            this.CB_ContainUPSDone.Location = new System.Drawing.Point(153, 16);
+            this.CB_ContainUPSDone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CB_ContainUPSDone.Name = "CB_ContainUPSDone";
-            this.CB_ContainUPSDone.Size = new System.Drawing.Size(120, 16);
+            this.CB_ContainUPSDone.Size = new System.Drawing.Size(149, 19);
             this.CB_ContainUPSDone.TabIndex = 26;
             this.CB_ContainUPSDone.Text = "显示推送过的工单";
             this.CB_ContainUPSDone.UseVisualStyleBackColor = true;
@@ -188,9 +195,10 @@ namespace MES.form.Order
             this.button6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button6.Image = global::MES.form.Properties.Resources._32_balloonica_054;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(353, 5);
+            this.button6.Location = new System.Drawing.Point(471, 6);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(167, 30);
+            this.button6.Size = new System.Drawing.Size(223, 38);
             this.button6.TabIndex = 24;
             this.button6.Text = "获取工单选项及选项值";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -200,9 +208,10 @@ namespace MES.form.Order
             // cb_customer_state
             // 
             this.cb_customer_state.AutoSize = true;
-            this.cb_customer_state.Location = new System.Drawing.Point(13, 13);
+            this.cb_customer_state.Location = new System.Drawing.Point(17, 16);
+            this.cb_customer_state.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cb_customer_state.Name = "cb_customer_state";
-            this.cb_customer_state.Size = new System.Drawing.Size(96, 16);
+            this.cb_customer_state.Size = new System.Drawing.Size(119, 19);
             this.cb_customer_state.TabIndex = 25;
             this.cb_customer_state.Text = "显示测试工单";
             this.cb_customer_state.UseVisualStyleBackColor = true;
@@ -213,9 +222,10 @@ namespace MES.form.Order
             this.button5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button5.Image = global::MES.form.Properties.Resources._32_balloonica_054;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(237, 5);
+            this.button5.Location = new System.Drawing.Point(316, 6);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(110, 30);
+            this.button5.Size = new System.Drawing.Size(147, 38);
             this.button5.TabIndex = 24;
             this.button5.Text = "加载工单号";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -228,9 +238,10 @@ namespace MES.form.Order
             this.button4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button4.Image = global::MES.form.Properties.Resources._32_balloonica_002;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(1013, 7);
+            this.button4.Location = new System.Drawing.Point(1349, 9);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(153, 30);
+            this.button4.Size = new System.Drawing.Size(204, 38);
             this.button4.TabIndex = 20;
             this.button4.Text = "获取新的工单信息";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -239,10 +250,11 @@ namespace MES.form.Order
             // 
             // OrderSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 740);
+            this.ClientSize = new System.Drawing.Size(1579, 925);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "OrderSelect";
             this.Text = "OrderSelect";
             this.Load += new System.EventHandler(this.OrderAdd_Load);
