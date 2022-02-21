@@ -93,10 +93,10 @@ namespace MES.module.BLL
         /// </summary>
         /// <param name="StageProduct">1测试订单 =2正式订单</param>
         /// <returns></returns>
-        public DataTable nMES_GetOrderList_MES(int customer_state, bool ContainUPSDone)
+        public DataTable nMES_GetOrderList_MES(int customer_state, bool ContainUPSDone,string SelectOrderDate)
         {
             DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
-            DataTable dt = od.nMES_GetOrderList_MES(customer_state, ContainUPSDone);
+            DataTable dt = od.nMES_GetOrderList_MES(customer_state, ContainUPSDone,SelectOrderDate);
             return dt;
         }
         #endregion
@@ -426,6 +426,7 @@ namespace MES.module.BLL
         #region 获取订单OptionList的结构-返回一个空表格
         public DataTable GetMESOrderOptionListInfo(string job_num, int suffix)
         {
+
             DAL.OrderDal.OrderDal od = new DAL.OrderDal.OrderDal();
             DataTable dt_OrderOptionList = od.GetMESOrderOptionListInfo(job_num, suffix);
             return dt_OrderOptionList;

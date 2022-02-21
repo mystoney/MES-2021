@@ -303,8 +303,9 @@ namespace MES.module.DAL.OrderDal
         /// </summary>
         /// <param name="StageProduct">1测试订单 =2正式订单</param>
         /// <returns></returns>
-        public DataTable nMES_GetOrderList_MES(int customer_state,bool ContainUPSDone)
+        public DataTable nMES_GetOrderList_MES(int customer_state,bool ContainUPSDone,string SelectOrderDate)
         {
+            
 
             StringBuilder sqlstr = new StringBuilder();
             sqlstr.Clear();
@@ -319,14 +320,18 @@ namespace MES.module.DAL.OrderDal
             sqlstr_where.Clear();
             if (ContainUPSDone == true) //成功推送到吊挂/敬元/曹博的
             {
-                sqlstr_where.AppendLine(" WHERE   (customer_state = "+ customer_state + " and PushState_CAOBOqty>=1)");
-                sqlstr_where.AppendLine(" ORDER BY order_date DESC, id ");
+                sqlstr_where.AppendLine(" WHERE   (customer_state = "+ customer_state + " and PushState_CAOBOqty>=1)");                
             }
             else//推送过的不显示
             {
                 sqlstr_where.AppendLine(" WHERE   (customer_state =  " + customer_state + ") and (PushState_CAOBOqty<1 or PushState_CAOBOqty is null) ");
-                sqlstr_where.AppendLine(" ORDER BY order_date DESC, id ");
             }
+
+            if (SelectOrderDate == "") { sqlstr_where.AppendLine("and 1=1");  }
+            else { sqlstr_where.AppendLine(" and nMES_order_master.job_num='Z" + SelectOrderDate + "'"); }
+            
+
+            sqlstr_where.AppendLine(" ORDER BY order_date DESC, id ");
             DataTable dt = new DataTable();           
 
             dt = DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()+ sqlstr_where.ToString()).Tables[0];

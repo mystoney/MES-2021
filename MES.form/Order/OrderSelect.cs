@@ -41,17 +41,50 @@ namespace MES.form.Order
 
         //Grid数据源
         DataTable dt_OrderInfoMES = new DataTable();
-        
+
 
         //用来存放选项清单 I003=1
         public List<string> lst = new List<string>();
-        
+
 
         private void button1_Click(object sender, EventArgs e)
-        { 
-            if (GridOrder.Rows.Count == 0){return;}
+        {
+            if (GridOrder.Rows.Count == 0) { return; }
 
             if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString() == "") { return; }
+
+            soi.job_num = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Substring(0, 7);
+            soi.suffix = Convert.ToInt32(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Substring(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Length - 3));
+            soi.Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
+            soi.style_des = GridOrder.CurrentRow.Cells["style_des"].Value.ToString().Trim();
+            soi.job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString().Trim());
+            soi.memo_no = GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim();
+            soi.memo_name = GridOrder.CurrentRow.Cells["memo_name"].Value.ToString().Trim();
+            soi.customer_state = Convert.ToInt32(GridOrder.CurrentRow.Cells["customer_state"].Value.ToString().Trim());
+            soi.customer_state_des = GridOrder.CurrentRow.Cells["customer_state_des"].Value.ToString().Trim();
+            soi.manhour = Convert.ToInt32(GridOrder.CurrentRow.Cells["manhour"].Value.ToString().Trim());
+            soi.SchemeNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["SchemeNo"].Value.ToString().Trim());
+            soi.OpListNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["OpListNo"].Value.ToString().Trim());
+            soi.Combination_no = Convert.ToInt32(GridOrder.CurrentRow.Cells["Combination_no"].Value.ToString().Trim());
+            soi.GetProductList = Convert.ToInt32(GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim());
+            soi.OrderLock = Convert.ToInt32(GridOrder.CurrentRow.Cells["OrderLock"].Value.ToString().Trim());
+            OrderBll ob = new OrderBll();
+
+            DataTable dt = ob.GetMESOrderOptionListInfo(soi.job_num, soi.suffix);
+            if (dt.Rows.Count > 0)
+            {
+                lst.Clear();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string item_no = dt.Rows[i]["item_no"].ToString();
+                    string option_no = dt.Rows[i]["option_no"].ToString();
+                    string item_name = dt.Rows[i]["item_name"].ToString();
+                    string option_name = dt.Rows[i]["option_name"].ToString();
+                    //选项值组合    
+                    lst.Add(item_no + "=" + option_no);
+                }
+            }
+
 
             if (soi.job_num == "" || lst.Count == 0) { return; }
 
@@ -62,8 +95,10 @@ namespace MES.form.Order
 
         private void OrderAdd_Load(object sender, EventArgs e)
         {
+            DTPicker_SelectOrder.Format = DateTimePickerFormat.Custom;
+            DTPicker_SelectOrder.CustomFormat = "yyyyMMdd";
             GetGridOrderInfo();//customer_state默认2 = 生产订单 1=测试工单
-        }    
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             OrderAdd oa = new OrderAdd();
@@ -80,20 +115,30 @@ namespace MES.form.Order
             else
             {
                 button1.Enabled = true;
-                if (FromZYQorMES == 1){button6.Enabled = false;}
-                else{ button6.Enabled = true; }
-           }
+                if (FromZYQorMES == 1) { button6.Enabled = false; }
+                else { button6.Enabled = true; }
+            }
         }
 
 
 
         private void GetGridOrderInfo()
         {
+
             if (cb_customer_state.Checked) { customer_state = 1; } else { customer_state = 2; }//customer_state默认2 = 生产订单 1=测试工单
             if (CB_ContainUPSDone.Checked) { ContainUPSDone = true; } else { ContainUPSDone = false; }//ContainUPSDone默认false=不显示已推送工单 true=显示已推送工单
+            string SelectOrderDate = "";
+            if (CKBox_SelectOrder.Checked)
+            {
+                SelectOrderDate = DTPicker_SelectOrder.Text.Remove(0, 2);                
+            }
+
             OrderBll ob = new OrderBll();
-            if (dt_OrderInfoMES.Rows.Count > 0) { dt_OrderInfoMES=new DataTable(); }
-            dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state, ContainUPSDone);//customer_state默认2 = 生产订单 1=测试工单
+            if (dt_OrderInfoMES.Rows.Count > 0) { dt_OrderInfoMES = new DataTable(); }
+
+
+
+            dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state, ContainUPSDone, SelectOrderDate);//customer_state默认2 = 生产订单 1=测试工单
             GridOrder.DataSource = dt_OrderInfoMES;
             if (this.GridOrder.Columns.Count == 0)
             {
@@ -133,7 +178,7 @@ namespace MES.form.Order
 
         private void button5_Click(object sender, EventArgs e)
         {
-            GetGridOrderInfo() ;//customer_state默认2 = 生产订单 1=测试工单
+            GetGridOrderInfo();//customer_state默认2 = 生产订单 1=测试工单
             ChangeButtonStatus();
         }
 
@@ -168,7 +213,7 @@ namespace MES.form.Order
             else
             {
                 if (lst.Count > 0) { lst.Clear(); }
-                
+
                 //string order_no= job_num+"-"+ suffix.ToString().PadLeft(3, '0');
                 OrderBll.Return_Message rm = new OrderBll.Return_Message();
                 string getordermodel = $@"http://172.16.1.83:8024/api/CpOrderSubDetailByJobNum/" + order_no;
@@ -182,27 +227,27 @@ namespace MES.form.Order
                 List<OrderBll.OrderItemOptionZYQ> ol = new List<OrderBll.OrderItemOptionZYQ>();
                 ol = Helper.Json.JsonHelper.DeserializeJsonToObject<List<OrderBll.OrderItemOptionZYQ>>(rm.Return_Value);
                 string memo_no = "";
-                string memo_name= "";
+                string memo_name = "";
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                        string item_no = dt.Rows[i][0].ToString();
-                        string option_no = ol.Find(x => x.Item_No == item_no).Option_No;
-                        memo_no = memo_no+item_no + "=" + option_no + " ";
-                        string item_name = ol.Find(x => x.Item_No == item_no).Item_Name;
-                        string option_name = ol.Find(x => x.Item_No == item_no).Option_Name;
-                        memo_name = memo_name + item_name + "=" + option_name + " ";
-                        //选项值组合    
-                        lst.Add(item_no + "=" + option_no);
+                    string item_no = dt.Rows[i][0].ToString();
+                    string option_no = ol.Find(x => x.Item_No == item_no).Option_No;
+                    memo_no = memo_no + item_no + "=" + option_no + " ";
+                    string item_name = ol.Find(x => x.Item_No == item_no).Item_Name;
+                    string option_name = ol.Find(x => x.Item_No == item_no).Option_Name;
+                    memo_name = memo_name + item_name + "=" + option_name + " ";
+                    //选项值组合    
+                    lst.Add(item_no + "=" + option_no);
                 }
                 //获取到选项符合的组合号
                 int Combination_no = sb.GetOrderCombination(Style_no, memo_no);
 
                 for (int i = 0; i < dt_OrderInfoMES.Rows.Count; i++)
                 {
-                    if (dt_OrderInfoMES.Rows[i]["order_no"].ToString().Trim()== order_no)
+                    if (dt_OrderInfoMES.Rows[i]["order_no"].ToString().Trim() == order_no)
                     {
-                        dt_OrderInfoMES.Rows[i]["memo_no"]=memo_no ;
+                        dt_OrderInfoMES.Rows[i]["memo_no"] = memo_no;
                         dt_OrderInfoMES.Rows[i]["memo_name"] = memo_name;
                         dt_OrderInfoMES.Rows[i]["Combination_no"] = Combination_no;
                     }
@@ -213,15 +258,15 @@ namespace MES.form.Order
 
         private void nMES_GetProductList(string order_no)
         {
-                OrderBll.Return_Message rm = new OrderBll.Return_Message();
-                string getordermodel = $@"http://172.16.1.83:7041/ProductionOrderProductListGet?JobNo=" + order_no;
-                rm = Helper.Json.JsonHelper.DeserializeJsonToObject<OrderBll.Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
-                if (rm.State == OrderBll.Return_Message.Return_State.Error)
-                {
-                     MessageBox.Show(rm.Message, "错误", MessageBoxButtons.OK);
-                        return;                
-                }
-             DataTable dt = Helper.Json.JsonHelper.DeserializeJsonToObject<DataTable>(rm.Return_Value);
+            OrderBll.Return_Message rm = new OrderBll.Return_Message();
+            string getordermodel = $@"http://172.16.1.83:7041/ProductionOrderProductListGet?JobNo=" + order_no;
+            rm = Helper.Json.JsonHelper.DeserializeJsonToObject<OrderBll.Return_Message>(Helper.Http.Http.HttpGet(getordermodel));
+            if (rm.State == OrderBll.Return_Message.Return_State.Error)
+            {
+                MessageBox.Show(rm.Message, "错误", MessageBoxButtons.OK);
+                return;
+            }
+            DataTable dt = Helper.Json.JsonHelper.DeserializeJsonToObject<DataTable>(rm.Return_Value);
             if (dt.Rows.Count == 0)
             {
                 MessageBox.Show("获取产品清单时报错", "错误", MessageBoxButtons.OK);
@@ -234,14 +279,14 @@ namespace MES.form.Order
                 int job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString());
 
                 OrderBll ob = new OrderBll();
-                int SaveResult = ob.SaveProductList(job_num,suffix, job_qty,dt);
+                int SaveResult = ob.SaveProductList(job_num, suffix, job_qty, dt);
 
 
                 if (SaveResult == 1)
                 {
                     GridOrder.CurrentRow.Cells["GetProductList"].Value = "1";
- 
-                    for (int c = 0; c < dt_OrderInfoMES.Rows.Count;c++)
+
+                    for (int c = 0; c < dt_OrderInfoMES.Rows.Count; c++)
                     {
                         if (dt_OrderInfoMES.Rows[c]["order_no"].ToString().Trim() == order_no)
                         {
@@ -281,47 +326,42 @@ namespace MES.form.Order
         private void GridOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             soi = new OrderBll.SelectOrderInfo();
-            
+
             string order_no = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim();
             string Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
-            if (GridOrder.Rows.Count == 0|| GridOrder.CurrentRow is null) { return; }
-            if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim() != "" && GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim() != "0")
+            if (GridOrder.Rows.Count == 0 || GridOrder.CurrentRow is null) { return; }
+            //soi.job_num = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Substring(0, 7);
+            //soi.suffix = Convert.ToInt32(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Substring(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Length - 3));
+            //soi.Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
+            //soi.style_des = GridOrder.CurrentRow.Cells["style_des"].Value.ToString().Trim();
+            //soi.job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString().Trim());
+            //soi.memo_no = GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim();
+            //soi.memo_name = GridOrder.CurrentRow.Cells["memo_name"].Value.ToString().Trim();
+            //soi.customer_state = Convert.ToInt32(GridOrder.CurrentRow.Cells["customer_state"].Value.ToString().Trim());
+            //soi.customer_state_des = GridOrder.CurrentRow.Cells["customer_state_des"].Value.ToString().Trim();
+            //soi.manhour = Convert.ToInt32(GridOrder.CurrentRow.Cells["manhour"].Value.ToString().Trim());
+            //soi.SchemeNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["SchemeNo"].Value.ToString().Trim());
+            //soi.OpListNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["OpListNo"].Value.ToString().Trim());
+            //soi.Combination_no = Convert.ToInt32(GridOrder.CurrentRow.Cells["Combination_no"].Value.ToString().Trim());
+            //soi.GetProductList = Convert.ToInt32(GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim());
+            //soi.OrderLock = Convert.ToInt32(GridOrder.CurrentRow.Cells["OrderLock"].Value.ToString().Trim());
+
+            if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim() == "")
             {
-                soi.job_num = GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Substring(0, 7);
-                soi.suffix = Convert.ToInt32(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Substring(GridOrder.CurrentRow.Cells["order_no"].Value.ToString().Trim().Length - 3));
-                soi.Style_no = GridOrder.CurrentRow.Cells["Style_no"].Value.ToString().Trim();
-                soi.style_des = GridOrder.CurrentRow.Cells["style_des"].Value.ToString().Trim();
-                soi.job_qty = Convert.ToInt32(GridOrder.CurrentRow.Cells["job_qty"].Value.ToString().Trim());
-                soi.memo_no = GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim();
-                soi.memo_name = GridOrder.CurrentRow.Cells["memo_name"].Value.ToString().Trim();
-                soi.customer_state = Convert.ToInt32(GridOrder.CurrentRow.Cells["customer_state"].Value.ToString().Trim());
-                soi.customer_state_des = GridOrder.CurrentRow.Cells["customer_state_des"].Value.ToString().Trim();
-                soi.manhour = Convert.ToInt32(GridOrder.CurrentRow.Cells["manhour"].Value.ToString().Trim());
-                soi.SchemeNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["SchemeNo"].Value.ToString().Trim());
-                soi.OpListNo = Convert.ToInt32(GridOrder.CurrentRow.Cells["OpListNo"].Value.ToString().Trim());
-                soi.Combination_no = Convert.ToInt32(GridOrder.CurrentRow.Cells["Combination_no"].Value.ToString().Trim());
-                soi.GetProductList = Convert.ToInt32(GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim());
-                soi.OrderLock = Convert.ToInt32(GridOrder.CurrentRow.Cells["OrderLock"].Value.ToString().Trim());
-                GetOrderOplist(soi);
-                //return; 
+                if (nMES_GetOrderInfo(order_no, Style_no) == 0) { return; }
             }
-            else
-            {
-                if (GridOrder.CurrentRow.Cells["memo_no"].Value.ToString().Trim() == "")
-                {
-                    if (nMES_GetOrderInfo(order_no, Style_no) == 0) { return; }                    
-                }              
-            }
+
             if (GridOrder.CurrentRow.Cells["GetProductList"].Value.ToString().Trim() == "0")
             {
                 nMES_GetProductList(order_no);
             }
+
         }
 
         private void GetOrderOplist(OrderBll.SelectOrderInfo soi)
         {
             OrderBll ob = new OrderBll();
-            DataTable dt = ob.GetMESOrderOptionListInfo(soi.job_num,soi.suffix);
+            DataTable dt = ob.GetMESOrderOptionListInfo(soi.job_num, soi.suffix);
             if (dt.Rows.Count > 0) { lst.Clear(); }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -346,8 +386,22 @@ namespace MES.form.Order
             }
             GetGridOrderInfo();
         }
+
+
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            GetGridOrderInfo();//customer_state默认2 = 生产订单 1=测试工单        
+        }
+
+        private void DTPicker_SelectOrder_CloseUp(object sender, EventArgs e)
+        {
+            CKBox_SelectOrder.Checked = true;
+            GetGridOrderInfo();//customer_state默认2 = 生产订单 1=测试工单        
+        }
     }
 }
+
 
 
 

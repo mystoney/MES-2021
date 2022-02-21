@@ -57,7 +57,7 @@ namespace MES.form.Order
             int customer_state = 2;//2是正式订单
             if (checkBox_customer_state.Checked) { customer_state = 1; }
             OrderBll ob = new OrderBll();
-            DataTable dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state,true);
+            DataTable dt_OrderInfoMES = ob.nMES_GetOrderList_MES(customer_state,true,"");
             GridOrder.DataSource = dt_OrderInfoMES;
             if (this.GridOrder.Columns.Count == 0)
             {
