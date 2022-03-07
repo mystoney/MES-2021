@@ -745,9 +745,9 @@ namespace MES.form
 
         private void 测试ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Operation.Form1_Load s1 = new Operation.Form1_Load();
+            测试.ForStoney s1 = new 测试.ForStoney();
+            ShowForm(s1, 0);           
 
-            ShowForm(s1, 0);
         }
         #endregion
 

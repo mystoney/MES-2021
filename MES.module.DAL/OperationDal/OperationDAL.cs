@@ -219,7 +219,7 @@ namespace MES.module.DAL.OperationDal
 
 
 
-        #region JSON新版-给曹博推送工单对应的工序清单
+        #region JSON新版-给曹博推送工序清单
         /// <summary>
         /// JSON新版-给曹博推送工单对应的工序清单
         /// </summary>
@@ -245,8 +245,6 @@ namespace MES.module.DAL.OperationDal
             json = js.DataTableToJson(dt);
             return json;
         }
-        #endregion
-
         public int UpdatePushState(int OpListNo)
         {
             string sqlstr="UPDATE nMES_OperationList_master   SET PushState_CAOBO=1 WHERE OpListNo= "+OpListNo; 
@@ -260,8 +258,61 @@ namespace MES.module.DAL.OperationDal
                 throw ex;
             }
         }
+        #endregion
+
+        #region JSON新版-给敬元推送工序清单的款号和选项信息
+        /// <summary>
+        /// JSON新版-给曹博推送工单对应的工序清单
+        /// </summary>
+        /// <param name="Order_no">工单号</param>
+        /// <returns>Json</returns>
+        public string GetJson_OpList(int OpListNo)
+        {
+            string sql_where = "";
+            if (OpListNo == 0)
+            { sql_where = "where OpListNo is not null"; }
+            else { sql_where = "where OpListNo=" + OpListNo; }
+            string json = "";
+            StringBuilder strsql = new StringBuilder();
+            strsql.Clear();
+            strsql.AppendLine(" SELECT nMES_OperationList_master.OpListNo ");
+            strsql.AppendLine("       ,m.Style_no ");
+            strsql.AppendLine("       ,d.Item_No ");
+            strsql.AppendLine("       ,d.Item_Name ");
+            strsql.AppendLine("       ,d.Option_No ");
+            strsql.AppendLine("       ,d.Option_Name ");
+            strsql.AppendLine("   FROM nMES_Style_Combination_detail d ");
+            strsql.AppendLine("   left join nMES_Style_Combination_master m ");
+            strsql.AppendLine("   on d.Combination_no=m.Combination_no ");
+            strsql.AppendLine("   left join nMES_OperationList_master ");
+            strsql.AppendLine("   on d.Combination_no=nMES_OperationList_master.Combination_no ");
+
+            strsql.AppendLine(sql_where);
+
+            strsql.AppendLine("   order by nMES_OperationList_master.OpListNo,d.Combination_no ");
 
 
+            DataTable dt = DBConn.DataAcess.SqlConn.Query(strsql.ToString()).Tables[0];
+
+            MyContrals.JSON js = new MyContrals.JSON();
+            json = js.DataTableToJson(dt);
+            return json;
+        }
+
+        public int UpdatePushState_JingYuan(int OpListNo)
+        {
+            string sqlstr = "UPDATE nMES_OperationList_master   SET PushState_JingYuan=1 WHERE OpListNo= " + OpListNo;
+            try
+            {
+                DBConn.DataAcess.SqlConn.Query(sqlstr);
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
 
 
 

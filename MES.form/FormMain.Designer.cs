@@ -173,14 +173,14 @@
             // ID_款式管理
             // 
             this.ID_款式管理.Name = "ID_款式管理";
-            this.ID_款式管理.Size = new System.Drawing.Size(180, 22);
+            this.ID_款式管理.Size = new System.Drawing.Size(124, 22);
             this.ID_款式管理.Text = "款式管理";
             this.ID_款式管理.Click += new System.EventHandler(this.款式管理ToolStripMenuItem1_Click);
             // 
             // ID_款式导入
             // 
             this.ID_款式导入.Name = "ID_款式导入";
-            this.ID_款式导入.Size = new System.Drawing.Size(180, 22);
+            this.ID_款式导入.Size = new System.Drawing.Size(124, 22);
             this.ID_款式导入.Text = "款式导入";
             // 
             // ID_工序清单

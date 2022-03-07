@@ -405,19 +405,25 @@ namespace MES.module.DAL.StyleDal
             List<List<string>> itemlist = new List<List<string>>();
 
             //获取共有几个item_no
-            DataTable dt_item = dt_style.DefaultView.ToTable(true, new string[] { "Item_No" });
+            DataTable dt_item = dt_style.DefaultView.ToTable(true, new string[] { "Item_No" }) ;
             DataTable dt_Item_Name = dt_style.DefaultView.ToTable(true, new string[] { "Item_Name" });
 
-            for (int i = 0; i < dt_item.Rows.Count; i++)
+            DataTable dt_item1 = dt_style.DefaultView.ToTable("dt_item1",true, new string[] { "Item_No", "Item_Name"});
+
+
+
+
+
+            for (int i = 0; i < dt_item1.Rows.Count; i++)
             {
                 //此Item_No对应的Option_No
                 List<string> optionlist = new List<string>();
 
-                DataRow[] drs2 = dt_style.Select("Item_No = '" + dt_item.Rows[i]["Item_No"] + "'");
+                DataRow[] drs2 = dt_style.Select("Item_No = '" + dt_item1.Rows[i]["Item_No"] + "'");
 
                 for (int j = 0; j < drs2.Length; j++)
                 {
-                    optionlist.Add(dt_item.Rows[i][0].ToString().Trim() + "=" + drs2[j]["Option_No"].ToString().Trim() + " ");
+                    optionlist.Add(dt_item1.Rows[i]["Item_No"].ToString().Trim() + "=" + drs2[j]["Option_No"].ToString().Trim() + " ");
                 }
                 itemlist.Add(optionlist);
 
@@ -425,15 +431,15 @@ namespace MES.module.DAL.StyleDal
 
             //中文
             List<List<string>> itemnamelist = new List<List<string>>();
-            for (int i = 0; i < dt_item.Rows.Count; i++)
+            for (int i = 0; i < dt_item1.Rows.Count; i++)
             {
                 //此Item_No对应的Option_No
                 List<string> Option_Name_List = new List<string>();
-                DataRow[] drs2 = dt_style.Select("Item_No = '" + dt_item.Rows[i]["Item_No"] + "'");
+                DataRow[] drs2 = dt_style.Select("Item_No = '" + dt_item1.Rows[i]["Item_No"] + "'");
 
                 for (int j = 0; j < drs2.Length; j++)
                 {
-                    Option_Name_List.Add(drs2[j]["Option_Name"].ToString().Trim() + " ");
+                   Option_Name_List.Add(dt_item1.Rows[i]["Item_Name"].ToString().Trim() + "=" + drs2[j]["Option_Name"].ToString().Trim() + " ");
                 }
                 itemnamelist.Add(Option_Name_List);
             }
@@ -480,13 +486,15 @@ namespace MES.module.DAL.StyleDal
                 {
                     string[] item = s[j].Split('=');
 
+                    string[] name = s_name[j].Split('=');
+
                     List<DataRow> detail = new List<DataRow>();
                     DataRow dr = dt_ItemCombination_detail.NewRow();
                     dr["Combination_no"] = Max_Combination_no;
                     dr["Item_No"] = item[0];
-                    dr["Item_Name"] = "";
+                    dr["Item_Name"] = name[0];
                     dr["Option_No"] = item[1];
-                    dr["Option_Name"] = s_name[0];
+                    dr["Option_Name"] = name[1];
 
                     List<string> detail_column = new List<string>();
                     dt_ItemCombination_detail.Rows.Add(dr);

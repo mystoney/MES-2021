@@ -96,6 +96,32 @@ namespace MES.module.BLL
             }
             
         }
+
+
+        
+
+       public string OperationToJingYuan(int OpListNo)
+        {
+            DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
+            string json_OperationList = od.GetJson_OpList(OpListNo);
+            string url = "http://172.16.1.34:7802/GXBasics";
+            string content = json_OperationList;
+            string response = HttpPost(url, content);
+            ApiResonse apiResonse = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResonse>(response);
+            if (apiResonse.state == 1)
+            {
+                od.UpdatePushState_JingYuan(OpListNo);
+                return "1";
+            }
+            else
+            {
+                return apiResonse.message;
+            }
+
+        }
+
+
+
         public class ApiResonse
         {
             public int state { get; set; }

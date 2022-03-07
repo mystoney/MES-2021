@@ -121,19 +121,28 @@ namespace MES.form.Scheme
                 }
                 else
                 {
-
-                    string s = ob.OperationToCaobo(OplistNo);
-                    if (s == "1")
+                    string s_ToCaobo = ob.OperationToCaobo(OplistNo);
+                    string s_ToJingYuan = ob.OperationToJingYuan(OplistNo);
+                    if (s_ToCaobo == "1" && s_ToJingYuan == "1")
                     {
                         MessageBox.Show("完成");
                         ds.Tables.Clear();
 
                     }
+                    else if (s_ToCaobo == "1")
+                    {
+                        MessageBox.Show("推送至JingYuan错误：" + s_ToJingYuan);
+
+                    }
+                    else if (s_ToJingYuan == "1")
+                    {
+                        MessageBox.Show("推送至生产线PAD错误：" + s_ToCaobo);
+
+                    }
                     else
                     {
-                        MessageBox.Show("推送至生产线PAD错误："+s);
-
-                    }                    
+                        MessageBox.Show("推送错误,请联系管理员：" + s_ToCaobo+ " "+ s_ToJingYuan);
+                    }
                 }
             }
             catch (Exception ex)

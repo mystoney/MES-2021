@@ -92,7 +92,7 @@ namespace MES.form.Style
             
 
             StyleBll sb = new StyleBll();
-
+            //1111111111111111111111111111111111111111111111111111111111111111
             ItemCombination=sb.GetItemCombination(dt_StyleItemFinal);
 
             if (this.GridCombination.Columns.Count == 0)

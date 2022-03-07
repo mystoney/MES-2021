@@ -406,6 +406,12 @@
     <Compile Include="人事\部门资料维护\department.Designer.cs">
       <DependentUpon>department.cs</DependentUpon>
     </Compile>
+    <Compile Include="测试\ForStoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="测试\ForStoney.Designer.cs">
+      <DependentUpon>ForStoney.cs</DependentUpon>
+    </Compile>
     <Compile Include="测试\GetOrderNumStyle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -567,6 +573,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="人事\部门资料维护\department.resx">
       <DependentUpon>department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="测试\ForStoney.resx">
+      <DependentUpon>ForStoney.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="测试\GetOrderNumStyle.resx">
       <DependentUpon>GetOrderNumStyle.cs</DependentUpon>
