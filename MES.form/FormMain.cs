@@ -824,8 +824,6 @@ namespace MES.form
         {
 
             Operation.导入方案 s1 = new Operation.导入方案();
-
-
                 ShowForm(s1, 0);
 
          }
@@ -844,52 +842,85 @@ namespace MES.form
             ShowForm(s1, 0);
         }
 
- 
-
-
-
-
         private void 款式管理ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Style.StyleAdd s1 = new Style.StyleAdd();             
+        {   
+            int v = 0;
+            if (MDI_Class.RS_ID == 7)
+            {
+                v = 1;
+            }
+            Style.StyleAdd s1 = new Style.StyleAdd();
+            s1.Name = s1.Name + "State";
             ShowForm(s1, 0);
-
         }
 
         private void 生产路线管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int v = 0;
+            if (MDI_Class.RS_ID == 7)
+            {
+                v = 1;
+            }
             Scheme.SchemeMain sns = new Scheme.SchemeMain(1);
+            sns.Name = sns.Name + "State";
             ShowForm(sns, 0);
-            
         }
 
         private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Scheme.ExcellImport_Scheme es = new Scheme.ExcellImport_Scheme();
-            ShowForm(es, 0);
-            
+            int v = 0;
+            if (MDI_Class.RS_ID == 7)
+            {
+                v = 1;
+            }
+            Scheme.ExcellImport_Operation eo = new Scheme.ExcellImport_Operation();
+            eo.Name = eo.Name + "State";
+            ShowForm(eo, 0);
         }
 
         private void 导入ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+
+            int v = 0;
+            if (MDI_Class.RS_ID == 7)
+            {
+                v = 1;
+            }
             Scheme.ExcellImport_Operation eo = new Scheme.ExcellImport_Operation();
-             ShowForm(eo, 0);
-            
+            eo.Name = eo.Name + "State";
+            ShowForm(eo, 0);
+
         }
 
 
 
         private void 工单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            int v = 0;
+            if (MDI_Class.RS_ID == 7)
+            {
+                v = 1;
+            }
+
             Order.OrderMain sns = new Order.OrderMain();
+            sns.Name = sns.Name + "State";
             ShowForm(sns, 0);
-            
+
         }
 
         private void 工序清单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            int v = 0;
+            if (MDI_Class.RS_ID == 7)
+            {
+                v = 1;
+            }
             Scheme.Operations.OperationsMain sns = new Scheme.Operations.OperationsMain();
+            sns.Name = sns.Name + "State";
             ShowForm(sns, 0);
+
         }
 
 

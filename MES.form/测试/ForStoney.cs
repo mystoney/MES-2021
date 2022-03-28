@@ -42,6 +42,9 @@ namespace MES.form.测试
             {
                 MessageBox.Show("推送至JingYuan错误：" + s_ToJingYuan);
             }
+                        
+           
+
         }
 
         private void ForStoney_Load(object sender, EventArgs e)

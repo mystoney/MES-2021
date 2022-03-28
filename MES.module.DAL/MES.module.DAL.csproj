@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="OperationDal\OperationDAL.cs" />
+    <Compile Include="OperatorDal\OperatorDAL.cs" />
     <Compile Include="OrderDal\OrderDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemeDal\SchemeDal.cs" />

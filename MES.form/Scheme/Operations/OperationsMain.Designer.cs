@@ -33,26 +33,37 @@ namespace MES.form.Scheme.Operations
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OperationsMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button_YES = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GridOPList = new MyContrals.ExDataGridView();
+            this.GridOPListDetail = new MyContrals.ExDataGridView();
+            this.button_ToJingYuan = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button_ToCAOBO = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridOPList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridOPListDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.splitContainer2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 31);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 416);
+            this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 1;
             // 
             // splitContainer2
@@ -65,35 +76,36 @@ namespace MES.form.Scheme.Operations
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.GridOPList);
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer1);
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.button_ToJingYuan);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
-            this.splitContainer2.Panel2.Controls.Add(this.button_YES);
-            this.splitContainer2.Size = new System.Drawing.Size(794, 416);
-            this.splitContainer2.SplitterDistance = 381;
+            this.splitContainer2.Panel2.Controls.Add(this.button_ToCAOBO);
+            this.splitContainer2.Size = new System.Drawing.Size(800, 450);
+            this.splitContainer2.SplitterDistance = 411;
             this.splitContainer2.TabIndex = 1;
             // 
-            // button2
+            // splitContainer1
             // 
-            this.button2.Location = new System.Drawing.Point(414, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
-            this.button2.TabIndex = 124;
-            this.button2.Text = "取消";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // button_YES
+            // splitContainer1.Panel1
             // 
-            this.button_YES.Location = new System.Drawing.Point(318, 2);
-            this.button_YES.Name = "button_YES";
-            this.button_YES.Size = new System.Drawing.Size(90, 23);
-            this.button_YES.TabIndex = 123;
-            this.button_YES.Text = "确定";
-            this.button_YES.UseVisualStyleBackColor = true;
-            this.button_YES.Click += new System.EventHandler(this.button3_Click);
+            this.splitContainer1.Panel1.Controls.Add(this.GridOPList);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.GridOPListDetail);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 411);
+            this.splitContainer1.SplitterDistance = 361;
+            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.TabIndex = 0;
             // 
             // GridOPList
             // 
@@ -108,7 +120,7 @@ namespace MES.form.Scheme.Operations
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.GridOPList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.GridOPList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridOPList.ColumnHeadersHeight = 29;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -123,6 +135,7 @@ namespace MES.form.Scheme.Operations
             this.GridOPList.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridOPList.MergeColumnNames")));
             this.GridOPList.MultiSelect = false;
             this.GridOPList.Name = "GridOPList";
+            this.GridOPList.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -132,11 +145,89 @@ namespace MES.form.Scheme.Operations
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.GridOPList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.GridOPList.RowHeadersVisible = false;
+            this.GridOPList.RowHeadersWidth = 51;
             this.GridOPList.RowTemplate.Height = 27;
             this.GridOPList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridOPList.Size = new System.Drawing.Size(794, 381);
-            this.GridOPList.TabIndex = 4;
+            this.GridOPList.Size = new System.Drawing.Size(361, 411);
+            this.GridOPList.TabIndex = 7;
             this.GridOPList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridOPList_CellClick);
+            // 
+            // GridOPListDetail
+            // 
+            this.GridOPListDetail.AllowUserToAddRows = false;
+            this.GridOPListDetail.AllowUserToDeleteRows = false;
+            this.GridOPListDetail.AllowUserToOrderColumns = true;
+            this.GridOPListDetail.AllowUserToResizeRows = false;
+            this.GridOPListDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.GridOPListDetail.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridOPListDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.GridOPListDetail.ColumnHeadersHeight = 29;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridOPListDetail.DefaultCellStyle = dataGridViewCellStyle5;
+            this.GridOPListDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridOPListDetail.Location = new System.Drawing.Point(0, 0);
+            this.GridOPListDetail.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
+            this.GridOPListDetail.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridOPListDetail.MergeColumnNames")));
+            this.GridOPListDetail.MultiSelect = false;
+            this.GridOPListDetail.Name = "GridOPListDetail";
+            this.GridOPListDetail.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridOPListDetail.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.GridOPListDetail.RowHeadersVisible = false;
+            this.GridOPListDetail.RowHeadersWidth = 51;
+            this.GridOPListDetail.RowTemplate.Height = 27;
+            this.GridOPListDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridOPListDetail.Size = new System.Drawing.Size(437, 411);
+            this.GridOPListDetail.TabIndex = 6;
+            // 
+            // button_ToJingYuan
+            // 
+            this.button_ToJingYuan.Location = new System.Drawing.Point(288, 1);
+            this.button_ToJingYuan.Name = "button_ToJingYuan";
+            this.button_ToJingYuan.Size = new System.Drawing.Size(90, 23);
+            this.button_ToJingYuan.TabIndex = 125;
+            this.button_ToJingYuan.Text = "推送2";
+            this.button_ToJingYuan.UseVisualStyleBackColor = true;
+            this.button_ToJingYuan.Click += new System.EventHandler(this.button_ToJingYuan_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(384, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.TabIndex = 124;
+            this.button2.Text = "取消";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button_ToCAOBO
+            // 
+            this.button_ToCAOBO.Location = new System.Drawing.Point(192, 1);
+            this.button_ToCAOBO.Name = "button_ToCAOBO";
+            this.button_ToCAOBO.Size = new System.Drawing.Size(90, 23);
+            this.button_ToCAOBO.TabIndex = 123;
+            this.button_ToCAOBO.Text = "推送1";
+            this.button_ToCAOBO.UseVisualStyleBackColor = true;
+            this.button_ToCAOBO.Click += new System.EventHandler(this.button3_Click);
             // 
             // OperationsMain
             // 
@@ -144,6 +235,7 @@ namespace MES.form.Scheme.Operations
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "OperationsMain";
             this.Text = "工序清单管理";
             this.Load += new System.EventHandler(this.OperationsMain_Load);
@@ -152,7 +244,12 @@ namespace MES.form.Scheme.Operations
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridOPList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridOPListDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -162,7 +259,10 @@ namespace MES.form.Scheme.Operations
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         internal System.Windows.Forms.Button button2;
-        internal System.Windows.Forms.Button button_YES;
+        internal System.Windows.Forms.Button button_ToCAOBO;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private MyContrals.ExDataGridView GridOPListDetail;
+        internal System.Windows.Forms.Button button_ToJingYuan;
         private MyContrals.ExDataGridView GridOPList;
     }
 }

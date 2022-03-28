@@ -124,11 +124,11 @@ namespace MES.module.DAL.OperationDal
             sqlstr.AppendLine(" 	  ,b.memo_name ");
             sqlstr.AppendLine("       ,memo ");
             sqlstr.AppendLine("       ,apptime ");
-            sqlstr.AppendLine(" 	  ,PushState_CAOBO ");
-            sqlstr.AppendLine("       ,case when a.PushState_CAOBO=0 then '待推送' else '已推送' end PushState ");
+            sqlstr.AppendLine("       ,case when a.PushState_CAOBO=0 then '待推送1' else '已推送1' end PushState_CAOBO ");
+            sqlstr.AppendLine("       ,case when a.PushState_JingYuan=0 then '待推送2' else '已推送2' end PushState_JingYuan ");
             sqlstr.AppendLine("   FROM nMES_OperationList_master a ");
             sqlstr.AppendLine("   left join nMES_Style_Combination_master b ");
-            sqlstr.AppendLine("   on a.Combination_no=b.Combination_no order by a.apptime desc ");
+            sqlstr.AppendLine("   on a.Combination_no=b.Combination_no where apptime> '2021-11-01'  order by a.apptime desc ");
 
             DataTable dt= DBConn.DataAcess.SqlConn.Query(sqlstr.ToString()).Tables[0];
             return dt;
@@ -301,7 +301,11 @@ namespace MES.module.DAL.OperationDal
 
         public int UpdatePushState_JingYuan(int OpListNo)
         {
-            string sqlstr = "UPDATE nMES_OperationList_master   SET PushState_JingYuan=1 WHERE OpListNo= " + OpListNo;
+            string sqlstr = "UPDATE nMES_OperationList_master   SET PushState_JingYuan=1 " ;
+            if (OpListNo != 0)
+            {
+                sqlstr= sqlstr+ " WHERE OpListNo= " + OpListNo; 
+            }
             try
             {
                 DBConn.DataAcess.SqlConn.Query(sqlstr);

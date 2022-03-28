@@ -166,29 +166,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CabinetLight\CabinetLight.cs">
+    <Compile Include="Operator\OperatorAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CabinetLight\CabinetLight.Designer.cs">
+    <Compile Include="Operator\OperatorAdd.Designer.cs">
+      <DependentUpon>OperatorAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="O_CabinetLight\CabinetLight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="O_CabinetLight\CabinetLight.Designer.cs">
       <DependentUpon>CabinetLight.cs</DependentUpon>
     </Compile>
-    <Compile Include="CabinetLight\CabinetMain.cs">
+    <Compile Include="O_CabinetLight\CabinetMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CabinetLight\CabinetMain.Designer.cs">
+    <Compile Include="O_CabinetLight\CabinetMain.Designer.cs">
       <DependentUpon>CabinetMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="CabinetLight\EditWorkSite.cs" />
-    <Compile Include="CabinetLight\WorkSite.cs">
+    <Compile Include="O_CabinetLight\EditWorkSite.cs" />
+    <Compile Include="O_CabinetLight\WorkSite.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CabinetLight\WorkSite.Designer.cs">
+    <Compile Include="O_CabinetLight\WorkSite.Designer.cs">
       <DependentUpon>WorkSite.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\Form1.cs">
+    <Compile Include="O_Operation\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\Form1.Designer.cs">
+    <Compile Include="O_Operation\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
@@ -204,47 +210,53 @@
       <DependentUpon>LoginFrom.cs</DependentUpon>
     </Compile>
     <Compile Include="MDI_Class.cs" />
-    <Compile Include="Operation\ExcelImport.cs">
+    <Compile Include="O_Operation\ExcelImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\ExcelImport.Designer.cs">
+    <Compile Include="O_Operation\ExcelImport.Designer.cs">
       <DependentUpon>ExcelImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\NewOrder.cs">
+    <Compile Include="O_Operation\NewOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\NewOrder.Designer.cs">
+    <Compile Include="O_Operation\NewOrder.Designer.cs">
       <DependentUpon>NewOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\OperationMain.cs">
+    <Compile Include="O_Operation\OperationMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\OperationMain.Designer.cs">
+    <Compile Include="O_Operation\OperationMain.Designer.cs">
       <DependentUpon>OperationMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\SaveScheme.cs">
+    <Compile Include="O_Operation\SaveScheme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\SaveScheme.Designer.cs">
+    <Compile Include="O_Operation\SaveScheme.Designer.cs">
       <DependentUpon>SaveScheme.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\Selectoptype.cs">
+    <Compile Include="O_Operation\Selectoptype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\Selectoptype.designer.cs">
+    <Compile Include="O_Operation\Selectoptype.designer.cs">
       <DependentUpon>Selectoptype.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\selectScheme.cs">
+    <Compile Include="O_Operation\selectScheme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\selectScheme.designer.cs">
+    <Compile Include="O_Operation\selectScheme.designer.cs">
       <DependentUpon>selectScheme.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\SelectOrder.cs">
+    <Compile Include="O_Operation\SelectOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Operation\SelectOrder.Designer.cs">
+    <Compile Include="O_Operation\SelectOrder.Designer.cs">
       <DependentUpon>SelectOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operator\OperatorMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operator\OperatorMain.Designer.cs">
+      <DependentUpon>OperatorMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Order\OrderAdd.cs">
       <SubType>Form</SubType>
@@ -460,13 +472,19 @@
     <Compile Include="视图\newpassword.Designer.cs">
       <DependentUpon>newpassword.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CabinetLight\CabinetLight.resx">
+    <EmbeddedResource Include="Operator\OperatorAdd.resx">
+      <DependentUpon>OperatorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operator\OperatorMain.resx">
+      <DependentUpon>OperatorMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="O_CabinetLight\CabinetLight.resx">
       <DependentUpon>CabinetLight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CabinetLight\CabinetMain.resx">
+    <EmbeddedResource Include="O_CabinetLight\CabinetMain.resx">
       <DependentUpon>CabinetMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CabinetLight\WorkSite.resx">
+    <EmbeddedResource Include="O_CabinetLight\WorkSite.resx">
       <DependentUpon>WorkSite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
@@ -475,28 +493,28 @@
     <EmbeddedResource Include="LoginFrom.resx">
       <DependentUpon>LoginFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\ExcelImport.resx">
+    <EmbeddedResource Include="O_Operation\ExcelImport.resx">
       <DependentUpon>ExcelImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\Form1.resx">
+    <EmbeddedResource Include="O_Operation\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\NewOrder.resx">
+    <EmbeddedResource Include="O_Operation\NewOrder.resx">
       <DependentUpon>NewOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\OperationMain.resx">
+    <EmbeddedResource Include="O_Operation\OperationMain.resx">
       <DependentUpon>OperationMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\SaveScheme.resx">
+    <EmbeddedResource Include="O_Operation\SaveScheme.resx">
       <DependentUpon>SaveScheme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\Selectoptype.resx">
+    <EmbeddedResource Include="O_Operation\Selectoptype.resx">
       <DependentUpon>Selectoptype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\selectScheme.resx">
+    <EmbeddedResource Include="O_Operation\selectScheme.resx">
       <DependentUpon>selectScheme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Operation\SelectOrder.resx">
+    <EmbeddedResource Include="O_Operation\SelectOrder.resx">
       <DependentUpon>SelectOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Order\OrderAdd.resx">
