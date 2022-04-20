@@ -80,7 +80,7 @@ namespace MES.form.Scheme
                     ds = excelHelper.exceltoDataSet();
                     ds.Tables[0].Columns.Add(dc_OperationNo);
                     OperationBLL ob = new OperationBLL();
-                    int MaxOperationNo = ob.GetMaxOperationNo();
+                    Int64 MaxOperationNo = ob.GetMaxOperationNo();
                     for (int p = ds.Tables[0].Rows.Count - 1; p >= 0; p--)
                     {
                         string OperationNo = string.Format("{0:d10}", MaxOperationNo);

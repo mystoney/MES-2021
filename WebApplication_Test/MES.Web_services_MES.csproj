@@ -75,11 +75,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MES_Operator.asmx" />
     <Content Include="Web.config" />
     <Content Include="WebService_MES_PLM.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JSON.cs" />
+    <Compile Include="MES_Operator.asmx.cs">
+      <DependentUpon>MES_Operator.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebService_MES_PLM.asmx.cs">
       <DependentUpon>WebService_MES_PLM.asmx</DependentUpon>
@@ -97,6 +102,10 @@
     <ProjectReference Include="..\MES.module.Base\MES.module.Base.csproj">
       <Project>{f8462227-0c8d-4da4-8800-cecf3da9ab99}</Project>
       <Name>MES.module.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MES.module.BLL\MES.module.BLL.csproj">
+      <Project>{1c2b57c3-3e5e-42cb-8f1e-7dd1ac5a5925}</Project>
+      <Name>MES.module.BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

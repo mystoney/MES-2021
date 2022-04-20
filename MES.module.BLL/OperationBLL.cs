@@ -39,7 +39,7 @@ namespace MES.module.BLL
             }
         }
 
-        public int GetMaxOperationNo()
+        public Int64 GetMaxOperationNo()
         {
             DAL.OperationDal.OperationDAL od = new DAL.OperationDal.OperationDAL();
             return od.GetMaxOperationNo();

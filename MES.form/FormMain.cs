@@ -830,25 +830,25 @@ namespace MES.form
 
         private void 灯箱ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int v = 0;
+            ////int v = 0;
             
 
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
-            CabinetLight.CabinetMain s1 = new CabinetLight.CabinetMain(v);
+            ////if (MDI_Class.RS_ID == 7)
+            ////{
+            ////    v = 1;
+            ////}
+            CabinetLight.CabinetMain s1 = new CabinetLight.CabinetMain();
             s1.Name = s1.Name + "State";
             ShowForm(s1, 0);
         }
 
         private void 款式管理ToolStripMenuItem1_Click(object sender, EventArgs e)
         {   
-            int v = 0;
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
+        //    int v = 0;
+        //    if (MDI_Class.RS_ID == 7)
+        //    {
+        //        v = 1;
+        //    }
             Style.StyleAdd s1 = new Style.StyleAdd();
             s1.Name = s1.Name + "State";
             ShowForm(s1, 0);
@@ -856,11 +856,11 @@ namespace MES.form
 
         private void 生产路线管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int v = 0;
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
+            //int v = 0;
+            //if (MDI_Class.RS_ID == 7)
+            //{
+            //    v = 1;
+            //}
             Scheme.SchemeMain sns = new Scheme.SchemeMain(1);
             sns.Name = sns.Name + "State";
             ShowForm(sns, 0);
@@ -868,11 +868,11 @@ namespace MES.form
 
         private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int v = 0;
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
+            //int v = 0;
+            //if (MDI_Class.RS_ID == 7)
+            //{
+            //    v = 1;
+            //}
             Scheme.ExcellImport_Operation eo = new Scheme.ExcellImport_Operation();
             eo.Name = eo.Name + "State";
             ShowForm(eo, 0);
@@ -881,11 +881,11 @@ namespace MES.form
         private void 导入ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-            int v = 0;
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
+            //int v = 0;
+            //if (MDI_Class.RS_ID == 7)
+            //{
+            //    v = 1;
+            //}
             Scheme.ExcellImport_Operation eo = new Scheme.ExcellImport_Operation();
             eo.Name = eo.Name + "State";
             ShowForm(eo, 0);
@@ -897,11 +897,11 @@ namespace MES.form
         private void 工单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            int v = 0;
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
+            //int v = 0;
+            //if (MDI_Class.RS_ID == 7)
+            //{
+            //    v = 1;
+            //}
 
             Order.OrderMain sns = new Order.OrderMain();
             sns.Name = sns.Name + "State";
@@ -912,18 +912,29 @@ namespace MES.form
         private void 工序清单管理ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            int v = 0;
-            if (MDI_Class.RS_ID == 7)
-            {
-                v = 1;
-            }
+            //int v = 0;
+            //if (MDI_Class.RS_ID == 7)
+            //{
+            //    v = 1;
+            //}
             Scheme.Operations.OperationsMain sns = new Scheme.Operations.OperationsMain();
             sns.Name = sns.Name + "State";
             ShowForm(sns, 0);
 
         }
 
+        private void 员工管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //int v = 0;
+            //if (MDI_Class.RS_ID == 7)
+            //{
+            //    v = 1;
+            //}
+            Operator.OperatorMain opm = new Operator.OperatorMain();
+            opm.Name = opm.Name + "State";
+            ShowForm(opm, 0);
 
+        }
     }
 }
 

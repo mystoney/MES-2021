@@ -158,7 +158,8 @@ namespace MES.module.DAL.SchemeDal
             //插入主表 
             if (state == 0)
             {
-                string sqlstring = "UPDATE nMES_Scheme_master SET app_time = getdate(),state = 1 WHERE Combination_no='" + Combination_no + "'";
+                //string sqlstring = "UPDATE nMES_Scheme_master SET app_time = getdate(),state = 1 WHERE Combination_no='" + Combination_no + "'";
+                string sqlstring = "UPDATE nMES_Scheme_master SET state = 1 WHERE Combination_no='" + Combination_no + "'";
                 SQLList.Add(sqlstring);
             }
 

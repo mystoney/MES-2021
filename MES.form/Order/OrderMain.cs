@@ -222,7 +222,7 @@ namespace MES.form.Order
                 lb_order_no.Text = "";
                 lb_job_qty.Text = "";
                 lb_style_num.Text = "";
-                lb_style_num.Text = "";
+                lb_style_des.Text = "";
                 lb_memo_no.Text = "";
                 lb_memo_name.Text = "";
                 lb_customer_state.Text = "";
@@ -230,6 +230,7 @@ namespace MES.form.Order
                 lb_manhour.Text = "";
                 lb_Combination_no.Text = "";
                 lb_OpListNo.Text = "";
+
                 lb_SchemeNo.Text = "";
                 lst = new List<string>();
                 GetGrid_UPS(0);
@@ -239,17 +240,7 @@ namespace MES.form.Order
             }
             HaveChanged = 0;//界面没有发生更改
             ChangeButton();
-            //OrderBll ob = new OrderBll();
-            //List<OrderBll.ProductUPS> ProductList = new List<OrderBll.ProductUPS>();
-            //ProductList = ob.GetProductList(soi.job_num, soi.suffix);
-            //for (int k = 0; k < ProductList.Count; k++)
-            //{
-            //    if (ProductList[k].UPS_prun != 0) 
-            //    {
-            //        ButtonSave.Enabled = false;
-            //        return;
-            //    }
-            //}
+
          }
 
         private void ButtonToMES_Click(object sender, EventArgs e)

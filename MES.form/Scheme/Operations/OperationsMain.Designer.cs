@@ -62,8 +62,9 @@ namespace MES.form.Scheme.Operations
             this.panel1.Controls.Add(this.splitContainer2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(1067, 562);
             this.panel1.TabIndex = 1;
             // 
             // splitContainer2
@@ -71,6 +72,7 @@ namespace MES.form.Scheme.Operations
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -83,8 +85,9 @@ namespace MES.form.Scheme.Operations
             this.splitContainer2.Panel2.Controls.Add(this.button_ToJingYuan);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2.Controls.Add(this.button_ToCAOBO);
-            this.splitContainer2.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer2.SplitterDistance = 411;
+            this.splitContainer2.Size = new System.Drawing.Size(1067, 562);
+            this.splitContainer2.SplitterDistance = 522;
+            this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 1;
             // 
             // splitContainer1
@@ -92,7 +95,7 @@ namespace MES.form.Scheme.Operations
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -102,9 +105,9 @@ namespace MES.form.Scheme.Operations
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.GridOPListDetail);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 411);
+            this.splitContainer1.Size = new System.Drawing.Size(1067, 522);
             this.splitContainer1.SplitterDistance = 361;
-            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
             // GridOPList
@@ -131,6 +134,7 @@ namespace MES.form.Scheme.Operations
             this.GridOPList.DefaultCellStyle = dataGridViewCellStyle2;
             this.GridOPList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridOPList.Location = new System.Drawing.Point(0, 0);
+            this.GridOPList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridOPList.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.GridOPList.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridOPList.MergeColumnNames")));
             this.GridOPList.MultiSelect = false;
@@ -148,7 +152,7 @@ namespace MES.form.Scheme.Operations
             this.GridOPList.RowHeadersWidth = 51;
             this.GridOPList.RowTemplate.Height = 27;
             this.GridOPList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridOPList.Size = new System.Drawing.Size(361, 411);
+            this.GridOPList.Size = new System.Drawing.Size(361, 522);
             this.GridOPList.TabIndex = 7;
             this.GridOPList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridOPList_CellClick);
             // 
@@ -156,9 +160,6 @@ namespace MES.form.Scheme.Operations
             // 
             this.GridOPListDetail.AllowUserToAddRows = false;
             this.GridOPListDetail.AllowUserToDeleteRows = false;
-            this.GridOPListDetail.AllowUserToOrderColumns = true;
-            this.GridOPListDetail.AllowUserToResizeRows = false;
-            this.GridOPListDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.GridOPListDetail.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -179,6 +180,7 @@ namespace MES.form.Scheme.Operations
             this.GridOPListDetail.DefaultCellStyle = dataGridViewCellStyle5;
             this.GridOPListDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridOPListDetail.Location = new System.Drawing.Point(0, 0);
+            this.GridOPListDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridOPListDetail.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.GridOPListDetail.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridOPListDetail.MergeColumnNames")));
             this.GridOPListDetail.MultiSelect = false;
@@ -196,14 +198,15 @@ namespace MES.form.Scheme.Operations
             this.GridOPListDetail.RowHeadersWidth = 51;
             this.GridOPListDetail.RowTemplate.Height = 27;
             this.GridOPListDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridOPListDetail.Size = new System.Drawing.Size(437, 411);
+            this.GridOPListDetail.Size = new System.Drawing.Size(703, 522);
             this.GridOPListDetail.TabIndex = 6;
             // 
             // button_ToJingYuan
             // 
-            this.button_ToJingYuan.Location = new System.Drawing.Point(288, 1);
+            this.button_ToJingYuan.Location = new System.Drawing.Point(384, 1);
+            this.button_ToJingYuan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_ToJingYuan.Name = "button_ToJingYuan";
-            this.button_ToJingYuan.Size = new System.Drawing.Size(90, 23);
+            this.button_ToJingYuan.Size = new System.Drawing.Size(120, 29);
             this.button_ToJingYuan.TabIndex = 125;
             this.button_ToJingYuan.Text = "推送2";
             this.button_ToJingYuan.UseVisualStyleBackColor = true;
@@ -211,9 +214,10 @@ namespace MES.form.Scheme.Operations
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(384, 0);
+            this.button2.Location = new System.Drawing.Point(512, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.Size = new System.Drawing.Size(120, 29);
             this.button2.TabIndex = 124;
             this.button2.Text = "取消";
             this.button2.UseVisualStyleBackColor = true;
@@ -221,9 +225,10 @@ namespace MES.form.Scheme.Operations
             // 
             // button_ToCAOBO
             // 
-            this.button_ToCAOBO.Location = new System.Drawing.Point(192, 1);
+            this.button_ToCAOBO.Location = new System.Drawing.Point(256, 1);
+            this.button_ToCAOBO.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_ToCAOBO.Name = "button_ToCAOBO";
-            this.button_ToCAOBO.Size = new System.Drawing.Size(90, 23);
+            this.button_ToCAOBO.Size = new System.Drawing.Size(120, 29);
             this.button_ToCAOBO.TabIndex = 123;
             this.button_ToCAOBO.Text = "推送1";
             this.button_ToCAOBO.UseVisualStyleBackColor = true;
@@ -231,11 +236,11 @@ namespace MES.form.Scheme.Operations
             // 
             // OperationsMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 562);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "OperationsMain";
             this.Text = "工序清单管理";
             this.Load += new System.EventHandler(this.OperationsMain_Load);

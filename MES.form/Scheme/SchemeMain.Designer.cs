@@ -45,6 +45,7 @@ namespace MES.form.Scheme
             this.GridStation = new MyContrals.ExDataGridView();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.button10 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@ namespace MES.form.Scheme
             this.label5 = new System.Windows.Forms.Label();
             this.lb_Styleno = new System.Windows.Forms.Label();
             this.GridUPS = new MyContrals.ExDataGridView();
-            this.button10 = new System.Windows.Forms.Button();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -100,7 +100,7 @@ namespace MES.form.Scheme
             this.toolStripButton14});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1218, 39);
+            this.toolStrip2.Size = new System.Drawing.Size(1624, 39);
             this.toolStrip2.TabIndex = 11;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -109,7 +109,7 @@ namespace MES.form.Scheme
             this.ButtonSelectScheme.Image = global::MES.form.Properties.Resources._32_balloonica_079;
             this.ButtonSelectScheme.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ButtonSelectScheme.Name = "ButtonSelectScheme";
-            this.ButtonSelectScheme.Size = new System.Drawing.Size(92, 36);
+            this.ButtonSelectScheme.Size = new System.Drawing.Size(105, 36);
             this.ButtonSelectScheme.Text = "查询方案";
             this.ButtonSelectScheme.ToolTipText = "按订单查询";
             this.ButtonSelectScheme.Click += new System.EventHandler(this.ButtonSelectScheme_Click);
@@ -120,7 +120,7 @@ namespace MES.form.Scheme
             this.ButtonImportScheme.Image = global::MES.form.Properties.Resources._32_balloonica_019;
             this.ButtonImportScheme.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ButtonImportScheme.Name = "ButtonImportScheme";
-            this.ButtonImportScheme.Size = new System.Drawing.Size(92, 36);
+            this.ButtonImportScheme.Size = new System.Drawing.Size(105, 36);
             this.ButtonImportScheme.Text = "导入方案";
             this.ButtonImportScheme.ToolTipText = "按订单查询";
             // 
@@ -130,7 +130,7 @@ namespace MES.form.Scheme
             this.ButtonImportOperation.Image = global::MES.form.Properties.Resources._32_balloonica_019;
             this.ButtonImportOperation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ButtonImportOperation.Name = "ButtonImportOperation";
-            this.ButtonImportOperation.Size = new System.Drawing.Size(92, 36);
+            this.ButtonImportOperation.Size = new System.Drawing.Size(105, 36);
             this.ButtonImportOperation.Text = "导入工序";
             this.ButtonImportOperation.ToolTipText = "按订单查询";
             // 
@@ -144,7 +144,7 @@ namespace MES.form.Scheme
             this.ButtonSave.Image = global::MES.form.Properties.Resources._32_balloonica_060;
             this.ButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ButtonSave.Name = "ButtonSave";
-            this.ButtonSave.Size = new System.Drawing.Size(92, 36);
+            this.ButtonSave.Size = new System.Drawing.Size(105, 36);
             this.ButtonSave.Text = "保存方案";
             this.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ButtonSave.Click += new System.EventHandler(this.ButtonSave_Click);
@@ -155,7 +155,7 @@ namespace MES.form.Scheme
             this.toolStripButton14.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(68, 36);
+            this.toolStripButton14.Size = new System.Drawing.Size(75, 36);
             this.toolStripButton14.Text = "退出";
             this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
@@ -165,14 +165,16 @@ namespace MES.form.Scheme
             this.panel1.Controls.Add(this.splitContainer3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1218, 992);
+            this.panel1.Size = new System.Drawing.Size(1624, 1250);
             this.panel1.TabIndex = 12;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer3.Name = "splitContainer3";
             // 
             // splitContainer3.Panel1
@@ -182,8 +184,9 @@ namespace MES.form.Scheme
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(1218, 992);
-            this.splitContainer3.SplitterDistance = 238;
+            this.splitContainer3.Size = new System.Drawing.Size(1624, 1250);
+            this.splitContainer3.SplitterDistance = 317;
+            this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 1;
             // 
             // splitContainer5
@@ -191,6 +194,7 @@ namespace MES.form.Scheme
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer5.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer5.Name = "splitContainer5";
             this.splitContainer5.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -203,7 +207,7 @@ namespace MES.form.Scheme
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.GridStation);
-            this.splitContainer5.Size = new System.Drawing.Size(238, 992);
+            this.splitContainer5.Size = new System.Drawing.Size(317, 1250);
             this.splitContainer5.SplitterDistance = 30;
             this.splitContainer5.SplitterWidth = 1;
             this.splitContainer5.TabIndex = 2;
@@ -213,9 +217,10 @@ namespace MES.form.Scheme
             this.combo_Line.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_Line.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.combo_Line.FormattingEnabled = true;
-            this.combo_Line.Location = new System.Drawing.Point(77, 7);
+            this.combo_Line.Location = new System.Drawing.Point(103, 9);
+            this.combo_Line.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.combo_Line.Name = "combo_Line";
-            this.combo_Line.Size = new System.Drawing.Size(119, 20);
+            this.combo_Line.Size = new System.Drawing.Size(157, 23);
             this.combo_Line.TabIndex = 68;
             this.combo_Line.SelectedIndexChanged += new System.EventHandler(this.combo_Line_SelectedIndexChanged);
             // 
@@ -224,9 +229,10 @@ namespace MES.form.Scheme
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(3, 9);
+            this.label6.Location = new System.Drawing.Point(4, 11);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
+            this.label6.Size = new System.Drawing.Size(84, 20);
             this.label6.TabIndex = 71;
             this.label6.Text = "选择生产线";
             // 
@@ -238,14 +244,16 @@ namespace MES.form.Scheme
             this.GridStation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridStation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridStation.Location = new System.Drawing.Point(0, 0);
+            this.GridStation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridStation.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.GridStation.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridStation.MergeColumnNames")));
             this.GridStation.MultiSelect = false;
             this.GridStation.Name = "GridStation";
             this.GridStation.RowHeadersVisible = false;
+            this.GridStation.RowHeadersWidth = 51;
             this.GridStation.RowTemplate.Height = 27;
             this.GridStation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridStation.Size = new System.Drawing.Size(238, 961);
+            this.GridStation.Size = new System.Drawing.Size(317, 1219);
             this.GridStation.TabIndex = 3;
             // 
             // splitContainer4
@@ -253,6 +261,7 @@ namespace MES.form.Scheme
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer4.Name = "splitContainer4";
             // 
             // splitContainer4.Panel1
@@ -262,8 +271,9 @@ namespace MES.form.Scheme
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer4.Size = new System.Drawing.Size(976, 992);
+            this.splitContainer4.Size = new System.Drawing.Size(1302, 1250);
             this.splitContainer4.SplitterDistance = 80;
+            this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 7;
             // 
             // splitContainer6
@@ -271,6 +281,7 @@ namespace MES.form.Scheme
             this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer6.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer6.Name = "splitContainer6";
             this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -291,17 +302,30 @@ namespace MES.form.Scheme
             this.splitContainer6.Panel2.Controls.Add(this.button4);
             this.splitContainer6.Panel2.Controls.Add(this.button5);
             this.splitContainer6.Panel2.Controls.Add(this.button6);
-            this.splitContainer6.Size = new System.Drawing.Size(80, 992);
+            this.splitContainer6.Size = new System.Drawing.Size(80, 1250);
             this.splitContainer6.SplitterDistance = 30;
             this.splitContainer6.SplitterWidth = 1;
             this.splitContainer6.TabIndex = 0;
             // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button10.Location = new System.Drawing.Point(4, 574);
+            this.button10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(99, 52);
+            this.button10.TabIndex = 88;
+            this.button10.Text = "清空";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(3, 299);
+            this.button2.Location = new System.Drawing.Point(4, 374);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 29);
             this.button2.TabIndex = 87;
             this.button2.Text = "指定普通";
             this.button2.UseVisualStyleBackColor = true;
@@ -310,9 +334,10 @@ namespace MES.form.Scheme
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button9.Location = new System.Drawing.Point(3, 328);
+            this.button9.Location = new System.Drawing.Point(4, 410);
+            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.Size = new System.Drawing.Size(100, 29);
             this.button9.TabIndex = 85;
             this.button9.Text = "指定质检";
             this.button9.UseVisualStyleBackColor = true;
@@ -321,9 +346,10 @@ namespace MES.form.Scheme
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button7.Location = new System.Drawing.Point(3, 270);
+            this.button7.Location = new System.Drawing.Point(4, 338);
+            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(100, 29);
             this.button7.TabIndex = 83;
             this.button7.Text = "指定上架";
             this.button7.UseVisualStyleBackColor = true;
@@ -332,9 +358,10 @@ namespace MES.form.Scheme
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(3, 7);
+            this.button1.Location = new System.Drawing.Point(4, 9);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 42);
+            this.button1.Size = new System.Drawing.Size(99, 52);
             this.button1.TabIndex = 87;
             this.button1.Text = "选择款号及选项";
             this.button1.UseVisualStyleBackColor = true;
@@ -343,9 +370,10 @@ namespace MES.form.Scheme
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button8.Location = new System.Drawing.Point(3, 357);
+            this.button8.Location = new System.Drawing.Point(4, 446);
+            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.Size = new System.Drawing.Size(100, 29);
             this.button8.TabIndex = 84;
             this.button8.Text = "指定下架";
             this.button8.UseVisualStyleBackColor = true;
@@ -354,9 +382,10 @@ namespace MES.form.Scheme
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(3, 124);
+            this.button3.Location = new System.Drawing.Point(4, 155);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(100, 29);
             this.button3.TabIndex = 79;
             this.button3.Text = "添  加";
             this.button3.UseVisualStyleBackColor = true;
@@ -365,9 +394,10 @@ namespace MES.form.Scheme
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Location = new System.Drawing.Point(3, 153);
+            this.button4.Location = new System.Drawing.Point(4, 191);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(100, 29);
             this.button4.TabIndex = 80;
             this.button4.Text = "删  除";
             this.button4.UseVisualStyleBackColor = true;
@@ -376,9 +406,10 @@ namespace MES.form.Scheme
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button5.Location = new System.Drawing.Point(3, 182);
+            this.button5.Location = new System.Drawing.Point(4, 228);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(100, 29);
             this.button5.TabIndex = 81;
             this.button5.Text = "上  移";
             this.button5.UseVisualStyleBackColor = true;
@@ -387,9 +418,10 @@ namespace MES.form.Scheme
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button6.Location = new System.Drawing.Point(3, 211);
+            this.button6.Location = new System.Drawing.Point(4, 264);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(100, 29);
             this.button6.TabIndex = 82;
             this.button6.Text = "下  移";
             this.button6.UseVisualStyleBackColor = true;
@@ -400,6 +432,7 @@ namespace MES.form.Scheme
             this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer7.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer7.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer7.Name = "splitContainer7";
             this.splitContainer7.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -415,7 +448,7 @@ namespace MES.form.Scheme
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.GridUPS);
-            this.splitContainer7.Size = new System.Drawing.Size(892, 992);
+            this.splitContainer7.Size = new System.Drawing.Size(1217, 1250);
             this.splitContainer7.SplitterDistance = 30;
             this.splitContainer7.SplitterWidth = 1;
             this.splitContainer7.TabIndex = 0;
@@ -424,9 +457,10 @@ namespace MES.form.Scheme
             // 
             this.lb_com_memo.AutoSize = true;
             this.lb_com_memo.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_com_memo.Location = new System.Drawing.Point(269, 9);
+            this.lb_com_memo.Location = new System.Drawing.Point(359, 11);
+            this.lb_com_memo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_com_memo.Name = "lb_com_memo";
-            this.lb_com_memo.Size = new System.Drawing.Size(32, 17);
+            this.lb_com_memo.Size = new System.Drawing.Size(39, 19);
             this.lb_com_memo.TabIndex = 93;
             this.lb_com_memo.Text = "说明";
             // 
@@ -434,9 +468,10 @@ namespace MES.form.Scheme
             // 
             this.lb_SchemeNo.AutoSize = true;
             this.lb_SchemeNo.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_SchemeNo.Location = new System.Drawing.Point(79, 9);
+            this.lb_SchemeNo.Location = new System.Drawing.Point(105, 11);
+            this.lb_SchemeNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_SchemeNo.Name = "lb_SchemeNo";
-            this.lb_SchemeNo.Size = new System.Drawing.Size(73, 17);
+            this.lb_SchemeNo.Size = new System.Drawing.Size(92, 19);
             this.lb_SchemeNo.TabIndex = 94;
             this.lb_SchemeNo.Text = "SchemeNo";
             // 
@@ -444,9 +479,10 @@ namespace MES.form.Scheme
             // 
             this.lb_Combination.AutoSize = true;
             this.lb_Combination.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Combination.Location = new System.Drawing.Point(234, 9);
+            this.lb_Combination.Location = new System.Drawing.Point(312, 11);
+            this.lb_Combination.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_Combination.Name = "lb_Combination";
-            this.lb_Combination.Size = new System.Drawing.Size(32, 17);
+            this.lb_Combination.Size = new System.Drawing.Size(39, 19);
             this.lb_Combination.TabIndex = 91;
             this.lb_Combination.Text = "选项";
             // 
@@ -454,9 +490,10 @@ namespace MES.form.Scheme
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(3, 9);
+            this.label5.Location = new System.Drawing.Point(4, 11);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.Size = new System.Drawing.Size(69, 20);
             this.label5.TabIndex = 1;
             this.label5.Text = "生产路线";
             // 
@@ -464,9 +501,10 @@ namespace MES.form.Scheme
             // 
             this.lb_Styleno.AutoSize = true;
             this.lb_Styleno.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_Styleno.Location = new System.Drawing.Point(158, 9);
+            this.lb_Styleno.Location = new System.Drawing.Point(211, 11);
+            this.lb_Styleno.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_Styleno.Name = "lb_Styleno";
-            this.lb_Styleno.Size = new System.Drawing.Size(68, 17);
+            this.lb_Styleno.Size = new System.Drawing.Size(84, 19);
             this.lb_Styleno.TabIndex = 89;
             this.lb_Styleno.Text = "请选择款号";
             // 
@@ -478,34 +516,26 @@ namespace MES.form.Scheme
             this.GridUPS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridUPS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridUPS.Location = new System.Drawing.Point(0, 0);
+            this.GridUPS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GridUPS.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.GridUPS.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("GridUPS.MergeColumnNames")));
             this.GridUPS.MultiSelect = false;
             this.GridUPS.Name = "GridUPS";
             this.GridUPS.RowHeadersVisible = false;
+            this.GridUPS.RowHeadersWidth = 51;
             this.GridUPS.RowTemplate.Height = 27;
             this.GridUPS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridUPS.Size = new System.Drawing.Size(892, 961);
+            this.GridUPS.Size = new System.Drawing.Size(1217, 1219);
             this.GridUPS.TabIndex = 3;
-            // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button10.Location = new System.Drawing.Point(3, 459);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(74, 42);
-            this.button10.TabIndex = 88;
-            this.button10.Text = "清空";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // SchemeMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 1031);
+            this.ClientSize = new System.Drawing.Size(1624, 1289);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SchemeMain";
             this.Text = "SchemeMain";
             this.Load += new System.EventHandler(this.SchemeMain_Load);
