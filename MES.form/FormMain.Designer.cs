@@ -88,6 +88,7 @@
             this.ID_层叠 = new System.Windows.Forms.ToolStripMenuItem();
             this.ID_排列窗口 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.加密ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -167,7 +168,7 @@
             this.ID_员工.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ID_员工管理});
             this.ID_员工.Name = "ID_员工";
-            this.ID_员工.Size = new System.Drawing.Size(130, 24);
+            this.ID_员工.Size = new System.Drawing.Size(130, 26);
             this.ID_员工.Text = "员工(Operator)";
             // 
             // ID_员工管理
@@ -182,7 +183,7 @@
             this.ID_工作站.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ID_修改工作站});
             this.ID_工作站.Name = "ID_工作站";
-            this.ID_工作站.Size = new System.Drawing.Size(130, 24);
+            this.ID_工作站.Size = new System.Drawing.Size(130, 26);
             this.ID_工作站.Text = "工作站(Station)";
             // 
             // ID_修改工作站
@@ -197,7 +198,7 @@
             this.ID_工单.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ID_工单管理});
             this.ID_工单.Name = "ID_工单";
-            this.ID_工单.Size = new System.Drawing.Size(106, 24);
+            this.ID_工单.Size = new System.Drawing.Size(106, 26);
             this.ID_工单.Text = "工单(Order)";
             // 
             // ID_工单管理
@@ -213,7 +214,7 @@
             this.ID_款式管理,
             this.ID_款式导入});
             this.ID_款式.Name = "ID_款式";
-            this.ID_款式.Size = new System.Drawing.Size(99, 24);
+            this.ID_款式.Size = new System.Drawing.Size(99, 26);
             this.ID_款式.Text = "款式(Style)";
             // 
             // ID_款式管理
@@ -235,7 +236,7 @@
             this.ID_工序清单管理,
             this.ID_工序清单导入});
             this.ID_工序清单.Name = "ID_工序清单";
-            this.ID_工序清单.Size = new System.Drawing.Size(192, 24);
+            this.ID_工序清单.Size = new System.Drawing.Size(192, 26);
             this.ID_工序清单.Text = "工序清单(OperationList)";
             // 
             // ID_工序清单管理
@@ -258,7 +259,7 @@
             this.ID_生产路线管理,
             this.ID_生产路线导入});
             this.ID_生产路线.Name = "ID_生产路线";
-            this.ID_生产路线.Size = new System.Drawing.Size(151, 24);
+            this.ID_生产路线.Size = new System.Drawing.Size(151, 26);
             this.ID_生产路线.Text = "生产路线(Scheme)";
             // 
             // ID_生产路线管理
@@ -281,7 +282,8 @@
             this.输入工单获取款号和数量ToolStripMenuItem,
             this.测试ToolStripMenuItem1,
             this.清空数据ToolStripMenuItem,
-            this.导入方案ToolStripMenuItem});
+            this.导入方案ToolStripMenuItem,
+            this.加密ToolStripMenuItem});
             this.ID_开发工具.Name = "ID_开发工具";
             this.ID_开发工具.Size = new System.Drawing.Size(83, 24);
             this.ID_开发工具.Text = "开发工具";
@@ -372,7 +374,7 @@
             this.ID_系统用户权限});
             this.ID_系统.ForeColor = System.Drawing.Color.Black;
             this.ID_系统.Name = "ID_系统";
-            this.ID_系统.Size = new System.Drawing.Size(53, 24);
+            this.ID_系统.Size = new System.Drawing.Size(53, 26);
             this.ID_系统.Text = "系统";
             // 
             // ID_公司基本信息
@@ -413,7 +415,7 @@
             this.ID_员工资料维护});
             this.ID_人事.ForeColor = System.Drawing.Color.Black;
             this.ID_人事.Name = "ID_人事";
-            this.ID_人事.Size = new System.Drawing.Size(53, 24);
+            this.ID_人事.Size = new System.Drawing.Size(53, 26);
             this.ID_人事.Text = "人事";
             // 
             // ID_部门资料维护
@@ -438,7 +440,7 @@
             this.ID_退出});
             this.ID_视图.ForeColor = System.Drawing.Color.Black;
             this.ID_视图.Name = "ID_视图";
-            this.ID_视图.Size = new System.Drawing.Size(53, 24);
+            this.ID_视图.Size = new System.Drawing.Size(53, 26);
             this.ID_视图.Text = "视图";
             // 
             // ID_更改密码
@@ -467,7 +469,7 @@
             this.重设系统菜单Menu_indexToolStripMenuItem.Enabled = false;
             this.重设系统菜单Menu_indexToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.重设系统菜单Menu_indexToolStripMenuItem.Name = "重设系统菜单Menu_indexToolStripMenuItem";
-            this.重设系统菜单Menu_indexToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
+            this.重设系统菜单Menu_indexToolStripMenuItem.Size = new System.Drawing.Size(113, 26);
             this.重设系统菜单Menu_indexToolStripMenuItem.Text = "重设系统菜单";
             this.重设系统菜单Menu_indexToolStripMenuItem.Click += new System.EventHandler(this.重设系统菜单Menu_indexToolStripMenuItem_Click);
             // 
@@ -476,7 +478,7 @@
             this.ID_工序.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ID_修改排序表});
             this.ID_工序.Name = "ID_工序";
-            this.ID_工序.Size = new System.Drawing.Size(53, 24);
+            this.ID_工序.Size = new System.Drawing.Size(53, 26);
             this.ID_工序.Text = "工序";
             this.ID_工序.Visible = false;
             this.ID_工序.Click += new System.EventHandler(this.工序ToolStripMenuItem_Click);
@@ -492,7 +494,7 @@
             // ID_灯箱
             // 
             this.ID_灯箱.Name = "ID_灯箱";
-            this.ID_灯箱.Size = new System.Drawing.Size(53, 24);
+            this.ID_灯箱.Size = new System.Drawing.Size(53, 26);
             this.ID_灯箱.Text = "灯箱";
             this.ID_灯箱.Visible = false;
             this.ID_灯箱.Click += new System.EventHandler(this.灯箱ToolStripMenuItem_Click);
@@ -506,7 +508,7 @@
             this.ID_排列窗口});
             this.ID_窗口.ForeColor = System.Drawing.Color.Black;
             this.ID_窗口.Name = "ID_窗口";
-            this.ID_窗口.Size = new System.Drawing.Size(53, 24);
+            this.ID_窗口.Size = new System.Drawing.Size(53, 26);
             this.ID_窗口.Text = "窗口";
             this.ID_窗口.Visible = false;
             // 
@@ -562,6 +564,12 @@
             this.menuStrip1.Size = new System.Drawing.Size(1529, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 加密ToolStripMenuItem
+            // 
+            this.加密ToolStripMenuItem.Name = "加密ToolStripMenuItem";
+            this.加密ToolStripMenuItem.Size = new System.Drawing.Size(257, 26);
+            this.加密ToolStripMenuItem.Text = "加密解密";
             // 
             // FormMain
             // 
@@ -653,6 +661,7 @@
         internal System.Windows.Forms.ToolStripMenuItem ID_层叠;
         internal System.Windows.Forms.ToolStripMenuItem ID_排列窗口;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 加密ToolStripMenuItem;
     }
 }
 

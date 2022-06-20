@@ -170,7 +170,7 @@ namespace MES.form.Order
                             int UPS_purn = 0;
                             if (int.TryParse(result, out UPS_purn))//如果转换失败（为false）时输出括号内容
                             {
-                                UPS_purn = Convert.ToInt16(result);
+                                UPS_purn = Convert.ToInt32(result);
                             }
                             if (ob.SaveUPS_purn(ProductUPS1.id, UPS_purn) != 1)
                             {
